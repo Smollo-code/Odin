@@ -2,21 +2,22 @@
 <html lang="de">
 <head>
     <link rel="stylesheet" href="styles/dashboard.css">
-    <title>Dashboard</title>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mein Dashboard</title>
 
+</head>
 <body>
-<div class="dashboard">
-    <div class="header">
-        <h1>Mein Fancy Dashboard</h1>
-        <a href="logout.php" class="logout">Logout</a>
-    </div>
-    <div class="content">
-        <a href="calc.php" class="calculator-link">Calculator</a>
-    </div>
-    <div class="content">
-        <a href="test.php" class="calculator">Test</a>
-    </div>
+
+<div id="dashboard">
+    <div id="logout" onclick="logout()">Logout</div>
+    <div class="box" onclick="navigateToPage('page1')">Taschenrechner</div>
+    <div class="box" onclick="navigateToPage('page2')">Tic Tac Toe</div>
+    <div class="box" onclick="navigateToPage('page3')">Guck mal Markus</div>
+    <!-- Füge weitere Kästchen nach Bedarf hinzu -->
 </div>
+
+<script type="text/javascript" src="scripts/dashboard.js"></script>
+
 </body>
 </html>

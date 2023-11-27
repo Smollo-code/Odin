@@ -1,8 +1,9 @@
 <?php
 require '../vendor/autoload.php';
+
 $loader = new \Twig\Loader\FilesystemLoader('../src/User/Templates');
 $twig = new \Twig\Environment($loader, [
-    'cache' => False,
+    'cache' => false,
 ]);
 
-echo $twig->render('dashboard.twig', ['name' => 'Maxi']);
+echo $twig->render('tictactoe.twig', ['name' => 'Florian']);

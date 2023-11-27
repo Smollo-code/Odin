@@ -2,7 +2,7 @@ server {
     listen 80;
     server_name odin.scam;
 
-    root /var/www/learn/public;
+    root /var/www/Odin/public;
     index index.php index.html;
 
     access_log /dev/stdout;
