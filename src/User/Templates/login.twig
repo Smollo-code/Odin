@@ -2,49 +2,68 @@
 <html lang="de">
 <head>
     <title>Login und Registrierung</title>
-
-<link rel="stylesheet", href="styles/login.css">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/login.css">
 </head>
 <body>
-<div class="form-container">
-    <h1>Login</h1>
-    <form action="login.php" method="post">
-        <p class="error"><?= $error ?? '' ?>
-            <label for="username">Benutzername:</label>
-            <input type="text" id="username" name="username" required>
-            <label for="password">Passwort:</label>
-            <input type="password" id="password" name="password" required>
 
-            <input type="submit" value="Anmelden">
-    </form>
+<div class="container">
+    <div class="row">
+        <!-- Login-Formular -->
+        <div class="col-md-6 mx-auto form-container">
+            <div>
+                <h1 class="text-center">Login</h1>
+                <form action="login.php" method="post">
+                    <p class="error"><?= $error ?? '' ?></p>
+                    <div class="form-group">
+                        <label for="username">Benutzername:</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Passwort:</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <input type="submit" class="btn btn-primary btn-block" value="Anmelden">
+                </form>
 
-    <div class="divider"></div>
+                <div class="divider"></div>
 
-    <p class="switch-form">Noch kein Konto vorhanden? <a href="#" onclick="toggleForm()">Registrieren</a></p>
-</div>
+                <p class="switch-form text-center">Noch kein Konto vorhanden? <a href="#" onclick="toggleForm()">Registrieren</a></p>
+            </div>
+        </div>
 
-<div class="form-container" style="display: none;">
-    <h1>Registrierung</h1>
-    <form action="register.php" method="post">
-        <label for="new_username">Neuer Benutzername:</label>
-        <input type="text" id="new_username" name="new_username" required>
+        <!-- Registrierungsformular -->
+        <div class="col-md-6 mx-auto form-container" style="display: none;">
+            <div>
+                <h1 class="text-center">Registrierung</h1>
+                <form action="register.php" method="post">
+                    <div class="form-group">
+                        <label for="new_username">Neuer Benutzername:</label>
+                        <input type="text" class="form-control" id="new_username" name="new_username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="new_password">Neues Passwort:</label>
+                        <input type="password" class="form-control" id="new_password" name="new_password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm_password">Passwort bestätigen:</label>
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                    </div>
+                    <input type="submit" class="btn btn-success btn-block" value="Registrieren">
+                </form>
 
-        <label for="new_password">Neues Passwort:</label>
-        <input type="password" id="new_password" name="new_password" required>
+                <div class="divider"></div>
 
-        <label for="confirm_password">Passwort bestaetigen:</label>
-        <input type="password" id="confirm_password" name="confirm_password" required>
-
-        <input type="submit" value="Registrieren">
-    </form>
-
-    <div class="divider"></div>
-
-    <p class="switch-form">Bereits ein Konto vorhanden? <a href="#" onclick="toggleForm()">Anmelden</a></p>
+                <p class="switch-form text-center">Bereits ein Konto vorhanden? <a href="#" onclick="toggleForm()">Anmelden</a></p>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="scripts/login.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </body>
 </html>

@@ -17,6 +17,7 @@ body {
     float: left;
     align-items: center;
     width: 350px;
+    height: 200px;
     margin: auto;
     position: absolute;
     text-align: center;
@@ -36,8 +37,13 @@ label {
 
 
 .counter {
-    position: fixed;
+
+    position: absolute;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
     top: 63%;
+    border-radius: 8px;
+    margin: auto;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;

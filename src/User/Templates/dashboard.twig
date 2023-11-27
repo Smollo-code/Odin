@@ -1,22 +1,50 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/dashboard.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mein Dashboard</title>
-
 </head>
 <body>
 
-<div id="dashboard">
-    <div id="logout" onclick="logout()">Logout</div>
-    <div class="box" onclick="navigateToPage('page1')">Taschenrechner</div>
-    <div class="box" onclick="navigateToPage('page2')">Tic Tac Toe</div>
-    <div class="box" onclick="navigateToPage('page3')">Guck mal Markus</div>
-    <!-- Füge weitere Kästchen nach Bedarf hinzu -->
+<div class="container mt-4">
+    <div class="text-right mb-2">
+        <button class="btn btn-danger" onclick="logout()">Logout</button>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-4 mb-4">
+            <div class="card" onclick="navigateToPage('page1')">
+                <div class="card-body">
+                    <h5 class="card-title">Taschenrechner</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4 mb-4">
+            <div class="card" onclick="navigateToPage('page2')">
+                <div class="card-body">
+                    <h5 class="card-title">Tic Tac Toe</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4 mb-4">
+            <div class="card" onclick="navigateToPage('page3')">
+                <div class="card-body">
+                    <h5 class="card-title">Guck mal Markus</h5>
+                </div>
+            </div>
+        </div>
+        <!-- Füge weitere Kästchen nach Bedarf hinzu -->
+    </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="scripts/dashboard.js"></script>
 
 </body>

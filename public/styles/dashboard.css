@@ -30,3 +30,25 @@ body {
     cursor: pointer;
     color: red;
 }
+
+.card {
+    color: #fff;
+    border: none;
+}
+
+.card-body {
+    background-color: #007BFF;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.card:hover .card-body {
+    background-color: #034e88;
+}
+
+.text-danger {
+    color: #d9534f;
+}

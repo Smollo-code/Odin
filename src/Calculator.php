@@ -18,7 +18,7 @@ class Calculator implements CalcInterface
     public function getResult () : float {
         $sortedArray = $this->mathSorter();
         $placementArray = $this->placementSorter($sortedArray);
-        return $result = $this->calculate($placementArray);
+        return $this->calculate($placementArray);
     }
 
     private function mathSorter() : array{
