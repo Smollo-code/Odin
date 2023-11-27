@@ -43,8 +43,7 @@ if (!hasOneOperator($result)) {
     $error = 'Fehler bei Eingabe';
 }
 else {
-    $stringArray = exploder($result);
-    $calc = new Calculator($stringArray);
+    $calc = new Calculator($result);
     $result = $calc->getResult();
 }
 

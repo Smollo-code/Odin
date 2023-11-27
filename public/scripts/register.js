@@ -30,7 +30,7 @@ function runAnimation() {
                 finalMessage.classList.add('show');
             }
             if(idx===3){
-                window.location.replace("http://learn.test/main.php");
+                window.location.replace("http://odin.scam/main.php");
             }
         });
     });

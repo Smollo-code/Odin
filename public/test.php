@@ -1,5 +1,5 @@
 <?php
-/*
+
 $formula = '2+2*2';
 
 $pattern = '/([+\-\/\*])/';
@@ -51,35 +51,42 @@ function calculate (array $array) : float {
     return $result;
 }
 
-$result = calculate($readyArray);
-echo $result;
-*/
 
-function fixArrayOrderWithRegex($array) {
-    // Konvertiere das Array in eine Zeichenkette
-    $string = implode('', $array);
 
-    // Wende das Regex-Pattern an
-    $pattern = '/(\d+)([-+*\/]?)/';
-    preg_match_all($pattern, $string, $matches, PREG_SET_ORDER);
+function sortMathArray($array) {
+    $operands = [];
+    $operators = [];
 
-    // Kombiniere die Matches zu einem neuen Array
-    $neuesArray = [];
-    foreach ($matches as $match) {
-        $neuesArray[] = $match[1];
-        if (isset($match[2])) {
-            $neuesArray[] = $match[2];
+
+
+    // Trennen Sie Operanden und Operatoren
+    foreach ($array as $item) {
+        if (is_numeric($item)) {
+            $operands[] = $item;
+        } else {
+            $operators[] = $item;
         }
     }
 
-    return $neuesArray;
+    // Sortieren Sie die Operatoren nach Priorität
+    usort($operators, function($a, $b) {
+        $priority = ['*' => 1, '/' => 1, '+' => 2, '-' => 2];
+        return $priority[$a] <=> $priority[$b];
+    });
+
+    // Rekonstruieren Sie das Array
+    $sortedArray = [];
+    foreach ($operators as $operator) {
+        $sortedArray[] = array_shift($operands);
+        $sortedArray[] = $operator;
+    }
+    // Fügen Sie verbleibende Operanden hinzu
+    $sortedArray = array_merge($sortedArray, $operands);
+
+    return $sortedArray;
 }
 
-// Beispielarray
-$array = ['2', '*', '2', '2', '+'];
 
-// Korrigiere die Reihenfolge mit Regex
-$korrigiertesArray = fixArrayOrderWithRegex($array);
-
-// Ausgabe des korrigierten Arrays
-print_r($korrigiertesArray);
+$sortedArray = sortMathArray($readyArray);
+$result = calculate($sortedArray);
+var_dump($result);
