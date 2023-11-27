@@ -38,3 +38,27 @@ INSERT INTO `user` (`id`, `username`, `password`) VALUES
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
+INSERT INTO `user` (`id`, `username`, `password`) VALUES
+	(1, 'Flo', '%721342');
+INSERT INTO `user` (`id`, `username`, `password`) VALUES
+	(1, 'Flo', '%721342');
+INSERT INTO `user` (`id`, `username`, `password`) VALUES
+	(1, 'Flo', '%721342');
+INSERT INTO `odin`.`user` (`username`, `password`) VALUES ('Benny', '123');
+INSERT INTO `odin`.`user` (`username`, `password`) VALUES ('Maxi', '123');
+INSERT INTO `odin`.`user` (`username`, `password`) VALUES ('Test', '123');
+INSERT INTO `odin`.`user` (`username`) VALUES ('Bene');
+INSERT INTO `odin`.`user` (`username`, `password`) VALUES ('Bene', '123');
+INSERT INTO `user` (`id`, `username`, `password`) VALUES
+	(1, 'Flo', '%721342');
+INSERT INTO `user` (`id`, `username`, `password`) VALUES
+	(1, 'Flo', '%721342');
+INSERT INTO `user` (`id`, `username`, `password`) VALUES
+	(1, 'Flo', '%721342');
+INSERT INTO `user` (`id`, `username`, `password`) VALUES
+	(1, 'Flo', '%721342');
+INSERT INTO `odin`.`user` (`username`, `password`) VALUES ('Benny', '123');
+INSERT INTO `odin`.`user` (`username`, `password`) VALUES ('Maxi', '123');
+INSERT INTO `odin`.`user` (`username`, `password`) VALUES ('Test', '123');
+INSERT INTO `odin`.`user` (`username`) VALUES ('Bene');
+INSERT INTO `odin`.`user` (`username`, `password`) VALUES ('Bene', '123');
