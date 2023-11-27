@@ -1,0 +1,19 @@
+{
+    "name": "simovative/kaboom",
+    "type": "project",
+    "autoload": {
+        "psr-4": { "Monolog\\": ["src/", "public/"] }
+    },
+    "authors": [
+        {
+            "name": "Maxi"
+        }
+    ],
+    "require": {
+        "twig/twig": "v3.8.0",
+        "ext-pdo": "*"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.10"
+    }
+}

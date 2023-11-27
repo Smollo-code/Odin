@@ -1,0 +1,64 @@
+version: "3.8"
+
+services:
+  nginx:
+    container_name: learn_nginx
+    volumes:
+      - ./..:/var/www/learn
+      - ./nginx/templates:/etc/nginx/templates
+    ports:
+      - "80:80"
+    networks:
+      - backend_net
+    build:
+      context: ./..
+      target: nginx
+      dockerfile: docker/Dockerfile
+
+  php:
+    container_name: php
+    volumes:
+      - ./..:/var/www/learn
+    build:
+      context: ./..
+      dockerfile: docker/Dockerfile
+    environment:
+      XDEBUG_CONFIG: "client_host=host.docker.internal"
+    working_dir: /var/www/learn
+    networks:
+      - backend_net
+
+
+
+  mysql_db:
+    image: mysql
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - db-volume:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysql", "-uroot", "-proot", "-Ahlocalhost" , "--execute", "SHOW DATABASES;" ]
+    networks:
+      - backend_net
+
+  php-admin:
+    image: phpmyadmin
+    ports:
+      - '8080:80'
+    environment:
+      - PMA_ARBITRARY=1
+    links:
+      - mysql_db
+    networks:
+      - backend_net
+
+volumes:
+  db-volume:
+    name: db-volume
+
+networks:
+  backend_net:
+    driver: bridge

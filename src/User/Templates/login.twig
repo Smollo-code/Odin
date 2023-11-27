@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <title>Login und Registrierung</title>
+
+<link rel="stylesheet", href="styles/login.css">
+
+</head>
+<body>
+<div class="form-container">
+    <h1>Login</h1>
+    <form action="login.php" method="post">
+        <p class="error"><?= $error ?? '' ?>
+            <label for="username">Benutzername:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Passwort:</label>
+            <input type="password" id="password" name="password" required>
+
+            <input type="submit" value="Anmelden">
+    </form>
+
+    <div class="divider"></div>
+
+    <p class="switch-form">Noch kein Konto vorhanden? <a href="#" onclick="toggleForm()">Registrieren</a></p>
+</div>
+
+<div class="form-container" style="display: none;">
+    <h1>Registrierung</h1>
+    <form action="register.php" method="post">
+        <label for="new_username">Neuer Benutzername:</label>
+        <input type="text" id="new_username" name="new_username" required>
+
+        <label for="new_password">Neues Passwort:</label>
+        <input type="password" id="new_password" name="new_password" required>
+
+        <label for="confirm_password">Passwort bestaetigen:</label>
+        <input type="password" id="confirm_password" name="confirm_password" required>
+
+        <input type="submit" value="Registrieren">
+    </form>
+
+    <div class="divider"></div>
+
+    <p class="switch-form">Bereits ein Konto vorhanden? <a href="#" onclick="toggleForm()">Anmelden</a></p>
+</div>
+
+<script src="scripts/login.js"></script>
+
+</body>
+</html>
