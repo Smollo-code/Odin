@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   nginx:
-    container_name: learn_nginx
+    container_name: odin_nginx
     volumes:
       - ./..:/var/www/learn
       - ./nginx/templates:/etc/nginx/templates

@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name learn.test;
+    server_name odin.scam;
 
     root /var/www/learn/public;
     index index.php index.html;
