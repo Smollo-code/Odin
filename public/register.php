@@ -23,7 +23,7 @@ function checkPassword () : bool {
     }
 }
 
-$pdo = new PDO('mysql:host=mysql_db;dbname=kaboom', 'root', 'root');
+$pdo = new PDO('mysql:host=mysql_db;dbname=odin', 'root', 'root');
 
 $sql = '
         INSERT INTO 

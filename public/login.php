@@ -2,7 +2,7 @@
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-$pdo = new PDO('mysql:host=mysql_db;dbname=kaboom', 'root', 'root');
+$pdo = new PDO('mysql:host=mysql_db;dbname=odin', 'root', 'root');
 
 $sql = 'SELECT
         username, password, id
