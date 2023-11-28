@@ -9,16 +9,22 @@
 </head>
 <body>
 
-<div class="container mt-4">
-    <div class="text-right mb-2">
-        <button class="btn btn-danger" onclick="logout()">Logout</button>
+<nav class="navbar navbar-dark">
+    <div class="container">
+        <span class="navbar-brand">Mein Dashboard</span>
+        <button class="custom-btn" onclick="logout()">Logout</button>
     </div>
+</nav>
 
+<div class="container-fluid">
     <div class="row">
         <div class="col-12 col-md-4 mb-4">
             <div class="card" onclick="navigateToPage('page1')">
                 <div class="card-body">
-                    <h5 class="card-title">Taschenrechner</h5>
+                    <button class="card-btn">
+                        <img src="images/Calculator.jpg" alt="Page 1 Image">
+                        Taschenrechner
+                    </button>
                 </div>
             </div>
         </div>
@@ -26,7 +32,10 @@
         <div class="col-12 col-md-4 mb-4">
             <div class="card" onclick="navigateToPage('page2')">
                 <div class="card-body">
-                    <h5 class="card-title">Tic Tac Toe</h5>
+                    <button class="card-btn">
+                        <img src="images/TicTacToe.jpg" alt="Page 2 Image">
+                        TicTacToe
+                    </button>
                 </div>
             </div>
         </div>
@@ -34,11 +43,14 @@
         <div class="col-12 col-md-4 mb-4">
             <div class="card" onclick="navigateToPage('page3')">
                 <div class="card-body">
-                    <h5 class="card-title">Guck mal Markus</h5>
+                    <button class="card-btn">
+                        <img src="images/Guck mal.jpg" alt="Page 3 Image">
+                        Guck mal Markus
+                    </button>
                 </div>
             </div>
         </div>
-        <!-- Füge weitere Kästchen nach Bedarf hinzu -->
+        <!-- Weitere Kästchen nach Bedarf hinzufügen -->
     </div>
 </div>
 
