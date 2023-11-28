@@ -4,6 +4,10 @@ namespace Monolog;
 
 require '../vendor/autoload.php';
 
+
+error_reporting(5);
+
+
 #$log = new Package\Calc\('name');
 #$log->pushHandler(new Package\Calc('app.log', Package\Calc::WARNING));
 #$log->warning('Foo');
@@ -56,3 +60,5 @@ $twig = new \Twig\Environment($loader, [
 echo $twig->render('main.twig', ['result' => $result, 'error' => $error ?? '']);
 
 //Weitere Funktion die Operator aus Input gibt. Contains verwenden. Funktion explode verwenden. Zahlen casten & Ergebnis in Result.
+
+
