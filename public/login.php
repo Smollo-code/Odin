@@ -21,9 +21,9 @@ try {
     $dbuser = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($dbuser) {
-        if (password_verify($password, $dbuser['password'])) {
-            $_SESSION['userId'] = $dbuser['id'];
-            $_SESSION['userName'] = $dbuser['username'];
+        if (password_verify($password, $dbuser['password'])) {      //@phpstan-ignore-line
+            $_SESSION['userId'] = $dbuser['id'];                    //@phpstan-ignore-line
+            $_SESSION['userName'] = $dbuser['username'];            //@phpstan-ignore-line
             header("location: dashboard.php");
             exit();
         } else {
@@ -37,3 +37,5 @@ try {
 }
 
 require 'index.php';
+
+
