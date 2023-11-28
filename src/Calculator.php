@@ -36,11 +36,10 @@ class Calculator implements CalcInterface
 
                 }
             } else {
-                $readyArray = array_merge($finishArray, $result);
+                return array_merge($finishArray, $result);
             }
             $positon++;
         }
-        return $readyArray;
     }
 
     private function placementSorter($array) {
