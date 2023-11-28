@@ -6,4 +6,9 @@ $twig = new \Twig\Environment($loader, [
     'cache' => false,
 ]);
 
-echo $twig->render('profile.twig');
+session_start();
+$username = $_SESSION['userName'];
+$profileurl = $_SESSION['profileUrl'] ?? '';
+
+
+echo $twig->render('profile.twig', ['name' => $username, 'profileurl' => $profileurl]);
