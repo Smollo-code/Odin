@@ -11,42 +11,57 @@ class Calculator implements CalcInterface
 
 
     public function __construct(
-        public $formula,
-    ) {
+        public string $formula,
+    )
+    {
     }
 
-    public function getResult () : float {
+    public function getResult(): float
+    {
         $sortedArray = $this->mathSorter();
         $placementArray = $this->placementSorter($sortedArray);
         return $this->calculate($placementArray);
     }
 
-    private function mathSorter() : array{
+    private function mathSorter(): array
+    {
         $pattern = '/([+\-\/\*])/';
         $result = preg_split($pattern, $this->formula, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+
+
         $finishArray = [];
-        $positon = 0;
-        foreach ($result as $element) {
-            if (in_array('*', $result) | in_array('/', $result)) {
-                if ($element === '*' | $element === '/') {
-                    $finishArray[] = $result[$positon-1];
+
+
+        for ($positon = 0; $positon < count($result); $positon++) {
+            $element = $result[$positon];
+
+
+            if ($element === '*' || $element === '/') {
+
+                if (isset($result[$positon - 1], $result[$positon + 1])) {
+                    $finishArray[] = $result[$positon - 1];
                     $finishArray[] = $element;
-                    $finishArray[] = $result[$positon+1];
-                    unset($result[$positon-1], $result[$positon], $result[$positon+1]);
+                    $finishArray[] = $result[$positon + 1];
+
+                    unset($result[$positon - 1], $result[$positon], $result[$positon + 1]);
+                } else {
 
                 }
-            } else {
-                return array_merge($finishArray, $result);
             }
-            $positon++;
         }
+
+        // Merge the finish array with the remaining elements in the result array
+        return array_merge($finishArray, $result);
     }
 
-    private function placementSorter($array) {
+
+    /**
+     * @param array<int|string> $array
+     * @return array<int|string>
+     */
+    private function placementSorter(array $array): array {
         $operands = [];
         $operators = [];
-
-
 
         foreach ($array as $item) {
             if (is_numeric($item)) {
@@ -56,7 +71,7 @@ class Calculator implements CalcInterface
             }
         }
 
-        usort($operators, function($a, $b) {
+        usort($operators, function ($a, $b) {
             $priority = ['*' => 1, '/' => 1, '+' => 2, '-' => 2];
             return $priority[$a] <=> $priority[$b];
         });
@@ -70,6 +85,8 @@ class Calculator implements CalcInterface
 
         return $sortedArray;
     }
+
+
 
     private function calculate (array $array) : float {
         $operator = '';
