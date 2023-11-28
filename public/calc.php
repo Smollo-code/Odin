@@ -33,11 +33,6 @@ function hasBracket (string $input) : bool
     return false;
 }
 
-function exploder (string $input) {
-    $pattern = '/([+\-\/\*])/';
-    return preg_split($pattern, $input, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
-};
-
 $result = $_REQUEST['input'] ?? '';
 
 if (!hasOneOperator($result)) {
