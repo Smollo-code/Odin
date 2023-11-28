@@ -11,5 +11,8 @@ function navigateToPage(page) {
         window.location.replace("tictactoe.php");
     }
 
+}
 
+function openAccountSettings() {
+    window.location.replace('http://odin.scam/profile.php')
 }

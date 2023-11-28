@@ -18,6 +18,7 @@ foreach ($users as $dbuser) {
             header("location: dashboard.php");
             session_start();
             $_SESSION['userId'] = $dbuser['id'];
+            $_SESSION['userName'] = $dbuser['username'];
             break;
         } else {
             $error = 'Wrong Password';

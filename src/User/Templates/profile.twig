@@ -14,15 +14,12 @@
 <div class="form-container">
     <h1>Kontoeinstellungen</h1>
 
-    <form id="changeProfileForm">
+    <form action="updatedb.php" method="post" id="changeProfileForm">
         <label for="changed_username">Benutzername:</label>
-        <input type="text" class="form-control" id="username" name="changed_username" required>
+        <input type="text" class="form-control" value="{{ name }}" id="username" name="changed_username">
 
-        <label for="changed_password">Passwort:</label>
-        <input type="password" class="form-control" id="password" name="changed_password" required>
-
-        <label for="profilePicture">Profilbild-URL:</label>
-        <input type="url" class="form-control" id="profilePicture" name="profilePicture">
+        <label for="profilePicture">Profilbild-URL:{{ profileurl }}</label>
+        <input type="url" class="form-control" value="{{ profileurl }}" id="profilePicture" name="profilePicture">
 
         <button type="submit" class="btn btn-primary">Speichern</button>
     </form>
