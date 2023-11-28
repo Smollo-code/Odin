@@ -1,34 +1,39 @@
 <?php
+session_start();
+
 $username = $_POST['username'];
 $password = $_POST['password'];
 
 $pdo = new PDO('mysql:host=mysql_db;dbname=odin', 'root', 'root');
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $sql = 'SELECT
         username, password, id
-        FROM `user` ';
+        FROM
+        `user`
+        WHERE
+        username = :username';
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':username', $username, PDO::PARAM_STR);
 
-$stmt = $pdo->query($sql);
-$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-$stmt->execute();
+try {
+    $stmt->execute();
+    $dbuser = $stmt->fetch(PDO::FETCH_ASSOC);
 
-foreach ($users as $dbuser) {
-    if ($dbuser['username'] === $username) {
+    if ($dbuser) {
         if (password_verify($password, $dbuser['password'])) {
-            header("location: dashboard.php");
-            session_start();
             $_SESSION['userId'] = $dbuser['id'];
             $_SESSION['userName'] = $dbuser['username'];
-            break;
+            header("location: dashboard.php");
+            exit();
         } else {
             $error = 'Wrong Password';
-            require 'index.php';
-            break;
         }
-    } elseif (!next($users)) {
+    } else {
         $error = 'Wrong Username';
-        require 'index.php';
-        break;
     }
+} catch (PDOException $e) {
+    die("Error: " . $e->getMessage());
 }
 
+require 'index.php';

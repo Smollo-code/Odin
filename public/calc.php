@@ -12,11 +12,11 @@ error_reporting(5);
 #$log->pushHandler(new Package\Calc('app.log', Package\Calc::WARNING));
 #$log->warning('Foo');
 
-function hasOneOperator (string $input) : string {
+function hasOneOperator (string $input) : bool {
     $operatorArray = ['+', '-', '*', '/'];
     foreach ($operatorArray as $operator) {
         if (str_contains($input, $operator)) {
-            return $operator;
+            return true;
         }
     }
     return false;
