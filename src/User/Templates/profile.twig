@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,11 +15,11 @@
     <h1>Kontoeinstellungen</h1>
 
     <form id="changeProfileForm">
-        <label for="username">Benutzername:</label>
-        <input type="text" class="form-control" id="username" name="username" required>
+        <label for="changed_username">Benutzername:</label>
+        <input type="text" class="form-control" id="username" name="changed_username" required>
 
-        <label for="password">Passwort:</label>
-        <input type="password" class="form-control" id="password" name="password" required>
+        <label for="changed_password">Passwort:</label>
+        <input type="password" class="form-control" id="password" name="changed_password" required>
 
         <label for="profilePicture">Profilbild-URL:</label>
         <input type="url" class="form-control" id="profilePicture" name="profilePicture">
@@ -40,28 +40,12 @@
     </form>
 </div>
 
+<script src="scripts/profile.js"></script>
 <!-- Bootstrap JS and Popper.js (required for Bootstrap) -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-<script>
-    document.getElementById("changeProfileForm").addEventListener("submit", function(event) {
-        event.preventDefault();
-        // Hier kann der Code für die Aktualisierung der Benutzerinformationen geschrieben werden
-        // z.B., eine AJAX-Anfrage an den Server senden
-    });
 
-    function confirmDelete() {
-        var confirmation = document.getElementById("confirmDelete").value;
-        if (confirmation === "LÖSCHEN") {
-            // Hier kann der Code für das Löschen des Kontos geschrieben werden
-            // z.B., eine AJAX-Anfrage an den Server senden
-            alert("Konto erfolgreich gelöscht!");
-        } else {
-            alert("Falsche Bestätigung. Konto wurde nicht gelöscht.");
-        }
-    }
-</script>
 </body>
 </html>
