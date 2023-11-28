@@ -30,8 +30,6 @@ services:
     networks:
       - backend_net
 
-
-
   mysql_db:
     image: mysql
     restart: unless-stopped

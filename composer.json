@@ -13,7 +13,8 @@
         "twig/twig": "v3.8.0",
         "ext-pdo": "*",
         "spatie/db-dumper": "v3.4.0",
-        "ifsnop/mysqldump-php": "v2.12"
+        "ifsnop/mysqldump-php": "v2.12",
+        "robmorgan/phinx": "^0.15.4"
     },
     "require-dev": {
         "phpstan/phpstan": "^1.10"
