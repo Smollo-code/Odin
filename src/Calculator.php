@@ -27,33 +27,24 @@ class Calculator implements CalcInterface
     {
         $pattern = '/([+\-\/\*])/';
         $result = preg_split($pattern, $this->formula, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
-
-
         $finishArray = [];
-
-
-        for ($positon = 0; $positon < count($result); $positon++) {
-            $element = $result[$positon];
-
-
-            if ($element === '*' || $element === '/') {
-
-                if (isset($result[$positon - 1], $result[$positon + 1])) {
+        $positon = 0;
+        foreach ($result as $element) {
+            if (in_array('*', $result) | in_array('/', $result)) {
+                if ($element === '*' | $element === '/') {
                     $finishArray[] = $result[$positon - 1];
                     $finishArray[] = $element;
                     $finishArray[] = $result[$positon + 1];
-
                     unset($result[$positon - 1], $result[$positon], $result[$positon + 1]);
-                } else {
 
                 }
+            } else {
+                return array_merge($finishArray, $result);
             }
+            $positon++;
         }
-
-        // Merge the finish array with the remaining elements in the result array
-        return array_merge($finishArray, $result);
+        return array($result);
     }
-
 
     /**
      * @param array<int|string> $array
