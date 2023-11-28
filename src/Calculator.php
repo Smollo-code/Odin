@@ -9,48 +9,59 @@ class Calculator implements CalcInterface
     private const MATH_MULTI = '*';
     private const MATH_DIVIDE = '/';
 
-
     public function __construct(
         public string $formula,
-    )
-    {
+    ) {
     }
 
     public function getResult(): float
     {
-        $sortedArray = $this->mathSorter();
-        $placementArray = $this->placementSorter($sortedArray);
-        return $this->calculate($placementArray);
+        $sortedArray = $this->sortMathOperations();
+        $placementArray = $this->sortPlacement($sortedArray);
+        return $this->performCalculation($placementArray);
     }
 
-    private function mathSorter(): array
+    /**
+     * @return array<int|string>
+     */
+    private function sortMathOperations(): array
     {
         $pattern = '/([+\-\/\*])/';
         $result = preg_split($pattern, $this->formula, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
         $finishArray = [];
-        $positon = 0;
-        foreach ($result as $element) {
-            if (in_array('*', $result) | in_array('/', $result)) {
-                if ($element === '*' | $element === '/') {
-                    $finishArray[] = $result[$positon - 1];
-                    $finishArray[] = $element;
-                    $finishArray[] = $result[$positon + 1];
-                    unset($result[$positon - 1], $result[$positon], $result[$positon + 1]);
+        $position = 0;
 
+        if ($result === false) {
+            return [];
+        }
+
+        foreach ($result as $element) {
+            if (in_array('*', $result, true) || in_array('/', $result, true)) {
+                if ($element === '*' || $element === '/') {
+                    $finishArray[] = $result[$position - 1];
+                    $finishArray[] = $element;
+                    $finishArray[] = $result[$position + 1];
+                    unset($result[$position - 1], $result[$position], $result[$position + 1]);
                 }
             } else {
                 return array_merge($finishArray, $result);
             }
-            $positon++;
+            $position++;
         }
-        return array($result);
+
+        return array_merge($finishArray, $result);
     }
 
     /**
      * @param array<int|string> $array
      * @return array<int|string>
      */
-    private function placementSorter(array $array): array {
+    /**
+     * @param array<int|string> $array
+     * @return array<int|string>
+     */
+    private function sortPlacement(array $array): array
+    {
         $operands = [];
         $operators = [];
 
@@ -62,6 +73,10 @@ class Calculator implements CalcInterface
             }
         }
 
+        if (empty($operators)) {
+            return $operands;  // Keine Operatoren, Rückgabe der Operanden
+        }
+
         usort($operators, function ($a, $b) {
             $priority = ['*' => 1, '/' => 1, '+' => 2, '-' => 2];
             return $priority[$a] <=> $priority[$b];
@@ -69,17 +84,24 @@ class Calculator implements CalcInterface
 
         $sortedArray = [];
         foreach ($operators as $operator) {
-            $sortedArray[] = array_shift($operands);
+            $sortedArray[] = (string) array_shift($operands); // sicherstellen, dass die Operanden als Strings zurückgegeben werden
             $sortedArray[] = $operator;
         }
-        $sortedArray = array_merge($sortedArray, $operands);
+
+        while (!empty($operands)) {
+            $sortedArray[] = (string) array_shift($operands); // sicherstellen, dass die Operanden als Strings zurückgegeben werden
+        }
 
         return $sortedArray;
     }
 
 
-
-    private function calculate (array $array) : float {
+    /**
+     * @param array<int|string> $array
+     * @return float
+     */
+    private function performCalculation(array $array): float
+    {
         $operator = '';
         $result = null;
 
@@ -89,20 +111,31 @@ class Calculator implements CalcInterface
                 if ($result === null) {
                     $result = $value;
                 } else {
-                    if ($operator === self::MATH_PLUS) {
-                        $result += $value;
-                    } elseif ($operator === self::MATH_MINUS) {
-                        $result -= $value;
-                    } elseif ($operator === self::MATH_MULTI) {
-                        $result *= $value;
-                    } elseif ($operator === self::MATH_DIVIDE) {
-                        $result /= $value;
+                    switch ($operator) {
+                        case self::MATH_PLUS:
+                            $result += $value;
+                            break;
+                        case self::MATH_MINUS:
+                            $result -= $value;
+                            break;
+                        case self::MATH_MULTI:
+                            $result *= $value;
+                            break;
+                        case self::MATH_DIVIDE:
+                            // Handle division by zero
+                            if ($value !== 0) {
+                                $result /= $value;
+                            }
+
+
+                            break;
                     }
                 }
-            } elseif (in_array($element, ['+', '-', '*', '/'])) {
+            } elseif (in_array($element, ['+', '-', '*', '/'], true)) {
                 $operator = $element;
             }
         }
-        return $result;
+
+        return (float) $result;
     }
 }
