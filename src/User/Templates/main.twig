@@ -2,39 +2,35 @@
 <html lang="de">
 
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/mainphpstyle.css">
 </head>
 
 <body>
 
-<div class="dashboard">
+<div class="dashboard bg-dark text-white">
     <div class="header">
-        <a href="dashboard.php" class="headerButton">Zurück</a>
+        <a href="dashboard.php" class="headerButton btn btn-primary">Zurück</a>
     </div>
 </div>
 
-<div class="calculator">
+<div class="calculator bg-dark text-white">
     <form action="calc.php" method="post">
 
-        <div style="color: red;">
+        <div class="text-danger">
             {{ error }}
         </div>
 
-
-        <table id="calcu">
+        <table id="calcu" class="table">
             <tr>
-                <td colspan="3"><input type="text" id="result" name="input" value="{{ result }}"></td>
-                <td><input type="button" value="c" onclick="clr()" /> </td>
+                <td colspan="3"><input type="text" id="result" name="input" value="{{ result }}" class="form-control"></td>
+                <td><input type="button" value="c" onclick="clr()" class="btn btn-secondary" /> </td>
             </tr>
             <tr>
-                <td><input type="button" value="1" name="data[]" onclick="dis('1')"
-                           onkeydown="myFunction(event)"> </td>
-                <td><input type="button" value="2" onclick="dis('2')"
-                           onkeydown="myFunction(event)"> </td>
-                <td><input type="button" value="3" onclick="dis('3')"
-                           onkeydown="myFunction(event)"> </td>
-                <td><input type="button" value="/" onclick="dis('/')"
-                           onkeydown="myFunction(event)"> </td>
+                <td><input type="button" value="1" name="data[]" onclick="dis('1')" class="btn btn-primary"></td>
+                <td><input type="button" value="2" onclick="dis('2')" class="btn btn-primary"></td>
+                <td><input type="button" value="3" onclick="dis('3')" class="btn btn-primary"></td>
+                <td><input type="button" value="/" onclick="dis('/')" class="btn btn-primary"></td>
             </tr>
             <tr>
                 <td><input type="button" value="4" onclick="dis('4')"
@@ -57,20 +53,21 @@
                            onkeydown="myFunction(event)"> </td>
             </tr>
             <tr>
-                <td><input type="button" value="0" onclick="dis('0')"
-                           onkeydown="myFunction(event)"> </td>
+                <td><input type="button" value="0" onclick="dis('0')" class="btn btn-primary"></td>
                 <td><input type="button" value="." onclick="dis('.')"
-                           onkeydown="myFunction(event)"> </td>
+                           onkeydown="myFunction(event)" class="btn btn-primary"></td>
 
-                <td><input type="submit" value="=" > </td>
+                <td><input type="submit" value="=" class="btn btn-success"> </td>
 
-                <td><input type="button" value="+" onclick="dis('+')"
-                           onkeydown="myFunction(event)"> </td>
+                <td><input type="button" value="+" onclick="dis('+')" class="btn btn-primary"></td>
             </tr>
-    </table>
+        </table>
     </form>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="scripts/calculatorbuttons.js"></script>
 </body>
 </html>
