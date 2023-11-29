@@ -40,8 +40,8 @@ if (!hasOneOperator($result)) {
 
 } elseif (hasBracket($result)) {
     $error = 'Fehler bei Eingabe';
-}
-else {
+
+} else {
     $calc = new Calculator($result);
     $result = $calc->getResult();
 }
@@ -54,6 +54,6 @@ $twig = new \Twig\Environment($loader, [
 
 echo $twig->render('main.twig', ['result' => $result, 'error' => $error ?? '']);
 
-//Weitere Funktion die Operator aus Input gibt. Contains verwenden. Funktion explode verwenden. Zahlen casten & Ergebnis in Result.
+
 
 
