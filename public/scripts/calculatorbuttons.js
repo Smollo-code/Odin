@@ -23,7 +23,7 @@ cal.onkeyup = function (event) {
     }
 }
 
-// Funktion zum löschen der Rechnung
+
 function clr() {
     document.getElementById("result").value = ""
 }
