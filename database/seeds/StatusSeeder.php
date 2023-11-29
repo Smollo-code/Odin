@@ -18,9 +18,15 @@ class StatusSeeder extends AbstractSeed
      * https://book.cakephp.org/phinx/0/en/seeding.html
      */
 
+    private function firstDelete() : void
+    {
+        $posts = $this->table('user');
+        $posts->truncate();
+    }
+
     private function saving(array $data) : void
     {
-        $posts= $this->table('user');
+        $posts = $this->table('user');
         $posts->insert($data)
             ->saveData();
     }
@@ -50,12 +56,13 @@ class StatusSeeder extends AbstractSeed
 
         $faker = Faker\Factory::create();
 
+        $this->firstDelete();
         $this->alwaysUsers();
         for ($i=0; $i < 100; $i++)
         {
             $data = [];
             $data['username'] = $faker->name();
-            $data['password'] = password_hash($faker->password(), PASSWORD_BCRYPT);
+            $data['password'] = password_hash('123', PASSWORD_BCRYPT);
             $this->saving($data);
         }
     }
