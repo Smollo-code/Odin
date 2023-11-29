@@ -20,12 +20,11 @@ final class MyNewMigration extends AbstractMigration
     public function change(): void
     {
         $table= $this->table('user', array('id' =>True, 'primary_key' => array('id')));
-        $table->addColumn('id', 'Biginteger')
-            ->addColumn('username', 'string', array('limit' => 50))
+        $table->addColumn('username', 'string', array('limit' => 50))
             ->addColumn('password', 'string', array('limit' => 255))
             ->addColumn('profileurl', 'string', array('limit' => 255))
             ->addIndex(array('username'), array('unique' => true))
-            ->update();
+            ->save();
 
     }
 
