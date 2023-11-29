@@ -13,7 +13,7 @@ error_reporting(5);
 #$log->warning('Foo');
 
 function hasOneOperator (string $input) : bool {
-    $operatorArray = ['+', '-', '*', '/'];
+    $operatorArray = ['+', '-', '*', '/',];
     foreach ($operatorArray as $operator) {
         if (str_contains($input, $operator)) {
             return true;
@@ -45,6 +45,7 @@ if (!hasOneOperator($result)) {
     $calc = new Calculator($result);
     $result = $calc->getResult();
 }
+
 
 $loader = new \Twig\Loader\FilesystemLoader('../src/User/Templates');
 $twig = new \Twig\Environment($loader, [

@@ -1,6 +1,6 @@
 document.getElementById("changeProfileForm").addEventListener("submit", function(event) {
     event.preventDefault();
-    // Maxi mach mal Code
+    window.location.replace('updatedb.php')
 
 });
 

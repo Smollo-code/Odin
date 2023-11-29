@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Phinx\Migration\AbstractMigration;
+use Phinx\Db\Table\Column;
 
 final class MyNewMigration extends AbstractMigration
 {
