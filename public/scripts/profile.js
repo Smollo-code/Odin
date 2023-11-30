@@ -12,3 +12,6 @@ function confirmDelete() {
         window.location.replace("http://odin.scam/index.php");
     }
 }
+function goBack() {
+    window.location.replace("http://odin.scam/dashboard.php");
+}

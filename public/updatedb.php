@@ -1,11 +1,14 @@
 <?php
 require '../vendor/autoload.php';
 
-session_start();
-
-$changed_username = $_POST['changed_Username'];
+$changed_username = $_POST['changed_username'];
 $picture = $_POST['profilePicture'];
 
+
+
+session_start();
+$username = $_SESSION['userName'];
+$profileUrl = $_SESSION['profileUrl'] ?? '';
 $id = $_SESSION['userId'];
 
 $pdo = new PDO('mysql:host=mysql_db;dbname=odin', 'root', 'root');
@@ -22,11 +25,13 @@ $sql = 'UPDATE
 
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':changed_username' ,$changed_username);
-$stmt->bindParam(':picture', $picture);
-$stmt->bindParam(':id', $id);
+$stmt->bindParam(':profileurl', $picture);
 $stmt->execute();
 
-echo 'eakwjekiwejfklwajflewfaj';
 
-header('Location: http://odin.scam/dashboard.php');
-exit();
+$loader = new \Twig\Loader\FilesystemLoader('../src/User/Templates');
+$twig = new \Twig\Environment($loader, [
+    'cache' => False,
+]);
+
+echo $twig->render('profile.twig');
