@@ -1,5 +1,6 @@
 <?php
 
+require '../vendor/autoload.php';
 session_start();
 $username = $_POST['username'];
 $password = $_POST['password'];
@@ -35,4 +36,10 @@ try {
 } catch (PDOException $e) {
     die("Error: " . $e->getMessage());
 }
-require 'index.php';
+
+$loader = new \Twig\Loader\FilesystemLoader('../src/User/Templates');
+$twig = new \Twig\Environment($loader, [
+    'cache' => False,
+]);
+
+echo $twig->render('login.twig', ['error' => $error ?? '']);

@@ -7,6 +7,10 @@ body {
     background-color: #333;
 }
 
+.error {
+    color: red;
+}
+
 .form-container {
     width: 400px;
     margin: 50px auto;

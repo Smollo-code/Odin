@@ -14,7 +14,7 @@
             <div>
                 <h1 class="text-center">Login</h1>
                 <form action="login.php" method="post">
-                    <p class="error"><?= $error ?? '' ?></p>
+                    <p class="error" >{{ error }}
                     <div class="form-group">
                         <label for="username">Benutzername:</label>
                         <input type="text" class="form-control" id="username" name="username" required>

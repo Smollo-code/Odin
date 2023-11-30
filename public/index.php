@@ -12,4 +12,4 @@ $twig = new \Twig\Environment($loader, [
     'cache' => False,
 ]);
 
-echo $twig->render('login.twig', ['name' => 'Maxi']);
+echo $twig->render('login.twig');
