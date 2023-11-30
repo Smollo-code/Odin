@@ -4,45 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontoeinstellungen</title>
-    <!-- Verlinke die CSS-Datei -->
-    <link rel="stylesheet" type="text/css" href="styles/profile.css">
-    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="styles/profile.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
 
-<div class="form-container">
-    <h1>Kontoeinstellungen</h1>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
 
-    <form action="updatedb.php" method="post" id="changeProfileForm">
-        <label for="changed_Username">Benutzername:</label>
-        <input type="text" class="form-control" value="{{ name }}" id="changed_Username" name="changed_Username">
+            <div class="form-container bg-white p-3">
+                <h1>Kontoeinstellungen</h1>
 
-        <label for="profilePicture">Profilbild-URL:{{ profileurl }}</label>
-        <input type="url" class="form-control" value="{{ profileurl }}" id="profilePicture" name="profilePicture">
+                <form action="updatedb.php" method="post" id="changeProfileForm">
+                    <label for="changed_Username">Benutzername:</label>
+                    <input type="text" class="form-control" value="{{ name }}" id="changed_Username" name="changed_Username">
 
-        <button type="submit" class="btn btn-primary">Speichern</button>
-    </form>
+                    <label for="profilePicture">Profilbild-URL:{{ profileurl }}</label>
+                    <input type="url" class="form-control" value="{{ profileurl }}" id="profilePicture" name="profilePicture">
 
-    <div class="divider"></div>
+                    <button type="submit" class="btn btn-primary mt-3">Speichern</button>
+                </form>
 
-    <form id="deleteAccountForm">
-        <h3>Konto löschen</h3>
-        <p class="text-danger">Warnung: Das Löschen Ihres Kontos ist endgültig!</p>
+                <div class="divider my-4"></div>
 
-        <label for="confirmDelete">Bestätigen Sie durch Eingabe von "LÖSCHEN":</label>
-        <input type="text" class="form-control" id="confirmDelete" name="confirmDelete" required>
+                <form id="deleteAccountForm">
+                    <h3>Konto löschen</h3>
+                    <p class="text-danger">Warnung: Das Löschen Ihres Kontos ist endgültig!</p>
 
-        <button type="button" class="btn btn-danger" onclick="confirmDelete()">Konto löschen</button>
-    </form>
+                    <label for="confirmDelete">Bestätigen Sie durch Eingabe von "LÖSCHEN":</label>
+                    <input type="text" class="form-control" id="confirmDelete" name="confirmDelete" required>
+
+                    <button type="button" class="btn btn-danger mt-3" onclick="confirmDelete()">Konto löschen</button>
+                </form>
+
+                <button type="button" class="btn btn-secondary mt-3" onclick="goBack()">Zurück</button>
+            </div>
+
+        </div>
+    </div>
 </div>
 
 <script src="scripts/profile.js"></script>
-<!-- Bootstrap JS and Popper.js (required for Bootstrap) -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
 
 </body>
 </html>
