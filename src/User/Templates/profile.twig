@@ -18,10 +18,11 @@
                 <h1>Kontoeinstellungen</h1>
 
                 <form action="updatedb.php" method="post" id="changeProfileForm">
+                    <p class="status" >{{ status }} <br>
                     <label for="changed_Username">Benutzername:</label>
                     <input type="text" class="form-control" value="{{ name }}" id="changed_Username" name="changed_Username">
 
-                    <label for="profilePicture">Profilbild-URL:{{ profileurl }}</label>
+                    <label for="profilePicture">Profilbild-URL:</label>
                     <input type="url" class="form-control" value="{{ profileurl }}" id="profilePicture" name="profilePicture">
 
                     <button type="submit" class="btn btn-primary mt-3">Speichern</button>

@@ -23,7 +23,7 @@ final class MyNewMigration extends AbstractMigration
         $table= $this->table('user', array('id' =>True, 'primary_key' => array('id')));
         $table->addColumn('username', 'string', array('limit' => 50, 'null' => false))
             ->addColumn('password', 'string', array('limit' => 255, 'null' => false))
-            ->addColumn('profileurl', 'string', array('limit' => 255))
+            ->addColumn('profileurl', 'string', array('limit' => 2000))
             ->addIndex(array('username'), array('unique' => true))
             ->save();
 

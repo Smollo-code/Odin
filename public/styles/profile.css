@@ -8,6 +8,11 @@ body {
     color: #fff;
 }
 
+.status {
+    color: red;
+}
+
+
 .form-container {
     width: 400px;
     margin: 50px auto;
