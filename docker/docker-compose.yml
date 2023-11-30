@@ -22,8 +22,6 @@ services:
     build:
       context: ./..
       dockerfile: docker/Dockerfile
-    ports:
-      - "443:443"
     environment:
       XDEBUG_CONFIG: "client_host=host.docker.internal"
     working_dir: /var/www/Odin

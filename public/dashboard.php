@@ -10,4 +10,4 @@ session_start();
 $username = $_SESSION['userName'];
 $profileUrl = $_SESSION['profileUrl'] ?? '';
 
-echo $twig->render('dashboard.twig', ['name' => $username, 'picture' => $profileUrl]);
+echo $twig->render('dashboard.twig', ['name' => $username, '0picture' => $profileUrl]);
