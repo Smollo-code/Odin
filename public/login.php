@@ -42,4 +42,4 @@ $twig = new \Twig\Environment($loader, [
     'cache' => False,
 ]);
 
-echo $twig->render('login.twig', ['error' => $error ?? '']);
+echo $twig->render('login.twig', ['error' => $error]);
