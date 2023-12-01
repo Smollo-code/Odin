@@ -1,5 +1,6 @@
 <?php
 require '../vendor/autoload.php';
+require './MyHandler.php';
 
 
 $loader = new \Twig\Loader\FilesystemLoader('../src/User/Templates');
@@ -7,9 +8,9 @@ $twig = new \Twig\Environment($loader, [
     'cache' => False,
 ]);
 
-$username = $_POST['new_username'];
-$password = password_hash($_POST['new_password'], PASSWORD_BCRYPT);
-$confirmPassword = $_POST['confirm_password'];
+$username = MyHandler::handleServerRequest('post', 'new_username');
+$password = password_hash(MyHandler::handleServerRequest('post', 'new_password'), PASSWORD_BCRYPT);
+$confirmPassword = MyHandler::handleServerRequest('post', 'confirm_password');
 
 function checkPassword () : bool {
     $password = $_POST['new_password'];

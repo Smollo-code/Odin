@@ -1,11 +1,12 @@
 <?php
 require '../vendor/autoload.php';
+require './MyHandler.php';
 
 
 
 session_start();
-$changed_username = $_POST['changed_Username'];
-$picture = $_POST['profilePicture'] ?? '';
+$changed_username = MyHandler::handleServerRequest('post', 'changed_Username');
+$picture = MyHandler::handleServerRequest('post', 'profilePicture') ?? '';
 $id = $_SESSION['userId'];
 
 function checkIfNameExists (string $username) : bool

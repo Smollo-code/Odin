@@ -1,15 +1,17 @@
 <?php
 
 require '../vendor/autoload.php';
+require './MyHandler.php';
+
 session_start();
-$username = $_POST['username'];
-$password = $_POST['password'];
+$username = MyHandler::handleServerRequest('post', 'username');
+$password = MyHandler::handleServerRequest('post', 'password');
 
 $pdo = new PDO('mysql:host=mysql_db;dbname=odin', 'root', 'root');
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $sql = 'SELECT
-        username, password, id
+        username, password, id, profileurl
         FROM
         `user`
         WHERE
@@ -24,7 +26,8 @@ try {
     if ($dbuser) {
         if (password_verify($password, $dbuser['password'])) {      //@phpstan-ignore-line
             $_SESSION['userId'] = $dbuser['id'];                    //@phpstan-ignore-line
-            $_SESSION['userName'] = $dbuser['username'];            //@phpstan-ignore-line
+            $_SESSION['userName'] = $dbuser['username']; //@phpstan-ignore-line
+            $_SESSION['profileurl'] = $dbuser['profileurl'];
             header("location: dashboard.php");
             exit();
         } else {
