@@ -15,7 +15,8 @@
         "spatie/db-dumper": "v3.4.0",
         "ifsnop/mysqldump-php": "v2.12",
         "robmorgan/phinx": "^0.15.4",
-        "fakerphp/faker": "v1.23.0"
+        "fakerphp/faker": "v1.23.0",
+        "symfony/routing": "v7.0.0"
     },
     "require-dev": {
         "phpstan/phpstan": "^1.10"
