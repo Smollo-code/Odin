@@ -10,13 +10,12 @@ class Calculator implements CalcInterface
     private const MATH_DIVIDE = '/';
 
     public function __construct(
-        public string $formula,
     ) {
     }
 
-    public function getResult(): float
+    public function getResult(string $formula): float
     {
-        $sortedArray = $this->sortMathOperations();
+        $sortedArray = $this->sortMathOperations($formula);
         $placementArray = $this->sortPlacement($sortedArray);
         return $this->performCalculation($placementArray);
     }
@@ -24,10 +23,10 @@ class Calculator implements CalcInterface
     /**
      * @return array<int|string>
      */
-    private function sortMathOperations(): array
+    private function sortMathOperations(string $formula): array
     {
         $pattern = '/([+\-\/\*])/';
-        $result = preg_split($pattern, $this->formula, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+        $result = preg_split($pattern, $formula, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
         $finishArray = [];
         $position = 0;
 

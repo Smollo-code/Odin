@@ -1,14 +1,14 @@
 <?php
 require '../vendor/autoload.php';
-require './MyHandler.php';
 
+$request = \GuzzleHttp\Psr7\ServerRequest::fromGlobals();
 $loader = new \Twig\Loader\FilesystemLoader('../src/User/Templates');
 $twig = new \Twig\Environment($loader, [
     'cache' => False,
 ]);
-session_start();
-$client = new GuzzleHttp\Client();
-$username = $_SESSION['userName'];
-$profileUrl = $_SESSION['profileurl'] ?? '';
 
-echo $twig->render('dashboard.twig', ['name' => $username, 'picture' => $profileUrl]);
+$pdo = new PDO('mysql:host=mysql_db;dbname=odin', 'root', 'root');
+
+$handler = new \Monolog\User\Handler\Dashboard\DashboardGetHandler($pdo, $twig);
+$response = $handler->handle($request);
+echo $response->getBody();

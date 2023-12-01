@@ -5,5 +5,5 @@ namespace Monolog;
 
 interface CalcInterface
 {
-    public function getResult () : float;
+    public function getResult(string $formula): float;
 }

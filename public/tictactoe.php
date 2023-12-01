@@ -1,9 +1,16 @@
 <?php
 require '../vendor/autoload.php';
 
+$request = \GuzzleHttp\Psr7\ServerRequest::fromGlobals();
+
 $loader = new \Twig\Loader\FilesystemLoader('../src/User/Templates');
 $twig = new \Twig\Environment($loader, [
-    'cache' => false,
+    'cache' => False,
 ]);
+$pdo = new PDO('mysql:host=mysql_db;dbname=odin', 'root', 'root');
 
-echo $twig->render('tictactoe.twig', ['name' => 'Florian']);
+
+
+$handler = new \Monolog\User\Handler\Games\TicTacToeGetHandler($twig);
+$response = $handler->handle($request);
+echo $response->getBody();

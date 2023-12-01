@@ -1,40 +1,16 @@
 <?php
 require '../vendor/autoload.php';
-require './MyHandler.php';
 
+$request = \GuzzleHttp\Psr7\ServerRequest::fromGlobals();
 
 $loader = new \Twig\Loader\FilesystemLoader('../src/User/Templates');
 $twig = new \Twig\Environment($loader, [
     'cache' => False,
 ]);
-
-$username = MyHandler::handleServerRequest('post', 'new_username');
-$password = password_hash(MyHandler::handleServerRequest('post', 'new_password'), PASSWORD_BCRYPT);
-$confirmPassword = MyHandler::handleServerRequest('post', 'confirm_password');
-
-function checkPassword () : bool {
-    $password = $_POST['new_password'];
-    $confirmPassword = $_POST['confirm_password'];
-    if ($password === $confirmPassword) {
-        return True;
-    } else {
-        return False;
-    }
-}
-
 $pdo = new PDO('mysql:host=mysql_db;dbname=odin', 'root', 'root');
 
-$sql = '
-        INSERT INTO 
-            user (username, password) 
-        VALUES 
-            (:username, :password)';
 
-$stmt = $pdo->prepare($sql);
-$stmt->bindParam(':username' ,$username);
-$stmt->bindParam(':password', $password);
-$stmt->execute();
 
-$userid = $pdo->lastInsertId();
-
-echo $twig->render('register.twig');
+$hanlder = new \Monolog\User\Handler\Register\RegisterGetHandler($pdo, $twig);
+$response = $hanlder->handle($request);
+echo $response->getBody();

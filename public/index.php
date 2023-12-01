@@ -1,15 +1,13 @@
 <?php
 
 require '../vendor/autoload.php';
-session_start();
-if (isset($_SESSION['userId']) && is_numeric($_SESSION['userId']) > 0) {
-    header('Location: dashboard.php');
-    exit();
-}
 
+$request = \GuzzleHttp\Psr7\ServerRequest::fromGlobals();
 $loader = new \Twig\Loader\FilesystemLoader('../src/User/Templates');
 $twig = new \Twig\Environment($loader, [
     'cache' => False,
 ]);
 
-echo $twig->render('login.twig');
+$hanlder = new \Monolog\User\Handler\Index\IndexGetHandler($twig);
+$response = $hanlder->handle($request);
+echo $response->getBody();
