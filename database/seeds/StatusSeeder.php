@@ -45,7 +45,8 @@ class StatusSeeder extends AbstractSeed
         $this->saving($maxi);
         $benny = [
             'username' => 'Benny',
-            'password' => password_hash('123', PASSWORD_BCRYPT)
+            'password' => password_hash('123', PASSWORD_BCRYPT),
+            'profileurl' => 'https://img.welt.de/img/wissenschaft/mobile195431695/1022506097-ci102l-w1024/A-portrait-of-a-beagle-that-was-a-rescued-dog-2.jpg'
         ];
         $this->saving($benny);
 
