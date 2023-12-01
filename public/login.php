@@ -26,8 +26,8 @@ try {
     if ($dbuser) {
         if (password_verify($password, $dbuser['password'])) {      //@phpstan-ignore-line
             $_SESSION['userId'] = $dbuser['id'];                    //@phpstan-ignore-line
-            $_SESSION['userName'] = $dbuser['username']; //@phpstan-ignore-line
-            $_SESSION['profileurl'] = $dbuser['profileurl'];
+            $_SESSION['userName'] = $dbuser['username'];            //@phpstan-ignore-line
+            $_SESSION['profileurl'] = $dbuser['profileurl'];        //@phpstan-ignore-line
             header("location: dashboard.php");
             exit();
         } else {
