@@ -10,6 +10,10 @@ $id = $_SESSION['userId'];
 
 function checkIfNameExists (string $username) : bool
 {
+    if ($username === $_SESSION['userName']) {
+        return False;
+    }
+
     $pdo = new PDO('mysql:host=mysql_db;dbname=odin', 'root', 'root');
     $sql = 'SELECT 
             `username`
@@ -30,6 +34,8 @@ function checkIfNameExists (string $username) : bool
 
 function changeProfileData (string $changed_username, string $picture, int $id) : void
 {
+
+
     $pdo = new PDO('mysql:host=mysql_db;dbname=odin', 'root', 'root');
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 

@@ -7,11 +7,6 @@ require '../vendor/autoload.php';
 
 error_reporting(5);
 
-
-#$log = new Package\Calc\('name');
-#$log->pushHandler(new Package\Calc('app.log', Package\Calc::WARNING));
-#$log->warning('Foo');
-
 function hasOneOperator (string $input) : bool {
     $operatorArray = ['+', '-', '*', '/',];
     foreach ($operatorArray as $operator) {
