@@ -43,3 +43,7 @@ function resetGame() {
     gameOver = false;
     currentPlayer = "X";
 }
+
+function goBack() {
+    window.location.replace("http://odin.scam/dashboard.php");
+}
