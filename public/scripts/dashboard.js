@@ -6,7 +6,7 @@ function navigateToPage(page) {
     if (page === 'page1') {
         window.location.replace("http://odin.scam/calc.php");
     } else if (page === 'page3') {
-        window.location.replace("https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley");
+        window.location.replace("http://odin.scam/emailer.php");
     } else if (page === 'page2') {
         window.location.replace("tictactoe.php");
     }

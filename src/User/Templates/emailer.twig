@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Mail an Benutzer senden</title>
+    <link rel="stylesheet" href="styles/Emailer.css">
+</head>
+<body>
+
+<h1>E-Mail an Benutzer senden</h1>
+
+<form action="send_email.php" method="post">
+    <label for="user">Wähle einen Benutzer:</label>
+    <select id="user" name="user">
+        <!-- Hier die Benutzernamen aus der Datenbank dynamisch einfügen -->
+        <option value="benutzer1">Benutzer 1</option>
+        <option value="benutzer2">Benutzer 2</option>
+        <!-- Weitere Optionen entsprechend der Anzahl der Benutzer -->
+    </select>
+    <br>
+
+    <label for="message">Nachricht:</label><br>
+    <textarea id="message" name="message" rows="4" cols="50"></textarea><br><br>
+
+    <input type="submit" value="Senden">
+</form>
+
+</body>
+</html>
