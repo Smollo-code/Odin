@@ -20,7 +20,7 @@ class EmailerGetHandler implements RequestHandlerInterface
         session_start();
 
 
-        return new Response(200, [], $this->renderer->render('emailer.twig',));
+        return new Response(200, [], $this->renderer->render('emailer.twig', ['message' ]));
     }
 
 
