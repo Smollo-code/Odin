@@ -4,27 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Mail an Benutzer senden</title>
-    <link rel="stylesheet" href="styles/Emailer.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/emailer.css">
 </head>
 <body>
 
-<h1>E-Mail an Benutzer senden</h1>
+<div class="container">
+    <h1 class="mb-4">E-Mail an Benutzer senden</h1>
 
-<form action="send_email.php" method="post">
-    <label for="user">Wähle einen Benutzer:</label>
-    <select id="user" name="user">
-        <!-- Hier die Benutzernamen aus der Datenbank dynamisch einfügen -->
-        <option value="benutzer1">Benutzer 1</option>
-        <option value="benutzer2">Benutzer 2</option>
-        <!-- Weitere Optionen entsprechend der Anzahl der Benutzer -->
-    </select>
-    <br>
+    <form action="send_email.php" method="post">
+        <div class="form-group">
+            <label for="recipient">An:</label>
+            <select id="recipient" name="recipient" class="form-control">
+                <!-- Hier die Benutzernamen aus der Datenbank dynamisch einfügen -->
+                <option value="benutzer1">Benutzer 1</option>
+                <option value="benutzer2">Benutzer 2</option>
+                <!-- Weitere Optionen entsprechend der Anzahl der Benutzer -->
+            </select>
+        </div>
 
-    <label for="message">Nachricht:</label><br>
-    <textarea id="message" name="message" rows="4" cols="50"></textarea><br><br>
+        <div class="form-group">
+            <label for="message">Nachricht:</label>
+            <textarea id="message" name="message" rows="4" class="form-control"></textarea>
+        </div>
 
-    <input type="submit" value="Senden">
-</form>
+        <button type="submit" class="btn btn-primary">Senden</button>
+    </form>
+</div>
+
+<!-- Bootstrap JS (Online-Verbindung) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 </html>
