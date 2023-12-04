@@ -7,9 +7,11 @@ use Monolog\User\UserFactory;
 class UserRepository implements UserRepositoryInterface
 {
 
-
-    public function __construct(private PDO $pdo)
+    private $Pdo;
+    public function __construct()
     {
+        $applicationFactory = new \Monolog\App\ApplicationFactory();
+        $this->Pdo = $applicationFactory->createPdo();
     }
 
     public function insert(string $table, array $data): bool {
@@ -21,7 +23,7 @@ class UserRepository implements UserRepositoryInterface
                     (`:values`)';
         $fields = implode(', ', array_keys($data));
         $values = implode(', ', array_values($data));
-        $stmt = $this->Pdo->pdo()->prepare($sql);
+        $stmt = $this->Pdo->prepare($sql);
 
         $stmt->bindParam(':table', $table);
         $stmt->bindParam(':fields', $fields);

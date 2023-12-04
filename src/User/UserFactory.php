@@ -35,6 +35,15 @@ class UserFactory implements UserFactoryInterface
         );
     }
 
+    public function createProfileDataTransmitterGetHandler(): RequestHandlerInterface
+    {
+        return new ProfileGetHandler(
+            $this->applicationFactory->createUserRepository(),
+            $this->applicationFactory->createTwig(),
+            $this->applicationFactory->createPdo()
+        );
+    }
+
     public function createLoginGetHandler(): RequestHandlerInterface
     {
         return new LoginGetHandler(
