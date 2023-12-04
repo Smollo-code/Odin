@@ -2,7 +2,7 @@
     "name": "simovative/kaboom",
     "type": "project",
     "autoload": {
-        "psr-4": { "Monolog\\": ["src/", "public/"] }
+        "psr-4": { "Monolog\\": ["src/", "public/", "database/"] }
     },
     "authors": [
         {
