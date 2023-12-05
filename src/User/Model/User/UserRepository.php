@@ -41,10 +41,22 @@ class UserRepository implements UserRepositoryInterface
 
     public function update(string $table, array $dataupdate, array $datacondition): bool
     {
+        $data = [];
+        foreach ($dataupdate as $field => $value) {
+            if ($value === '') {
+                $data[] = $field . "=''";
+            } else {
+                $data[] = $field . '=' . $value;
+            }
+        }
+        $values = implode(', ', $data);
+        var_dump($values);
+        exit();
+
         $sql = "UPDATE 
                 $table 
                 SET 
-                    (" . implode(', ', array_keys($dataupdate)) . '=' . implode(', ', array_values($dataupdate)) . ")  
+                    (" . implode(', ', array_keys($dataupdate)). '=' . implode(', ', array_values($dataupdate)) . ")  
                 WHERE 
                     (" . implode(', ', array_keys($datacondition)) . '=' . implode(', ', array_values($datacondition)) . ")";
         $stmt = $this->Pdo->prepare($sql);

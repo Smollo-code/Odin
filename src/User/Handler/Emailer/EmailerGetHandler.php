@@ -17,7 +17,6 @@ class EmailerGetHandler implements RequestHandlerInterface
     }
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        session_start();
 
 
         return new Response(200, [], $this->renderer->render('emailer.twig', ['message' ]));

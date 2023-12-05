@@ -19,7 +19,6 @@ class LoginGetHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        session_start();
         $parseBody = $request->getParsedBody();
         $username = $parseBody['username'];
         $password = $parseBody['password'];

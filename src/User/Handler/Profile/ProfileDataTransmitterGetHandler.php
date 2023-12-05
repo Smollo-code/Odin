@@ -18,7 +18,6 @@ class ProfileDataTransmitterGetHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        session_start();
         $parseBody = $request->getParsedBody();
         $changed_username = $parseBody['changed_Username'];
         $picture = $parseBody['profilePicture'] ?? '';

@@ -18,7 +18,6 @@ class DashboardGetHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        session_start();
         $username = $_SESSION['userName'];
         $profileUrl = $_SESSION['profileurl'] ?? '';
 

@@ -45,5 +45,5 @@ function resetGame() {
 }
 
 function goBack() {
-    window.location.replace("http://odin.scam/dashboard.php");
+    window.location.replace("http://odin.scam/dashboard");
 }

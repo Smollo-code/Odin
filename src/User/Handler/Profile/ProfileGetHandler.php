@@ -18,7 +18,6 @@ class ProfileGetHandler implements RequestHandlerInterface
     }
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        session_start();
         $username = $_SESSION['userName'];
         $profileurl = $_SESSION['profileUrl'] ?? '';
 

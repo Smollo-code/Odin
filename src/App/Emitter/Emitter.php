@@ -4,7 +4,7 @@ namespace Monolog\App\Emitter;
 
 use Psr\Http\Message\ResponseInterface;
 
-class Emitter
+class Emitter implements EmitterInterface
 {
     public function emmit(ResponseInterface $response): void
     {

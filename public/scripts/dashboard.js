@@ -4,15 +4,15 @@ function logout() {
 
 function navigateToPage(page) {
     if (page === 'page1') {
-        window.location.replace("http://odin.scam/calc.php");
+        window.location.replace("http://odin.scam/calc");
     } else if (page === 'page3') {
-        window.location.replace("http://odin.scam/emailer.php");
+        window.location.replace("http://odin.scam/emailer");
     } else if (page === 'page2') {
-        window.location.replace("tictactoe.php");
+        window.location.replace("/tictactoe");
     }
 
 }
 
 function openAccountSettings() {
-    window.location.replace('http://odin.scam/profile.php')
+    window.location.replace('http://odin.scam/profile')
 }

@@ -2,6 +2,7 @@
 
 namespace Monolog\App;
 
+use Monolog\App\Emitter\Emitter;
 use Monolog\Calculator;
 use Monolog\User\Model\User\UserRepository;
 use Monolog\User\UserFactory;

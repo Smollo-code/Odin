@@ -3,9 +3,9 @@ function confirmDelete() {
     if (confirmation === "LÖSCHEN") {
 
 
-        window.location.replace("http://odin.scam/index.php");
+        window.location.replace("http://odin.scam/index");
     }
 }
 function goBack() {
-    window.location.replace("http://odin.scam/dashboard.php");
+    window.location.replace("http://odin.scam/dashboard");
 }
