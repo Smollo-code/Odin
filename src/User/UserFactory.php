@@ -10,6 +10,7 @@ use Monolog\User\Handler\Index\IndexGetHandler;
 use Monolog\User\Handler\Login\LoginGetHandler;
 use Monolog\User\Handler\Profile\ProfileGetHandler;
 use Monolog\User\Handler\Register\RegisterGetHandler;
+use Monolog\User\Handler\Profile\ProfileDataTransmitterGetHandler;
 use PDO;
 use Psr\Http\Server\RequestHandlerInterface;
 
@@ -22,7 +23,7 @@ class UserFactory implements UserFactoryInterface
     public function createRegisterGetHandler(): RequestHandlerInterface
     {
         return new RegisterGetHandler(
-            $this->applicationFactory->createPdo(),
+            $this->applicationFactory->createUserRepository(),
             $this->applicationFactory->createTwig()
         );
     }
@@ -37,7 +38,7 @@ class UserFactory implements UserFactoryInterface
 
     public function createProfileDataTransmitterGetHandler(): RequestHandlerInterface
     {
-        return new ProfileGetHandler(
+        return new ProfileDataTransmitterGetHandler(
             $this->applicationFactory->createUserRepository(),
             $this->applicationFactory->createTwig(),
             $this->applicationFactory->createPdo()

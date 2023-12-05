@@ -3,6 +3,7 @@
 namespace Monolog\User\Handler\Register;
 
 use GuzzleHttp\Psr7\Response;
+use Monolog\User\Model\User\UserRepository;
 use PDO;
 
 use Psr\Http\Message\ResponseInterface;
@@ -13,7 +14,7 @@ use Twig\Environment;
 class RegisterGetHandler implements RequestHandlerInterface
 {
 
-    public function __construct(private PDO $pdo, private Environment $renderer)
+    public function __construct(private UserRepository $db, private Environment $renderer)
     {
 
     }
@@ -43,13 +44,8 @@ class RegisterGetHandler implements RequestHandlerInterface
             user (username, password) 
         VALUES 
             (:username, :password)';
+        $this->db->insert('user', array('username' => $username, 'password' => $password));
 
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':username' ,$username);
-        $stmt->bindParam(':password', $password);
-        $stmt->execute();
-
-        $this->pdo->lastInsertId();
 
 
 

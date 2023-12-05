@@ -38,4 +38,9 @@ class ApplicationFactory
             'cache' => False,
         ]);
     }
+
+    public function emitter(): Emitter
+    {
+        return new Emitter();
+    }
 }

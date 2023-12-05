@@ -44,7 +44,7 @@ class LoginGetHandler implements RequestHandlerInterface
                     $_SESSION['userId'] = $dbuser['id'];                    //@phpstan-ignore-line
                     $_SESSION['userName'] = $dbuser['username'];            //@phpstan-ignore-line
                     $_SESSION['profileurl'] = $dbuser['profileurl'];        //@phpstan-ignore-line
-                    header("location: dashboard.php");
+                    header("location: /dashboard");
                     exit();
                 } else {
                     $error = 'Wrong Password';

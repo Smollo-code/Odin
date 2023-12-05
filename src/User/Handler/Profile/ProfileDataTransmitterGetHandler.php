@@ -4,11 +4,13 @@ namespace Monolog\User\Handler\Profile;
 
 use GuzzleHttp\Psr7\Response;
 use Monolog\User\Model\User\UserRepository;
+use PDO;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 use Twig\Environment;
 
-class ProfileDataTransmitterGetHandler
+class ProfileDataTransmitterGetHandler implements RequestHandlerInterface
 {
     public function __construct(private UserRepository $db, private Environment $renderer, private PDO $pdo)
     {
@@ -25,7 +27,7 @@ class ProfileDataTransmitterGetHandler
         if ($this->checkIfNameExists($changed_username)) {
             $status = 'Username ist schon vergeben';
         } else {
-            $this->changeProfileData($changed_username, $picture, $id);
+            $this->db->update('user', array('username' => $changed_username, 'profileurl' => $picture), array('id' => $id));
             $status = 'Daten erfolgreich geändert';
         }
 
@@ -55,7 +57,7 @@ class ProfileDataTransmitterGetHandler
         }
     }
 
-    private function changeProfileData (string $changed_username, string $picture, int $id) : void
+    /*private function changeProfileData (string $changed_username, string $picture, int $id) : void
     {
         $this->pdo->setAttribute($this->pdo::ATTR_ERRMODE, $this->pdo::ERRMODE_EXCEPTION);
 
@@ -75,5 +77,5 @@ class ProfileDataTransmitterGetHandler
         $stmt->execute();
         $_SESSION['userName'] = $changed_username;
         $_SESSION['profileUrl'] = $picture;
-    }
+    }*/
 }

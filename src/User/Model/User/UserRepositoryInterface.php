@@ -7,7 +7,7 @@ interface UserRepositoryInterface
 
     public function delete(): bool;
 
-    public function update(): bool;
+    public function update(string $table, array $datafields, array $datavalue): bool;
 
-    public function select(): string | bool;
+    public function select(string $table, array $data): string|bool;
 }
