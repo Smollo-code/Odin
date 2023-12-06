@@ -20,19 +20,21 @@ class ProfileDataTransmitterGetHandler implements RequestHandlerInterface
     {
         $parseBody = $request->getParsedBody();
         $changed_username = $parseBody['changed_Username'];
+        $email = $parseBody['email'] ?? '';
         $picture = $parseBody['profilePicture'] ?? '';
         $id = $_SESSION['userId'];
 
         if ($this->checkIfNameExists($changed_username)) {
             $status = 'Username ist schon vergeben';
         } else {
-            $this->db->update('user', array('username' => $changed_username, 'profileurl' => $picture), array('id' => $id));
+            $this->db->update('user', array('username' => $changed_username, 'profileurl' => $picture, 'email' => $email), array('id' => $id));
             $_SESSION['userName'] = $changed_username;
             $_SESSION['profileurl'] = $picture;
+            $_SESSION['email'] = $email;
             $status = 'Daten erfolgreich geändert';
         }
 
-        return new Response(200, [], $this->renderer->render('profile.twig', ['name' => $changed_username, 'profileurl' => $picture, 'status' => $status]));
+        return new Response(200, [], $this->renderer->render('profile.twig', ['name' => $changed_username, 'profileurl' => $picture, 'status' => $status, 'email' => $email]));
     }
 
     private function checkIfNameExists (string $username) : bool
