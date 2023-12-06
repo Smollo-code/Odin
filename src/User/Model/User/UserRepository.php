@@ -11,8 +11,20 @@ class UserRepository implements UserRepositoryInterface
     private PDO $Pdo;
     public function __construct()
     {
-        $applicationFactory = new \Monolog\App\ApplicationFactory();
+        $applicationFactory = new ApplicationFactory();
         $this->Pdo = $applicationFactory->createPdo();
+    }
+
+    public function getFields(array $data): string {
+        $fields = [];
+        foreach ($data as $field => $value) {
+            if ($value === '') {
+                $fields[] = $field . "=''";
+            } else {
+                $fields[] = $field . '=' . "'$value'";
+            }
+        }
+        return implode(', ', $fields);
     }
 
     public function insert(string $table, array $data): bool {
@@ -35,15 +47,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function delete(string $table, array $data): bool
     {
-        $condition = [];
-        foreach ($data as $field => $value) {
-            if ($value === '') {
-                $condition[] = $field . "=''";
-            } else {
-                $condition[] = $field . '=' . "'$value'";
-            }
-        }
-        $conditionvar = implode(', ', $condition);
+        $conditionvar = $this->getFields($data);
 
         $sql = "DELETE 
                 FROM
@@ -60,26 +64,8 @@ class UserRepository implements UserRepositoryInterface
 
     public function update(string $table, array $dataupdate, array $datacondition): bool
     {
-        $data = [];
-        $condition = [];
-        foreach ($dataupdate as $field => $value) {
-            if ($value === '') {
-                $data[] = $field . "=''";
-            } else {
-                $data[] = $field . '=' . "'$value'";
-            }
-        }
-        $fields = implode(', ', $data);
-
-
-        foreach ($datacondition as $field => $value) {
-            if ($value === '') {
-                $condition[] = $field . "=''";
-            } else {
-                $condition[] = $field . '=' . "'$value'";
-            }
-        }
-        $condition = implode(', ', $condition);
+        $fields = $this->getFields($dataupdate);
+        $condition = $this->getFields($datacondition);
 
         $sql = "UPDATE 
                 $table 
@@ -97,16 +83,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function select(string $table, array $datafields, array $conditionarray): string|bool
     {
-
-        $dataquery = [];
-        foreach ($conditionarray as $field => $value) {
-            if ($value === '') {
-                $dataquery[] = $field . "=''";
-            } else {
-                $dataquery[] = $field . '=' . "'$value'";
-            }
-        }
-        $condition = implode(', ', $dataquery);
+        $condition = $this->getFields($conditionarray);
         $fields = implode(', ', $datafields);
         $sql = "SELECT 
                 $fields
