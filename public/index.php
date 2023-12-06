@@ -61,7 +61,7 @@ if ($path === '/')
         ->createProfileDataTransmitterGetHandler()
         ->handle($request);
 } elseif ($path === '/register') {
-    $content = $applicationFactory->createUserFactory()
+    $content = $applicationFactory->createUserFactory()                             //@phpstan-ignore-line
         ->createRegisterGetHandler()
         ->handle($request);
 }
