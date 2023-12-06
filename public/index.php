@@ -38,7 +38,7 @@ if ($path === '/')
         ->createDashboardGetHandler()
             ->handle($request);
     } else {
-        //header('Location: /');
+        header('Location: /');
     }
 } elseif ($path === '/calc') {
     $content = $applicationFactory->createUserFactory()                             //@phpstan-ignore-line
@@ -64,9 +64,17 @@ if ($path === '/')
     $content = $applicationFactory->createUserFactory()                             //@phpstan-ignore-line
         ->createRegisterGetHandler()
         ->handle($request);
+} elseif ($path === '/delete') {
+    $content = $applicationFactory->createUserFactory()
+        ->createDeleteHandler()
+        ->handle($request);
 }
 
 if (isset($content)) {
     $applicationFactory->emitter()->emmit($content);
+} else {
+    $content = $applicationFactory->createUserFactory()                         //@phpstan-ignore-line
+    ->createIndexGetHandler()
+        ->handle($request);
 }
 

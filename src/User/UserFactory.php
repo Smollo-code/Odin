@@ -8,6 +8,7 @@ use Monolog\User\Handler\Emailer\EmailerGetHandler;
 use Monolog\User\Handler\Games\TicTacToeGetHandler;
 use Monolog\User\Handler\Index\IndexGetHandler;
 use Monolog\User\Handler\Login\LoginGetHandler;
+use Monolog\User\Handler\Profile\ProfileDeleteGetHandler;
 use Monolog\User\Handler\Profile\ProfileGetHandler;
 use Monolog\User\Handler\Register\RegisterGetHandler;
 use Monolog\User\Handler\Profile\ProfileDataTransmitterGetHandler;
@@ -86,6 +87,14 @@ class UserFactory implements UserFactoryInterface
     {
         return new CalculatorGetHandler(
             $this->applicationFactory->createCalculator(),
+            $this->applicationFactory->createTwig()
+        );
+    }
+
+    public function createDeleteHandler(): RequestHandlerInterface
+    {
+        return new ProfileDeleteGetHandler(
+            $this->applicationFactory->createUserRepository(),
             $this->applicationFactory->createTwig()
         );
     }

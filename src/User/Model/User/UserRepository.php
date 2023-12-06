@@ -3,11 +3,12 @@ namespace Monolog\User\Model\User;
 
 use Monolog\App\ApplicationFactory;
 use Monolog\User\UserFactory;
+use PDO;
 
 class UserRepository implements UserRepositoryInterface
 {
 
-    private $Pdo;
+    private PDO $Pdo;
     public function __construct()
     {
         $applicationFactory = new \Monolog\App\ApplicationFactory();
@@ -32,9 +33,28 @@ class UserRepository implements UserRepositoryInterface
         }
     }
 
-    public function delete(): bool
+    public function delete(string $table, array $data): bool
     {
-        // TODO: Implement delete() method.
+        foreach ($data as $field => $value) {
+            if ($value === '') {
+                $condition[] = $field . "=''";
+            } else {
+                $condition[] = $field . '=' . "'$value'";
+            }
+        }
+        $condition = implode(', ', $condition);
+
+        $sql = "DELETE 
+                FROM
+                $table
+                WHERE
+                $condition";
+        $stmt = $this->Pdo->prepare($sql);
+        if ($stmt->execute()) {
+            return True;
+        } else {
+            return False;
+        }
     }
 
     public function update(string $table, array $dataupdate, array $datacondition): bool

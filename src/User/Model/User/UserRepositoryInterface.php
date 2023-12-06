@@ -5,7 +5,7 @@ interface UserRepositoryInterface
 {
     public function insert(string $table, array $data): bool;
 
-    public function delete(): bool;
+    public function delete(string $table, array $condition): bool;
 
     public function update(string $table, array $datafields, array $datavalue): bool;
 
