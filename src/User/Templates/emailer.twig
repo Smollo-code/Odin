@@ -3,45 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Mail</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles/emailer.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="emailer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-GLhlTQ8iS6Zu2KZlunL4MFl9J46P4GgMzDAxbl5Fapd8uIlZ6P4gmeEm1b6I5Dj+" crossorigin="anonymous">
+    <title>Email Service</title>
 </head>
-<body>
+<body class="d-flex align-items-center justify-content-center vh-100">
 
-<div class="container">
-    <h1 class="mb-4 text-center">E-Mail</h1>
+<div class="container mt-5">
+    <h1 class="text-center">Email</h1>
 
-    <form action="/emailer" method="post">
-        <div class="form-group">
-            <label for="recipient">An:</label>
-            <select id="recipient" name="recipient" class="form-control">
-                <!-- Hier die Benutzernamen aus der Datenbank dynamisch einfügen -->
-                <option value="benutzer1">Benutzer 1</option>
-                <option value="benutzer2">Benutzer 2</option>
-                <!-- Weitere Optionen entsprechend der Anzahl der Benutzer -->
-            </select>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#composeModal">
+        <i class="fas fa-feather"></i> Neue Email schreiben
+    </button>
+
+    <div class="modal fade" id="composeModal" tabindex="-1" role="dialog" aria-labelledby="composeModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="composeModalLabel">Neue Email schreiben</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <form action="emailer.php" method="post">
+                        <div class="form-group">
+                            <label for="recipient">Empfänger</label>
+                            <input type="email" class="form-control" name="recipient" placeholder="Email-Adresse des Empfängers" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Betreff</label>
+                            <input type="text" class="form-control" name="subject" placeholder="Betreff der Email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Nachricht</label>
+                            <textarea class="form-control" name="message" rows="3" placeholder="Deine Nachricht" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Email senden</button>
+                    </form>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <div class="form-group">
-            <label for="message">Nachricht:</label>
-            <textarea id="message" name="message" rows="4" class="form-control"></textarea>
-        </div>
-
-        <div class="row justify-content-center">
-            <button type="submit" class="btn btn-primary">Senden</button>
-        </div>
-    </form>
-
-    <div class="text-center mt-4">
-        <a href="/dashboard" class="btn btn-secondary">Zurück</a>
+    <div class="mt-4">
+        <h2 class="text-center">Empfangene E-Mails</h2>
+        <ul class="list-group">
+            <li class="list-group-item" data-toggle="collapse" data-target="#emailCollapse" aria-expanded="false" aria-controls="emailCollapse">
+                Von: {{ email_user }} | Betreff: {{ usage }}
+            </li>
+            <div class="collapse" id="emailCollapse">
+                <div class="card card-body">
+                    Test {{ message }}
+                </div>
+            </div>
+        </ul>
     </div>
 </div>
 
-<!-- Bootstrap JS (Online-Verbindung) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
 </body>
 </html>
