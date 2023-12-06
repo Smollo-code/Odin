@@ -1,0 +1,21 @@
+#board {
+    display: grid;
+    grid-template-columns: repeat(7, 50px);
+    gap: 5px;
+    margin: 20px;
+}
+
+.cell {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.player1 {
+    background-color: red;
+}
+
+.player2 {
+    background-color: yellow;
+}

@@ -9,8 +9,9 @@ function navigateToPage(page) {
         window.location.replace("http://odin.scam/emailer");
     } else if (page === 'page2') {
         window.location.replace("/tictactoe");
+    } else if (page === 'page4') {
+        window.location.replace("/gewinnt");
     }
-
 }
 
 function openAccountSettings() {
