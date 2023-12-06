@@ -3,8 +3,8 @@
 return
     [
         'paths' => [
-            'migrations' => './Database/migrations',
-            'seeds' => './Database/seeds'
+            'migrations' => './database/migrations',
+            'seeds' => './database/seeds'
         ],
         'environments' => [
             'default_migration_table' => 'odin_migration',

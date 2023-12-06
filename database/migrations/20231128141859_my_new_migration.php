@@ -24,8 +24,10 @@ final class MyNewMigration extends AbstractMigration
         $table->addColumn('username', 'string', array('limit' => 50, 'null' => false))
             ->addColumn('password', 'string', array('limit' => 255, 'null' => false))
             ->addColumn('profileurl', 'string', array('limit' => 2000))
+            ->addColumn('email', 'string', array('limit' => 500))
             ->addIndex(array('username'), array('unique' => true))
             ->save();
+
 
     }
 
