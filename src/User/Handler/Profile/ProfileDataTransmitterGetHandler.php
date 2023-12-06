@@ -40,7 +40,7 @@ class ProfileDataTransmitterGetHandler implements RequestHandlerInterface
     private function checkIfNameExists (string $username) : bool
     {
         if ($username === $_SESSION['userName']) {
-            return True;
+            return False;
         }
 
         $sql = 'SELECT 
