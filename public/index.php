@@ -13,17 +13,17 @@ $path = $request->getUri()->getPath();
 if ($path === '/')
 {
     if (isset($_SESSION['userId']) && is_numeric($_SESSION['userId']) > 0) {
-        $content = $applicationFactory->createUserFactory()
+        $content = $applicationFactory->createUserFactory()                         //@phpstan-ignore-line
             ->createDashboardGetHandler()
             ->handle($request);
     } else {
-        $content = $applicationFactory->createUserFactory()                       //@phpstan-ignore-line
+        $content = $applicationFactory->createUserFactory()                         //@phpstan-ignore-line
         ->createIndexGetHandler()
             ->handle($request);
     }
 
 } elseif ($path === '/login') {
-    $content = $applicationFactory->createUserFactory()
+    $content = $applicationFactory->createUserFactory()                             //@phpstan-ignore-line
         ->createLoginGetHandler()
         ->handle($request);
 
@@ -34,30 +34,30 @@ if ($path === '/')
     $userId = $_SESSION['userId'] ?? 0;
 
     if ($userId != 0) {
-        $content = $applicationFactory->createUserFactory()                       //@phpstan-ignore-line
+        $content = $applicationFactory->createUserFactory()                         //@phpstan-ignore-line
         ->createDashboardGetHandler()
             ->handle($request);
     } else {
         //header('Location: /');
     }
 } elseif ($path === '/calc') {
-    $content = $applicationFactory->createUserFactory()
+    $content = $applicationFactory->createUserFactory()                             //@phpstan-ignore-line
         ->createCalculatorGetHandler()
         ->handle($request);
 } elseif ($path === '/emailer') {
-    $content = $applicationFactory->createUserFactory()
+    $content = $applicationFactory->createUserFactory()                             //@phpstan-ignore-line
         ->createEmailerGetHandler()
         ->handle($request);
 } elseif ($path === '/tictactoe') {
-    $content = $applicationFactory->createUserFactory()
+    $content = $applicationFactory->createUserFactory()                             //@phpstan-ignore-line
         ->createTicTacToeGetHandler()
         ->handle($request);
 } elseif ($path === '/profile') {
-    $content = $applicationFactory->createUserFactory()
+    $content = $applicationFactory->createUserFactory()                             //@phpstan-ignore-line
         ->createProfileHandler()
         ->handle($request);
 } elseif ($path === '/updatedb') {
-    $content = $applicationFactory->createUserFactory()
+    $content = $applicationFactory->createUserFactory()                             //@phpstan-ignore-line
         ->createProfileDataTransmitterGetHandler()
         ->handle($request);
 }
