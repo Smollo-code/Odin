@@ -18,8 +18,16 @@ class ProfileDeleteGetHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $this->db->delete('user', $_SESSION['userId']);
-        unset($_SESSION['userId']);
-        return new Response(200, [], $this->renderer->render('login.twig'));
+        $parseBody = $request->getParsedBody();
+        if (password_verify($parseBody['confirmDelete'], $this->db->select('user', array('password'), array('id' => $_SESSION['userId'])))) {
+            if ($this->db->delete('user', array('id' => $_SESSION['userId']))) {
+                unset($_SESSION['userId']);
+                header('/');
+            } else {
+                $status = 'Database error';
+            }
+        }
+
+        return new Response(200, [], $this->renderer->render('login.twig', ['status' => $status ?? '']));
     }
 }

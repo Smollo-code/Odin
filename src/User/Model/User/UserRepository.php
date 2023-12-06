@@ -35,6 +35,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function delete(string $table, array $data): bool
     {
+        $condition = [];
         foreach ($data as $field => $value) {
             if ($value === '') {
                 $condition[] = $field . "=''";
@@ -42,13 +43,13 @@ class UserRepository implements UserRepositoryInterface
                 $condition[] = $field . '=' . "'$value'";
             }
         }
-        $condition = implode(', ', $condition);
+        $conditionvar = implode(', ', $condition);
 
         $sql = "DELETE 
                 FROM
                 $table
                 WHERE
-                $condition";
+                $conditionvar";
         $stmt = $this->Pdo->prepare($sql);
         if ($stmt->execute()) {
             return True;
@@ -94,13 +95,31 @@ class UserRepository implements UserRepositoryInterface
         }
     }
 
-    public function select(string $table, array $data): string|bool
+    public function select(string $table, array $datafields, array $conditionarray): string|bool
     {
+
+        $dataquery = [];
+        foreach ($conditionarray as $field => $value) {
+            if ($value === '') {
+                $dataquery[] = $field . "=''";
+            } else {
+                $dataquery[] = $field . '=' . "'$value'";
+            }
+        }
+        $condition = implode(', ', $dataquery);
+        $fields = implode(', ', $datafields);
         $sql = "SELECT 
-                `username`
+                $fields
                 FROM
-                $table
+                `$table`
                 WHERE 
-                `username` = :username";
+                $condition";
+        $stmt = $this->Pdo->prepare($sql);
+
+        if ($stmt->execute()) {
+            return implode('', $stmt->fetch($this->Pdo::FETCH_ASSOC));
+        } else {
+            return False;
+        }
     }
 }

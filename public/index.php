@@ -68,6 +68,10 @@ if ($path === '/')
     $content = $applicationFactory->createUserFactory()
         ->createDeleteHandler()
         ->handle($request);
+} elseif ($path === '/emailsender') {
+    $content = $applicationFactory->createUserFactory()
+        ->createEmailSenderGetHandler()
+        ->handle($request);
 }
 
 if (isset($content)) {

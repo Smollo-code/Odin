@@ -1,10 +1,11 @@
-<?php
+<?php declare(strict_types=1);
 namespace Monolog\User;
 
 use Monolog\App\ApplicationFactory;
 use Monolog\User\Handler\Calc\CalculatorGetHandler;
 use Monolog\User\Handler\Dashboard\DashboardGetHandler;
 use Monolog\User\Handler\Emailer\EmailerGetHandler;
+use Monolog\User\Handler\Emailer\EmailSenderGetHandler;
 use Monolog\User\Handler\Games\TicTacToeGetHandler;
 use Monolog\User\Handler\Index\IndexGetHandler;
 use Monolog\User\Handler\Login\LoginGetHandler;
@@ -96,6 +97,14 @@ class UserFactory implements UserFactoryInterface
         return new ProfileDeleteGetHandler(
             $this->applicationFactory->createUserRepository(),
             $this->applicationFactory->createTwig()
+        );
+    }
+
+    public function createEmailSenderGetHandler(): RequestHandlerInterface
+    {
+        return new EmailSenderGetHandler(
+            $this->applicationFactory->createUserRepository(),
+            $this->applicationFactory->createTwig(),
         );
     }
 }

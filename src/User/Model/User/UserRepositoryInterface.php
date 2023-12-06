@@ -9,5 +9,5 @@ interface UserRepositoryInterface
 
     public function update(string $table, array $datafields, array $datavalue): bool;
 
-    public function select(string $table, array $data): string|bool;
+    public function select(string $table, array $datafields, array $condition): string|bool;
 }
