@@ -27,6 +27,8 @@ class ProfileDataTransmitterGetHandler implements RequestHandlerInterface
             $status = 'Username ist schon vergeben';
         } else {
             $this->db->update('user', array('username' => $changed_username, 'profileurl' => $picture), array('id' => $id));
+            $_SESSION['userName'] = $changed_username;
+            $_SESSION['profileurl'] = $picture;
             $status = 'Daten erfolgreich geändert';
         }
 
@@ -36,7 +38,7 @@ class ProfileDataTransmitterGetHandler implements RequestHandlerInterface
     private function checkIfNameExists (string $username) : bool
     {
         if ($username === $_SESSION['userName']) {
-            return False;
+            return True;
         }
 
         $sql = 'SELECT 
