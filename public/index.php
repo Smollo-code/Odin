@@ -28,8 +28,10 @@ if ($path === '/')
         ->handle($request);
 
 } elseif ($path === '/logout') {
-    unset($_SESSION['UserId']);
-    header('Location: /');
+    $content = $applicationFactory->createUserFactory()
+        ->createLogoutGetHandler()
+        ->handle($request);
+
 } elseif ($path === '/dashboard') {
     $userId = $_SESSION['userId'] ?? 0;
 

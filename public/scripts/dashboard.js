@@ -1,5 +1,5 @@
 function logout() {
-    window.location.replace('http://odin.scam/logout.php');
+    window.location.replace('/logout');
 }
 
 function navigateToPage(page) {

@@ -9,6 +9,7 @@ use Monolog\User\Handler\Emailer\EmailSenderGetHandler;
 use Monolog\User\Handler\Games\TicTacToeGetHandler;
 use Monolog\User\Handler\Index\IndexGetHandler;
 use Monolog\User\Handler\Login\LoginGetHandler;
+use Monolog\User\Handler\Logout\LogoutGetHandler;
 use Monolog\User\Handler\Profile\ProfileDeleteGetHandler;
 use Monolog\User\Handler\Profile\ProfileGetHandler;
 use Monolog\User\Handler\Register\RegisterGetHandler;
@@ -107,4 +108,12 @@ class UserFactory implements UserFactoryInterface
             $this->applicationFactory->createTwig(),
         );
     }
+
+    public function createLogoutGetHandler(): RequestHandlerInterface
+    {
+        return new LogoutGetHandler(
+            $this->applicationFactory->createTwig(),
+        );
+    }
+
 }
