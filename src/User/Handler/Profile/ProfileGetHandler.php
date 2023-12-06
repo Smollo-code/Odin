@@ -19,8 +19,9 @@ class ProfileGetHandler implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $username = $_SESSION['userName'];
+        $email = $_SESSION['email'] ?? '';
         $profileurl = $_SESSION['profileUrl'] ?? '';
 
-        return new Response(200, [], $this->renderer->render('profile.twig', ['name' => $username, 'profileurl' => $profileurl]));
+        return new Response(200, [], $this->renderer->render('profile.twig', ['name' => $username, 'profileurl' => $profileurl, 'email' => $email]));
     }
 }
