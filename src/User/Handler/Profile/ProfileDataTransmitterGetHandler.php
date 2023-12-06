@@ -25,7 +25,7 @@ class ProfileDataTransmitterGetHandler implements RequestHandlerInterface
         $id = $_SESSION['userId'];
 
         if ($this->checkIfNameExists($changed_username)) {
-            $status = 'Username ist schon vergeben';
+            $status = 'Benutzername ist schon vergeben';
         } else {
             $this->db->update('user', array('username' => $changed_username, 'profileurl' => $picture, 'email' => $email), array('id' => $id));
             $_SESSION['userName'] = $changed_username;
