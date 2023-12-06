@@ -2,90 +2,32 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #333;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    color: white;
+    background-color: #f8f9fa; /* Use a light background color */
+    color: #495057;
 }
 
 .container {
     background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin-top: 50px;
     padding: 30px;
     box-sizing: border-box;
-    max-width: 800px; /* Breite des Containers anpassen */
-    width: 100%;
-    margin-top: 50px;
-    color: black;
-    border-radius: 10px; /* Abrundung der Ecken hinzufügen */
+    border-radius: 10px;
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #333;
-    color: #fff;
-    padding: 15px; /* Höhe des Headers anpassen */
-    width: 100%;
-    box-sizing: border-box;
-    border-radius: 10px; /* Abrundung der Ecken hinzufügen */
+h1 {
+    text-align: center;
 }
 
-.headerButton {
-    background-color: #007BFF;
-    color: white;
-    text-decoration: none;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.form-group {
+    margin-bottom: 20px;
 }
 
-.header h1 {
-    margin: 0;
-}
-
-.dashboard,
-.calculator {
-    background-color: #333;
-    padding: 20px;
-    width: 100%;
-    box-sizing: border-box;
-    border-radius: 10px; /* Abrundung der Ecken hinzufügen */
-}
-
-table {
-    border: 1px solid black;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-input[type="button"],
-input[type="submit"] {
-    width: 100%;
-    padding: 20px 40px;
-    background-color: #007BFF;
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-}
-
-input[type="text"],
-select,
 textarea {
-    padding: 20px;
-    font-size: 24px;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    border: 2px solid black;
-    width: 100%;
-    margin-bottom: 16px;
+    resize: vertical;
 }
+
+.btn-secondary {
+    margin-bottom: 20px;
+}
+
+/* Add more styles as needed */

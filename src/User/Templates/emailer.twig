@@ -10,7 +10,7 @@
 <body>
 
 <div class="container">
-    <h1 class="mb-4">E-Mail</h1>
+    <h1 class="mb-4 text-center">E-Mail</h1>
 
     <form action="/emailer" method="post">
         <div class="form-group">
@@ -28,8 +28,14 @@
             <textarea id="message" name="message" rows="4" class="form-control"></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary">Senden</button>
+        <div class="row justify-content-center">
+            <button type="submit" class="btn btn-primary">Senden</button>
+        </div>
     </form>
+
+    <div class="text-center mt-4">
+        <a href="/dashboard" class="btn btn-secondary">Zurück</a>
+    </div>
 </div>
 
 <!-- Bootstrap JS (Online-Verbindung) -->
