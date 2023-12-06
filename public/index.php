@@ -60,6 +60,10 @@ if ($path === '/')
     $content = $applicationFactory->createUserFactory()
         ->createProfileDataTransmitterGetHandler()
         ->handle($request);
+} elseif ($path === '/register') {
+    $content = $applicationFactory->createUserFactory()
+        ->createRegisterGetHandler()
+        ->handle($request);
 }
 
 if (isset($content)) {

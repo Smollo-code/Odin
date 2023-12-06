@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Monolog\User\Model\User;
 
 use Monolog\App\ApplicationFactory;
@@ -30,8 +30,6 @@ class UserRepository implements UserRepositoryInterface
         } else {
             return False;
         }
-
-
     }
 
     public function delete(): bool
@@ -42,33 +40,38 @@ class UserRepository implements UserRepositoryInterface
     public function update(string $table, array $dataupdate, array $datacondition): bool
     {
         $data = [];
+        $condition = [];
         foreach ($dataupdate as $field => $value) {
             if ($value === '') {
                 $data[] = $field . "=''";
             } else {
-                $data[] = $field . '=' . $value;
+                $data[] = $field . '=' . "'$value'";
             }
         }
-        $values = implode(', ', $data);
-        var_dump($values);
-        exit();
+        $fields = implode(', ', $data);
+
+
+        foreach ($datacondition as $field => $value) {
+            if ($value === '') {
+                $condition[] = $field . "=''";
+            } else {
+                $condition[] = $field . '=' . "'$value'";
+            }
+        }
+        $condition = implode(', ', $condition);
 
         $sql = "UPDATE 
                 $table 
                 SET 
-                    (" . implode(', ', array_keys($dataupdate)). '=' . implode(', ', array_values($dataupdate)) . ")  
+                    $fields  
                 WHERE 
-                    (" . implode(', ', array_keys($datacondition)) . '=' . implode(', ', array_values($datacondition)) . ")";
+                    $condition";
         $stmt = $this->Pdo->prepare($sql);
-        /*foreach ($datacondition as $key => $value) {
-            $stmt->bindParam(':'.$key, $data[$key]);
-        }*/
         if ($stmt->execute()) {
             return True;
         } else {
             return False;
         }
-
     }
 
     public function select(string $table, array $data): string|bool
