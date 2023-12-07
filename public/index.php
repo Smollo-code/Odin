@@ -78,6 +78,10 @@ if ($path === '/')
     $content = $applicationFactory->createUserFactory()
         ->createGewinntHandler()
         ->handle($request);
+} elseif ($path === '/roulette') {
+    $content = $applicationFactory->createUserFactory()
+        ->createRouletteHandler()
+        ->handle($request);
 }
 if (isset($content)) {
     $applicationFactory->emitter()->emmit($content);
