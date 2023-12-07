@@ -47,3 +47,15 @@ body {
     cursor: pointer;
     background-color: blue;
 }
+
+.button {
+    position: absolute;
+    left: 47.15%;
+    bottom: 3%;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: blue;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}

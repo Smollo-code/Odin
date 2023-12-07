@@ -141,3 +141,7 @@ function showResult(result) {
 
 // Initialisiere das Spielfeld
 updateBoardUI();
+
+function goBack() {
+    window.location.replace("http://odin.scam/dashboard");
+}
