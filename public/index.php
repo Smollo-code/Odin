@@ -22,8 +22,8 @@ try {
         $response = $handler->handle($request);
         $applicationFactory->emitter()->emmit($response);
     }
-} catch (ResourceNotFoundException) {
-    echo '404 Not Found';
+} catch (ResourceNotFoundException $e) {
+    echo $e->getMessage() . '404 Not Found';
 }
 
 
