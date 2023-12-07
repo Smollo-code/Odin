@@ -17,8 +17,14 @@ $routes->add('startpage', $route);
 $route = new Route('/dashboard', ['handler' => 'dashboard']);
 $routes->add('dashboard', $route);
 
-$route = new Route('/foo/{id}', ['handler' => 'foo']);
-$routes->add('foo', $route);
+$route = new Route('/login', ['handler' => 'login']);
+$routes->add('login', $route);
+
+$route = new Route('/logout', ['handler' => 'logout']);
+$routes->add('logout', $route);
+
+$route = new Route('/login', ['handler' => 'login']);
+$routes->add('login', $route);
 
 
 return $routes;

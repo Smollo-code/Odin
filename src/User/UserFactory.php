@@ -6,6 +6,7 @@ use Monolog\User\Handler\Calc\CalculatorGetHandler;
 use Monolog\User\Handler\Dashboard\DashboardGetHandler;
 use Monolog\User\Handler\Emailer\EmailerGetHandler;
 use Monolog\User\Handler\Emailer\EmailSenderGetHandler;
+use Monolog\User\Handler\Error\ErrorGetHandler;
 use Monolog\User\Handler\Games\GewinntGetHandler;
 use Monolog\User\Handler\Games\RouletteGetHandler;
 use Monolog\User\Handler\Games\TicTacToeGetHandler;
@@ -120,6 +121,13 @@ class UserFactory implements UserFactoryInterface
     public function createGewinntHandler(): RequestHandlerInterface
     {
         return new GewinntGetHandler(
+            $this->applicationFactory->createTwig(),
+        );
+    }
+
+    public function createErrorGetHandler(): RequestHandlerInterface
+    {
+        return new ErrorGetHandler(
             $this->applicationFactory->createTwig(),
         );
     }

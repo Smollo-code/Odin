@@ -49,3 +49,9 @@ body {
 .result {
     background-color: yellow;
 }
+
+circle {
+    border-radius: 50%;
+    width: 50px;
+    border-color: saddlebrown;
+}

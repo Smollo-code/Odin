@@ -102,6 +102,10 @@ if ($path === '/')
     $content = $applicationFactory->createUserFactory()
         ->createRouletteHandler()
         ->handle($request);
+} elseif ($path === '/404') {
+    $content = $applicationFactory->createUserFactory()
+        ->createRouletteHandler()
+        ->handle($request);
 }
 if (isset($content)) {
     $applicationFactory->emitter()->emmit($content);

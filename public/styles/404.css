@@ -1,0 +1,45 @@
+body {
+    background-color: #fff;
+    font-family: 'Arvo', serif;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+}
+
+.page_404 {
+    padding: 40px 0;
+    text-align: center;
+}
+
+.four_zero_four_bg {
+    background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+    height: 400px;
+    background-position: center;
+}
+
+.four_zero_four_bg h1,
+.four_zero_four_bg h3 {
+    font-size: 80px;
+    margin: 0;
+}
+
+.link_404 {
+    color: #fff!important;
+    padding: 10px 20px;
+    background: #007BFF;
+    margin: 20px 0;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+}
+
+.contant_box_404 {
+    margin-top: -50px;
+}
