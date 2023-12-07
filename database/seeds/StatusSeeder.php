@@ -18,12 +18,6 @@ class StatusSeeder extends AbstractSeed
      * https://book.cakephp.org/phinx/0/en/seeding.html
      */
 
-    private function firstDelete() : void
-    {
-        $posts = $this->table('user');
-        $posts->truncate();
-    }
-
     private function saving(array $data) : void
     {
         $posts = $this->table('user');
@@ -57,7 +51,6 @@ class StatusSeeder extends AbstractSeed
 
         $faker = Faker\Factory::create();
 
-        $this->firstDelete();
         $this->alwaysUsers();
         for ($i=0; $i < 100; $i++)
         {

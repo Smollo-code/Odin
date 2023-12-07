@@ -28,7 +28,14 @@ final class MyNewMigration extends AbstractMigration
             ->addIndex(array('username'), array('unique' => true))
             ->save();
 
-
+        $roulette = $this->table('roulette', array('id' =>False));
+        $roulette->addColumn('id', 'integer', array('null' => False, 'signed' => False))
+            ->addColumn('geld', 'string', array('limit' => 50, 'null' => False))
+            ->addForeignKey(['id'],
+                            'user',
+                            ['id'],
+                            ['delete' => 'CASCADE', 'update' => 'CASCADE'])
+            ->save();
     }
 
     public function down()
