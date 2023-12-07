@@ -74,8 +74,11 @@ if ($path === '/')
     $content = $applicationFactory->createUserFactory()
         ->createEmailSenderGetHandler()
         ->handle($request);
+} elseif ($path === '/gewinnt') {
+    $content = $applicationFactory->createUserFactory()
+        ->createGewinntHandler()
+        ->handle($request);
 }
-
 if (isset($content)) {
     $applicationFactory->emitter()->emmit($content);
 } else {

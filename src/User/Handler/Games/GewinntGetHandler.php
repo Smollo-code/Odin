@@ -13,9 +13,7 @@ class GewinntGetHandler implements RequestHandlerInterface
 
     public function __construct(private Environment $renderer)
     {
-
     }
-
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {

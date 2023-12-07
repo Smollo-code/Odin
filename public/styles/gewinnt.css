@@ -1,14 +1,28 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 #board {
     display: grid;
-    grid-template-columns: repeat(7, 50px);
-    gap: 5px;
-    margin: 20px;
+    grid-template-columns: repeat(7, 80px); /* Ändere die Breite der Zellen */
+    gap: 10px; /* Ändere den Abstand zwischen den Zellen */
 }
 
 .cell {
-    width: 50px;
-    height: 50px;
-    border: 1px solid #ccc;
+    width: 80px; /* Ändere die Breite der Zellen */
+    height: 80px; /* Ändere die Höhe der Zellen */
+    border: 2px solid #ccc; /* Ändere die Dicke der Zellenränder */
     cursor: pointer;
 }
 
@@ -18,4 +32,18 @@
 
 .player2 {
     background-color: yellow;
+}
+
+.row-buttons {
+
+    margin-top: 20px; /* Ändere den Abstand zwischen dem Spielfeld und den Knöpfen */
+    margin-left: 5px;
+}
+
+.row-button {
+    width: 80px; /* Ändere die Breite der Knöpfe */
+    height: 40px; /* Ändere die Höhe der Knöpfe */
+    margin-right: 5px; /* Ändere den Abstand zwischen den Knöpfen */
+    cursor: pointer;
+    background-color: blue;
 }
