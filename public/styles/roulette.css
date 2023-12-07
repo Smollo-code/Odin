@@ -1,0 +1,51 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: darkgreen;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#roulette-table {
+    border-collapse: collapse;
+    font-size: 20px;
+}
+
+#roulette-table th, #roulette-table td {
+    width: 30px;
+    height: 30px;
+
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+}
+
+.zero {
+    background-color: forestgreen;
+    border: 1px solid #fff !important;
+}
+
+.red {
+    background-color: red;
+    border: 1px solid #fff
+}
+
+.black {
+    background-color: black;
+    border: 1px solid #fff
+}
+
+.range {
+    background-color: lightslategrey;
+    border: 1px solid #fff !important
+}
+
+.null {
+    border: 1px solid darkgreen;
+}
+
+.result {
+    background-color: yellow;
+}
