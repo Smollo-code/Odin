@@ -54,70 +54,123 @@ $route = new Route('/calc', ['handler' => function (ApplicationFactory $factory)
     } else {
         header('Location: /');
     }
-
 }]);
 
 $routes->add('calc', $route);
 
 $route = new Route('/emailer', ['handler' => function (ApplicationFactory $factory): RequestHandlerInterface {
-    return $factory->createUserFactory()
-        ->createEmailerGetHandler();
+    $userId = $_SESSION['userId'] ?? 0;
+
+    if ($userId != 0) {
+        return $factory->createUserFactory()
+            ->createEmailerGetHandler();
+    } else {
+        header('Location: /');
+    }
 }]);
 
 $routes->add('emailer', $route);
 
 $route = new Route('/tictactoe', ['handler' => function (ApplicationFactory $factory): RequestHandlerInterface {
-    return $factory->createUserFactory()
-        ->createTicTacToeGetHandler();
+    $userId = $_SESSION['userId'] ?? 0;
+
+    if ($userId != 0) {
+        return $factory->createUserFactory()
+            ->createTicTacToeGetHandler();
+    } else {
+        header('Location: /');
+    }
 }]);
 
 $routes->add('tictactoe', $route);
 
 $route = new Route('/profile', ['handler' => function (ApplicationFactory $factory): RequestHandlerInterface {
-    return $factory->createUserFactory()
-        ->createProfileHandler();
+    $userId = $_SESSION['userId'] ?? 0;
+
+    if ($userId != 0) {
+        return $factory->createUserFactory()
+            ->createProfileHandler();
+    } else {
+        header('Location: /');
+    }
 }]);
 
 $routes->add('profile', $route);
 
 $route = new Route('/updatedb', ['handler' => function (ApplicationFactory $factory): RequestHandlerInterface {
-    return $factory->createUserFactory()
-        ->createProfileDataTransmitterGetHandler();
+    $userId = $_SESSION['userId'] ?? 0;
+
+    if ($userId != 0) {
+        return $factory->createUserFactory()
+            ->createProfileDataTransmitterGetHandler();
+    } else {
+        header('Location: /');
+    }
 }]);
 
 $routes->add('updatedb', $route);
 
 $route = new Route('/register', ['handler' => function (ApplicationFactory $factory): RequestHandlerInterface {
-    return $factory->createUserFactory()
-        ->createRegisterGetHandler();
+    $userId = $_SESSION['userId'] ?? 0;
+
+    if ($userId != 0) {
+        return $factory->createUserFactory()
+            ->createRegisterGetHandler();
+    } else {
+        header('Location: /');
+    }
 }]);
 
 $routes->add('register', $route);
 
 $route = new Route('/delete', ['handler' => function (ApplicationFactory $factory): RequestHandlerInterface {
-    return $factory->createUserFactory()
-        ->createDeleteHandler();
+    $userId = $_SESSION['userId'] ?? 0;
+
+    if ($userId != 0) {
+        return $factory->createUserFactory()
+            ->createDeleteHandler();
+    } else {
+        header('Location: /');
+    }
 }]);
 
 $routes->add('delete', $route);
 
 $route = new Route('/emailsender', ['handler' => function (ApplicationFactory $factory): RequestHandlerInterface {
-    return $factory->createUserFactory()
-        ->createEmailSenderGetHandler();
+    $userId = $_SESSION['userId'] ?? 0;
+
+    if ($userId != 0) {
+        return $factory->createUserFactory()
+            ->createEmailSenderGetHandler();
+    } else {
+        header('Location: /');
+    }
 }]);
 
 $routes->add('emailsender', $route);
 
 $route = new Route('/gewinnt', ['handler' => function (ApplicationFactory $factory): RequestHandlerInterface {
-    return $factory->createUserFactory()
-        ->createGewinntHandler();
+    $userId = $_SESSION['userId'] ?? 0;
+
+    if ($userId != 0) {
+        return $factory->createUserFactory()
+            ->createGewinntHandler();
+    } else {
+        header('Location: /');
+    }
 }]);
 
 $routes->add('gewinnt', $route);
 
 $route = new Route('/roulette', ['handler' => function (ApplicationFactory $factory): RequestHandlerInterface {
-    return $factory->createUserFactory()
-        ->createRouletteHandler();
+    $userId = $_SESSION['userId'] ?? 0;
+
+    if ($userId != 0) {
+        return $factory->createUserFactory()
+            ->createRouletteHandler();
+    } else {
+        header('Location: /');
+    }
 }]);
 
 $routes->add('roulette', $route);

@@ -22,15 +22,16 @@ try {
         $response = $handler->handle($request);
         $applicationFactory->emitter()->emmit($response);
     }
-} catch (ResourceNotFoundException $e) {
-    echo $e->getMessage() . '404 Not Found';
+} catch (ResourceNotFoundException) {
+    $content = $applicationFactory->createUserFactory()
+        ->createErrorGetHandler()
+        ->handle($request);
+    $applicationFactory->emitter()->emmit($content);
 }
 
 
 
-
-exit();
-if ($path === '/')
+/*if ($path === '/')
 {
     if (isset($_SESSION['userId']) && is_numeric($_SESSION['userId']) > 0) {
         $content = $applicationFactory->createUserFactory()
@@ -114,4 +115,4 @@ if (isset($content)) {
     ->createIndexGetHandler()
         ->handle($request);
 }
-
+*/
