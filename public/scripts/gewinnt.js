@@ -26,19 +26,11 @@ function dropCoin(column) {
 
     const winner = checkWinner();
     if (winner) {
-        document.getElementById('winner-display').innerHTML = `Spieler ${winner} hat gewonnen!`;
-
-        // Optional: Hier kannst du weitere Aktionen nach dem Gewinn durchführen
-
-        // Setze das Spielfeld zurück, um ein neues Spiel zu beginnen
-        setTimeout(() => {
-            document.getElementById('winner-display').innerHTML = '';
-            gameBoard = createEmptyBoard();
-            updateBoardUI();
-        }, 2000); // Warte 2 Sekunden, bevor das Spielfeld zurückgesetzt wird (kann nach Bedarf angepasst werden)
+        showResult(`Spieler ${winner} hat gewonnen!`);
+    } else if (checkDraw()) {
+        showResult('Unentschieden!');
     }
 }
-
 
 function updateBoardUI() {
     const boardElement = document.getElementById('board');
@@ -75,7 +67,7 @@ function checkWinner() {
         }
     }
 
-
+    // Überprüfe vertikal
     for (let row = 0; row < 3; row++) {
         for (let col = 0; col < 7; col++) {
             if (
@@ -89,7 +81,7 @@ function checkWinner() {
         }
     }
 
-
+    // Überprüfe diagonal (nach unten rechts)
     for (let row = 0; row < 3; row++) {
         for (let col = 0; col < 4; col++) {
             if (
@@ -103,7 +95,7 @@ function checkWinner() {
         }
     }
 
-
+    // Überprüfe diagonal (nach unten links)
     for (let row = 0; row < 3; row++) {
         for (let col = 3; col < 7; col++) {
             if (
@@ -117,7 +109,35 @@ function checkWinner() {
         }
     }
 
-
+    // Wenn niemand gewonnen hat
     return null;
 }
 
+// Funktion zum Überprüfen, ob das Spielfeld voll ist (Unentschieden)
+function checkDraw() {
+    for (let row = 0; row < 6; row++) {
+        for (let col = 0; col < 7; col++) {
+            if (gameBoard[row][col] === null) {
+                return false; // Es gibt mindestens ein leeres Feld, das Spiel ist nicht unentschieden
+            }
+        }
+    }
+    return true; // Alle Felder sind gefüllt, das Spiel ist unentschieden
+}
+
+// Funktion zum Anzeigen des Ergebnisses (Gewinner oder Unentschieden) und Zurücksetzen des Spielfelds
+function showResult(result) {
+    document.getElementById('winner-display').innerHTML = result;
+
+    // Optional: Hier kannst du weitere Aktionen nach dem Spielende durchführen
+
+    // Setze das Spielfeld zurück, um ein neues Spiel zu beginnen
+    setTimeout(() => {
+        document.getElementById('winner-display').innerHTML = '';
+        gameBoard = createEmptyBoard();
+        updateBoardUI();
+    }, 2000); // Warte 2 Sekunden, bevor das Spielfeld zurückgesetzt wird (kann nach Bedarf angepasst werden)
+}
+
+// Initialisiere das Spielfeld
+updateBoardUI();
