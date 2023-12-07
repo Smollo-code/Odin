@@ -16,7 +16,7 @@
         "ifsnop/mysqldump-php": "v2.12",
         "robmorgan/phinx": "^0.15.4",
         "fakerphp/faker": "v1.23.0",
-        "symfony/routing": "v7.0.0",
+        "symfony/routing": "^7.0",
         "guzzlehttp/guzzle": "^7.8.0",
         "psr/http-server-handler": "1.0.2"
     },

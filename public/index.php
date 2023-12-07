@@ -1,15 +1,35 @@
 <?php
+
+use GuzzleHttp\Psr7\ServerRequest;
+use Monolog\App\ApplicationFactory;
+use Psr\Http\Server\RequestHandlerInterface;
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
+use Symfony\Component\Routing\Matcher\UrlMatcher;
+use Symfony\Component\Routing\RequestContext;
+
 require '../vendor/autoload.php';
 
 session_start();
-$request = \GuzzleHttp\Psr7\ServerRequest::fromGlobals();
-$applicationFactory = new \Monolog\App\ApplicationFactory();
-$path = $request->getUri()->getPath();
+$request = ServerRequest::fromGlobals();
+$applicationFactory = new ApplicationFactory();
+$routes = require __DIR__.'/../config/routes.php';
+
+$matcher = new UrlMatcher($routes, new RequestContext());
+try {
+    $parameters = $matcher->match($request->getUri()->getPath());
+    $handler = ($parameters['handler'])($applicationFactory);
+    if ($handler instanceof RequestHandlerInterface) {
+        $response = $handler->handle($request);
+        $applicationFactory->emitter()->emmit($response);
+    }
+} catch (ResourceNotFoundException) {
+    echo '404 Not Found';
+}
 
 
 
 
-
+exit();
 if ($path === '/')
 {
     if (isset($_SESSION['userId']) && is_numeric($_SESSION['userId']) > 0) {
