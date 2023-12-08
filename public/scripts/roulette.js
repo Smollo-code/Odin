@@ -4,8 +4,28 @@ document.addEventListener('DOMContentLoaded', function() {
     table.addEventListener('click', function(event) {
         var clickedCell = event.target;
 
-        if (clickedCell.attributes. === '11') {
-            console.log('Geklickte Zelle:', clickedCell.textContent, clickedCell.className);
+        var cellValue = parseInt(clickedCell.textContent)
+
+        if (clickedCell.attributes.id.nodeValue === 'PAIR') {
+            console.log('Value:', clickedCell.attributes.id.nodeValue)
+        } else if (clickedCell.attributes.id.nodeValue === 'IMPAIR') {
+            console.log('Value:', clickedCell.attributes.id.nodeValue)
+        } else if (clickedCell.attributes.id.nodeValue === '1-12') {
+            console.log('Value:', clickedCell.attributes.id.nodeValue)
+        } else if (clickedCell.attributes.id.nodeValue === '1-18') {
+            console.log('Value:', clickedCell.attributes.id.nodeValue)
+        } else if (clickedCell.attributes.id.nodeValue === '13-24') {
+            console.log('Value:', clickedCell.attributes.id.nodeValue)
+        } else if (clickedCell.attributes.id.nodeValue === 'RED') {
+            console.log('Value:', clickedCell.attributes.id.nodeValue)
+        } else if (clickedCell.attributes.id.nodeValue === 'BLACK') {
+            console.log('Value:', clickedCell.attributes.id.nodeValue)
+        } else if (clickedCell.attributes.id.nodeValue === '25-36') {
+            console.log('Value:', clickedCell.attributes.id.nodeValue)
+        } else if (clickedCell.attributes.id.nodeValue === '19-36') {
+            console.log('Value:', clickedCell.attributes.id.nodeValue)
+        } else if (!isNaN(cellValue)) {
+            console.log('Number:', cellValue)
         }
     });
 });
