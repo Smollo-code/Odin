@@ -32,14 +32,14 @@ body {
 
 .roulette-wheel2{
     position: absolute;
-    width: 250px;
-    height: 250px;
+    width: 245px;
+    height: 245px;
     background-color: #734908;
     border-radius: 50%;
     border: 5px solid #50340a;
     margin-right: 50px;
-    margin-left: -1075px;
-    margin-top: -175px;
+    margin-left: -1072px;
+    margin-top: -173px;
     background-image: url('../images/Kugel.jpg') !important;
     background-size: cover;
     background-position: center;
