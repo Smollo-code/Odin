@@ -20,7 +20,7 @@ class ProfileGetHandler implements RequestHandlerInterface
     {
         $username = $_SESSION['userName'];
         $email = $_SESSION['email'] ?? '';
-        $profileurl = $_SESSION['profileUrl'] ?? '';
+        $profileurl = $_SESSION['profileurl'] ?? '';
 
         return new Response(200, [], $this->renderer->render('profile.twig', ['name' => $username, 'profileurl' => $profileurl, 'email' => $email]));
     }
