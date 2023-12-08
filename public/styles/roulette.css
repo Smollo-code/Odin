@@ -26,6 +26,10 @@ body {
     background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Basic_roulette_wheel.svg/1024px-Basic_roulette_wheel.svg.png') !important;
     background-size: cover;
     background-position: center;
+    animation-name: rotate;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
 }
 
 #table-container {
@@ -65,6 +69,12 @@ body {
     padding: 10px;
     text-align: center;
     color: #fff;
+}
+
+@keyframes rotate {
+    from { transform: rotate(-360deg)}
+    to  { transform: rotate(360deg)}
+
 }
 
 .zero {
