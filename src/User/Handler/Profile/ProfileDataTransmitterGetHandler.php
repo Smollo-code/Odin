@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Monolog\User\Handler\Profile;
 
@@ -27,20 +29,31 @@ class ProfileDataTransmitterGetHandler implements RequestHandlerInterface
         if ($this->checkIfNameExists($changed_username)) {
             $status = 'Benutzername ist schon vergeben';
         } else {
-            $this->db->update('user', array('username' => $changed_username, 'profileurl' => $picture, 'email' => $email), array('id' => $id));
+            $this->db->update(
+                'user',
+                array('username' => $changed_username, 'profileurl' => $picture, 'email' => $email),
+                array('id' => $id)
+            );
             $_SESSION['userName'] = $changed_username;
             $_SESSION['profileurl'] = $picture;
             $_SESSION['email'] = $email;
             $status = 'Daten erfolgreich geändert';
         }
 
-        return new Response(200, [], $this->renderer->render('profile.twig', ['name' => $changed_username, 'profileurl' => $picture, 'status' => $status, 'email' => $email]));
+        return new Response(
+            200,
+            [],
+            $this->renderer->render(
+                'profile.twig',
+                ['name' => $changed_username, 'profileurl' => $picture, 'status' => $status, 'email' => $email]
+            )
+        );
     }
 
-    private function checkIfNameExists (string $username) : bool
+    private function checkIfNameExists(string $username): bool
     {
         if ($username === $_SESSION['userName']) {
-            return False;
+            return false;
         }
 
         $sql = 'SELECT 
@@ -52,11 +65,10 @@ class ProfileDataTransmitterGetHandler implements RequestHandlerInterface
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':username', $username);
         $stmt->execute();
-        if ($stmt->rowCount() > 0)
-        {
-            return True;
+        if ($stmt->rowCount() > 0) {
+            return true;
         } else {
-            return False;
+            return false;
         }
     }
 

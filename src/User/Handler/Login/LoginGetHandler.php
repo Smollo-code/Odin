@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Monolog\User\Handler\Login;
 
@@ -14,7 +16,6 @@ class LoginGetHandler implements RequestHandlerInterface
 
     public function __construct(private PDO $pdo, private Environment $renderer)
     {
-
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface
@@ -54,7 +55,6 @@ class LoginGetHandler implements RequestHandlerInterface
         } catch (PDOException $e) {
             die("Error: " . $e->getMessage());
         }
-
 
 
         return new Response(200, [], $this->renderer->render('login.twig', ['error' => $error]));

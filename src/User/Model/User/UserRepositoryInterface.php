@@ -1,4 +1,5 @@
 <?php
+
 namespace Monolog\User\Model\User;
 
 interface UserRepositoryInterface

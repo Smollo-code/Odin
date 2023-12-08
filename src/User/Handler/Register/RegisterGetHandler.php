@@ -1,11 +1,11 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Monolog\User\Handler\Register;
 
 use GuzzleHttp\Psr7\Response;
 use Monolog\User\Model\User\UserRepository;
-use PDO;
-
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -16,25 +16,23 @@ class RegisterGetHandler implements RequestHandlerInterface
 
     public function __construct(private UserRepository $db, private Environment $renderer)
     {
-
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-
-
         $parseBody = $request->getParsedBody();
         $username = $parseBody['new_username'];
         $password = password_hash($parseBody['new_password'], PASSWORD_BCRYPT);
         $confirmPassword = $parseBody['confirm_password'];
 
-        function checkPassword () : bool {
+        function checkPassword(): bool
+        {
             $password = $_POST['new_password'];
             $confirmPassword = $_POST['confirm_password'];
             if ($password === $confirmPassword) {
-                return True;
+                return true;
             } else {
-                return False;
+                return false;
             }
         }
 
@@ -45,10 +43,6 @@ class RegisterGetHandler implements RequestHandlerInterface
         VALUES 
             (:username, :password)';
         $this->db->insert('user', array('username' => $username, 'password' => $password));
-
-
-
-
 
 
         return new Response(200, [], $this->renderer->render('register.twig'));

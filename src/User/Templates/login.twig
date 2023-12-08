@@ -14,7 +14,7 @@
             <div>
                 <h1 class="text-center">Login</h1>
                 <form action="/login" method="post">
-                    <p class="error" >{{ error }}
+                    <p class="error">{{ error }}
                     <div class="form-group">
                         <label for="username">Benutzername:</label>
                         <input type="text" class="form-control" id="username" name="username" required>
@@ -28,7 +28,8 @@
 
                 <div class="divider"></div>
 
-                <p class="switch-form text-center">Noch kein Konto vorhanden? <a href="#" onclick="toggleForm()">Registrieren</a></p>
+                <p class="switch-form text-center">Noch kein Konto vorhanden? <a href="#" onclick="toggleForm()">Registrieren</a>
+                </p>
             </div>
         </div>
 
@@ -47,14 +48,16 @@
                     </div>
                     <div class="form-group">
                         <label for="confirm_password">Passwort bestätigen:</label>
-                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password"
+                               required>
                     </div>
                     <input type="submit" class="btn btn-success btn-block" value="Registrieren">
                 </form>
 
                 <div class="divider"></div>
 
-                <p class="switch-form text-center">Bereits ein Konto vorhanden? <a href="#" onclick="toggleForm()">Anmelden</a></p>
+                <p class="switch-form text-center">Bereits ein Konto vorhanden? <a href="#" onclick="toggleForm()">Anmelden</a>
+                </p>
             </div>
         </div>
     </div>

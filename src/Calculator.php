@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 namespace Monolog;
 
@@ -9,8 +10,8 @@ class Calculator implements CalcInterface
     private const MATH_MULTI = '*';
     private const MATH_DIVIDE = '/';
 
-    public function __construct(
-    ) {
+    public function __construct()
+    {
     }
 
     public function getResult(string $formula): float
@@ -83,12 +84,16 @@ class Calculator implements CalcInterface
 
         $sortedArray = [];
         foreach ($operators as $operator) {
-            $sortedArray[] = (string) array_shift($operands); // sicherstellen, dass die Operanden als Strings zurückgegeben werden
+            $sortedArray[] = (string)array_shift(
+                $operands
+            ); // sicherstellen, dass die Operanden als Strings zurückgegeben werden
             $sortedArray[] = $operator;
         }
 
         while (!empty($operands)) {
-            $sortedArray[] = (string) array_shift($operands); // sicherstellen, dass die Operanden als Strings zurückgegeben werden
+            $sortedArray[] = (string)array_shift(
+                $operands
+            ); // sicherstellen, dass die Operanden als Strings zurückgegeben werden
         }
 
         return $sortedArray;
@@ -106,7 +111,7 @@ class Calculator implements CalcInterface
 
         foreach ($array as $element) {
             if (is_numeric($element)) {
-                $value = (float) $element;
+                $value = (float)$element;
                 if ($result === null) {
                     $result = $value;
                 } else {
@@ -135,6 +140,6 @@ class Calculator implements CalcInterface
             }
         }
 
-        return (float) $result;
+        return (float)$result;
     }
 }

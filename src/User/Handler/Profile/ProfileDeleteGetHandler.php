@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Monolog\User\Handler\Profile;
 
@@ -19,7 +21,10 @@ class ProfileDeleteGetHandler implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $parseBody = $request->getParsedBody();
-        if (password_verify($parseBody['confirmDelete'], $this->db->select('user', array('password'), array('id' => $_SESSION['userId'])))) {
+        if (password_verify(
+            $parseBody['confirmDelete'],
+            $this->db->select('user', array('password'), array('id' => $_SESSION['userId']))
+        )) {
             if ($this->db->delete('user', array('id' => $_SESSION['userId']))) {
                 unset($_SESSION['userId']);
                 header('/');

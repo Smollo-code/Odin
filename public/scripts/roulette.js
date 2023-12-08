@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     var table = document.getElementById('roulette-table');
 
-    table.addEventListener('click', function(event) {
+    table.addEventListener('click', function (event) {
         var clickedCell = event.target;
 
         var cellValue = parseInt(clickedCell.textContent)
@@ -45,7 +45,7 @@ function pause(ms) {
 
 async function counter() {
     for (let i = 1; i <= 30; i++) {
-        document.getElementById('counter').textContent = 30-i;
+        document.getElementById('counter').textContent = 30 - i;
         await pause(1000);
     }
 }

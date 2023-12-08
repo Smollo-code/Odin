@@ -27,10 +27,10 @@ body {
     background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Basic_roulette_wheel.svg/1024px-Basic_roulette_wheel.svg.png') !important;
     background-size: cover;
     background-position: center;
-    z-index:1;
+    z-index: 1;
 }
 
-.roulette-wheel2{
+.roulette-wheel2 {
     position: absolute;
     width: 245px;
     height: 245px;
@@ -47,7 +47,7 @@ body {
     animation-duration: 5s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
-    z-index:2;
+    z-index: 2;
 
 }
 
@@ -92,8 +92,12 @@ body {
 }
 
 @keyframes rotate {
-    from { transform: rotate(360deg)}
-    to  { transform: rotate(-360deg)}
+    from {
+        transform: rotate(360deg)
+    }
+    to {
+        transform: rotate(-360deg)
+    }
 
 }
 
@@ -126,13 +130,16 @@ body {
 }
 
 .Title {
+    position: absolute;
     color: #fff;
+    margin-left: -60px;
+    margin-top: -150px;
 }
 
 .counter {
     font-size: xxx-large;
     color: #fff;
-    z-index:3;
+    z-index: 3;
     position: absolute;
     margin-right: 50px;
     margin-left: -253px;

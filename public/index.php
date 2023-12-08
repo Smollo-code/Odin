@@ -12,7 +12,7 @@ require '../vendor/autoload.php';
 session_start();
 $request = ServerRequest::fromGlobals();
 $applicationFactory = new ApplicationFactory();
-$routes = require __DIR__.'/../config/routes.php';
+$routes = require __DIR__ . '/../config/routes.php';
 
 $matcher = new UrlMatcher($routes, new RequestContext());
 try {

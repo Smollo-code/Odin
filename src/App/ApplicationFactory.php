@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 namespace Monolog\App;
 
@@ -36,7 +37,7 @@ class ApplicationFactory
     {
         $loader = new \Twig\Loader\FilesystemLoader('../src/User/Templates');
         return new \Twig\Environment($loader, [
-            'cache' => False,
+            'cache' => false,
         ]);
     }
 

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Monolog\User\Handler\Dashboard;
 
@@ -21,6 +23,10 @@ class DashboardGetHandler implements RequestHandlerInterface
         $username = $_SESSION['userName'];
         $profileUrl = $_SESSION['profileurl'] ?? '';
 
-        return new Response(200, [], $this->renderer->render('dashboard.twig', ['name' => $username, 'picture' => $profileUrl]));
+        return new Response(
+            200,
+            [],
+            $this->renderer->render('dashboard.twig', ['name' => $username, 'picture' => $profileUrl])
+        );
     }
 }

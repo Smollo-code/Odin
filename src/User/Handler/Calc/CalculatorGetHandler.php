@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Monolog\User\Handler\Calc;
 
@@ -21,9 +23,9 @@ class CalculatorGetHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-
         $parseBody = $request->getParsedBody();
-        function hasOneOperator (string $input) : bool {
+        function hasOneOperator(string $input): bool
+        {
             $operatorArray = ['+', '-', '*', '/',];
             foreach ($operatorArray as $operator) {
                 if (str_contains($input, $operator)) {
@@ -33,7 +35,7 @@ class CalculatorGetHandler implements RequestHandlerInterface
             return false;
         }
 
-        function hasBracket (string $input) : bool
+        function hasBracket(string $input): bool
         {
             $brackets = ['(', ')', '[', ']', '{', '}'];
             foreach ($brackets as $bracket) {
@@ -48,14 +50,16 @@ class CalculatorGetHandler implements RequestHandlerInterface
 
         if (!hasOneOperator($result)) {
             $error = 'Fehler bei Eingabe';
-
         } elseif (hasBracket($result)) {
             $error = 'Fehler bei Eingabe';
-
         } else {
             $endResult = $this->calc->getResult($result);
         }
 
-        return new Response(200, [], $this->renderer->render('main.twig', ['result' => $endResult, 'error' => $error ?? '']));
+        return new Response(
+            200,
+            [],
+            $this->renderer->render('main.twig', ['result' => $endResult, 'error' => $error ?? ''])
+        );
     }
 }

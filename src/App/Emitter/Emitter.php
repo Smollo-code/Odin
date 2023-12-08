@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 namespace Monolog\App\Emitter;
 
@@ -24,11 +25,9 @@ class Emitter implements EmitterInterface
             foreach ($values as $value) {
                 header(sprintf('%s: %s', $header, $value));
                 header('Location: /dashboard');
-
             }
         }
 
         echo $response->getBody();
-
     }
 }

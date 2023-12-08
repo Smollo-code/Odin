@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Monolog\User\Handler\Games;
 
@@ -17,8 +19,6 @@ class RouletteGetHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-
-
         return new Response(200, [], $this->renderer->render('roulette.twig'));
     }
 }

@@ -1,4 +1,7 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
+
 namespace Monolog\User;
 
 use Monolog\App\ApplicationFactory;
@@ -118,6 +121,7 @@ class UserFactory implements UserFactoryInterface
             $this->applicationFactory->createTwig(),
         );
     }
+
     public function createGewinntHandler(): RequestHandlerInterface
     {
         return new GewinntGetHandler(
