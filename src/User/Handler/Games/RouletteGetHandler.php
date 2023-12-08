@@ -17,6 +17,8 @@ class RouletteGetHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
+
+
         return new Response(200, [], $this->renderer->render('roulette.twig'));
     }
 }
