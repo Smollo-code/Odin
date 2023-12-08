@@ -35,7 +35,19 @@ function goBack() {
     window.location.replace("http://odin.scam/dashboard");
 }
 
-function rotateDegreeNumber() {
-    return Math.random() * (9000 - 1000) + 1000
+function lastRotatetime() {
+    return Math.random() * (15 - 3) + 3
 }
 
+function pause(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+async function counter() {
+    for (let i = 1; i <= 30; i++) {
+        document.getElementById('counter').textContent = 30-i;
+        await pause(1000);
+    }
+}
+
+counter();
