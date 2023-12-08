@@ -15,6 +15,7 @@ body {
 }
 
 #roulette-wheel {
+    position: absolute;
     width: 300px;
     height: 300px;
     background-color: #734908;
@@ -22,20 +23,39 @@ body {
     border: 5px solid #50340a;
     margin-right: 50px;
     margin-left: -1100px;
-    margin-top: 1px;
+    margin-top: -200px;
     background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Basic_roulette_wheel.svg/1024px-Basic_roulette_wheel.svg.png') !important;
+    background-size: cover;
+    background-position: center;
+    z-index:1;
+}
+
+.roulette-wheel2{
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    background-color: #734908;
+    border-radius: 50%;
+    border: 5px solid #50340a;
+    margin-right: 50px;
+    margin-left: -1075px;
+    margin-top: -175px;
+    background-image: url('../images/Kugel.jpg') !important;
     background-size: cover;
     background-position: center;
     animation-name: rotate;
     animation-duration: 5s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
+    z-index:2;
+
 }
 
 #table-container {
     flex-grow: 1;
     display: flex;
     justify-content: center;
+
 }
 
 #roulette-table {
@@ -72,8 +92,8 @@ body {
 }
 
 @keyframes rotate {
-    from { transform: rotate(-360deg)}
-    to  { transform: rotate(360deg)}
+    from { transform: rotate(360deg)}
+    to  { transform: rotate(-360deg)}
 
 }
 
