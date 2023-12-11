@@ -24,7 +24,7 @@ body {
     margin-right: 50px;
     margin-left: -1100px;
     margin-top: -200px;
-    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Basic_roulette_wheel.svg/1024px-Basic_roulette_wheel.svg.png') !important;
+    background-image: url('../images/Roulettewheel.png') !important;
     background-size: cover;
     background-position: center;
     z-index: 1;
