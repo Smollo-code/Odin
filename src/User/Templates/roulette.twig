@@ -78,6 +78,16 @@
     </div>
     <div class="counter" id="counter"></div>
     <div class="money" id="money">Geld</div>
+    <button id="codeButton" onclick="openCodePopup()" class="redeemCode">Code einlösen</button>
+
+
+    <dialog id="codePopup" class="popup">
+        <label for="codeInput">Code eingeben:</label>
+        <input type="text" id="codeInput" name="codeInput" required>
+        <button onclick="redeemCode()">Einlösen</button>
+        <button onclick="closeCodePopup()">Abbrechen</button>
+    </dialog>
+
 </div>
 
 <button id="backButton" onclick="goBack()">Zurück</button>

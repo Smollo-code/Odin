@@ -281,3 +281,20 @@ element.style.animationIterationCount = 'infinite';
 counter();
 
 
+// JavaScript-Funktionen für das Popup
+function openCodePopup() {
+    document.getElementById('codePopup').showModal();
+}
+
+function closeCodePopup() {
+    document.getElementById('codePopup').close();
+}
+
+function redeemCode() {
+
+    closeCodePopup();
+}
+
+function goBack() {
+    window.location.replace("http://odin.scam/dashboard");
+}
