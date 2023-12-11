@@ -44,8 +44,6 @@ body {
     background-size: cover;
     background-position: center;
     animation-name: rotate;
-    animation-duration: 5s;
-    animation-iteration-count: infinite;
     animation-timing-function: linear;
     z-index: 2;
 
@@ -99,6 +97,10 @@ body {
         transform: rotate(-360deg)
     }
 
+}
+
+.pausedanimation {
+    animation-play-state: paused;
 }
 
 .zero {

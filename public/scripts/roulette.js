@@ -172,27 +172,112 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-
 function goBack() {
     window.location.replace("http://odin.scam/dashboard");
 }
 
 function lastRotatetime() {
-    return Math.random() * (15 - 3) + 3;
+    return Math.random() * (1500 - 5000) + 5000;
 }
 
 function pause(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function berechneUnterschied(num1, num2) {
+    return Math.abs(num1 - num2);
+}
+
+function findeNaechstenSchluessel(ziel, objekt) {
+    let naechsterSchluessel = null;
+    let kleinsterUnterschied = Infinity;
+
+    for (let schluessel in objekt) {
+        let aktuellerWert = parseFloat(objekt[schluessel]);
+        let aktuellerUnterschied = berechneUnterschied(ziel, aktuellerWert);
+        if (aktuellerUnterschied < kleinsterUnterschied) {
+            kleinsterUnterschied = aktuellerUnterschied;
+            naechsterSchluessel = schluessel;
+        }
+    }
+
+    return naechsterSchluessel;
+}
+
+
 async function counter() {
+    let element = document.getElementById('roulette-wheel2');
     for (let i = 1; i <= 30; i++) {
         document.getElementById('counter').textContent = 30 - i;
         if (i === 30) {
+            document.getElementById('counter').textContent = '';
+            await pause(lastRotatetime());
+            document.querySelector('.roulette-wheel2').classList.toggle('pausedanimation');
+            let zahl =getNumberFromAngle(getRotationAngle(element));
+            console.log(zahl)
             return true;
         }
-        await pause(1000);
+        await pause(100);
     }
 }
 
+function getNumberFromAngle(angle) {
+    let angleNumbers = {
+        '1': '9.47',
+        '13': '18.94',
+        '36': '28.41',
+        '24': '37.88',
+        '3': '47.35',
+        '15': '56.82',
+        '34': '66.29',
+        '22': '75.76',
+        '5': '85.23',
+        '17': '94.7',
+        '32': '104.17',
+        '20': '113.64',
+        '7': '123.11',
+        '11': '132.58',
+        '30': '142.05',
+        '26': '151.52',
+        '9': '160.99',
+        '28': '170.46',
+        '0': '180',
+        '2': '189.4',
+        '14': '198.87',
+        '35': '208.34',
+        '23': '217.81',
+        '4': '227.28',
+        '16': '236.75',
+        '33': '246.22',
+        '21': '255.69',
+        '6': '265.16',
+        '18': '174.63',
+        '31': '284.1',
+        '19': '293.57',
+        '8': '303.04',
+        '12': '312.51',
+        '29': '321.98',
+        '25': '331.45',
+        '10': '340.92',
+        '27': '350.39',
+        '00': '360'
+
+    }
+    if (angle < 0) {
+        angle = angle + 360;
+    }
+    return findeNaechstenSchluessel(angle, angleNumbers);
+}
+
+function getRotationAngle(element) {
+    const style = window.getComputedStyle(element);
+    const matrix = new WebKitCSSMatrix(style.transform);
+    return Math.atan2(matrix.m21, matrix.m11) * (180 / Math.PI);
+}
+
+let element = document.querySelector('.roulette-wheel2');
+element.style.animationDuration = '5s';
+element.style.animationIterationCount = 'infinite';
 counter();
+
+
