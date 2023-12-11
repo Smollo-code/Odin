@@ -146,4 +146,11 @@ body {
     margin-top: -90px;
     text-align: center;
 }
-
+ .money {
+     font-size: xx-large;
+     color: #fff;
+     position: absolute;
+     margin-left: 1150px;
+     margin-top: -750px;
+     text-align: center;
+ }
