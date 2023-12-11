@@ -139,7 +139,8 @@ class UserFactory implements UserFactoryInterface
     public function createRouletteHandler(): RequestHandlerInterface
     {
         return new RouletteGetHandler(
-            $this->applicationFactory->createTwig()
+            $this->applicationFactory->createTwig(),
+            $this->applicationFactory->createUserRepository()
         );
     }
 

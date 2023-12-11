@@ -99,9 +99,13 @@ class UserRepository implements UserRepositoryInterface
         $stmt = $this->Pdo->prepare($sql);
 
         if ($stmt->execute()) {
-            return implode('', $stmt->fetch($this->Pdo::FETCH_ASSOC));
+            if ($stmt->rowCount() > 0) {
+                return implode('', $stmt->fetch($this->Pdo::FETCH_ASSOC));
+            } else {
+                return false;
+            }
         } else {
-            return false;
+            return true;
         }
     }
 }

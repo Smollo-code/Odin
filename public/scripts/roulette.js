@@ -49,17 +49,22 @@ let bets = {
     'row2': '0',
     'row3': '0',
 };
+let setbets = true;
 
 function addMoney(bet) {
-    let value = parseInt(bets[bet]);
-    bets[bet] = value + 10;
+    if (setbets) {
+        let value = parseInt(bets[bet]);
+        bets[bet] = value + 10;
+    }
 }
 
 function decreaseMoney(bet) {
     let value = parseInt(bets[bet]);
-    if (value === 0) {
-    } else {
-        bets[bet] = value - 10;
+    if (setbets) {
+        if (value === 0) {
+        } else {
+            bets[bet] = value - 10;
+        }
     }
 }
 
@@ -210,6 +215,7 @@ async function counter() {
     for (let i = 1; i <= 30; i++) {
         document.getElementById('counter').textContent = 30 - i;
         if (i === 30) {
+            setbets = false;
             document.getElementById('counter').textContent = '';
             await pause(lastRotatetime());
             document.querySelector('.roulette-wheel2').classList.toggle('pausedanimation');
@@ -217,7 +223,7 @@ async function counter() {
             console.log(zahl)
             return true;
         }
-        await pause(100);
+        await pause(1000);
     }
 }
 
@@ -251,7 +257,7 @@ function getNumberFromAngle(angle) {
         '33': '246.22',
         '21': '255.69',
         '6': '265.16',
-        '18': '174.63',
+        '18': '274.63',
         '31': '284.1',
         '19': '293.57',
         '8': '303.04',
@@ -281,7 +287,7 @@ element.style.animationIterationCount = 'infinite';
 counter();
 
 
-// JavaScript-Funktionen für das Popup
+
 function openCodePopup() {
     document.getElementById('codePopup').showModal();
 }
