@@ -86,14 +86,20 @@ function decreaseMoney(bet) {
 }
 
 function prize(winningNumber) {
-    let prizeList = {
-
-    }
+    let winningamout = 0;
+    // spezifische zahl: straight up
     for (let number in bets) {
-        if (number === winningNumber) {
+        if (parseInt(number) === winningNumber) {
             let winningamout = bets[number] * 36
+            console.log(winningamout);
             break;
         }
+    }
+    // red black etc. check
+    if (parseInt(winningNumber / 2)) {
+        let winningamout = bets['PAIR'] * 2
+    } else {
+
     }
 }
 
@@ -250,7 +256,7 @@ async function counter() {
             document.querySelector('.roulette-wheel2').classList.toggle('pausedanimation');
             let zahl =getNumberFromAngle(getRotationAngle(element));
             console.log(zahl)
-            prize(zahl);
+            prize(4);
             return true;
         }
         await pause(100);
