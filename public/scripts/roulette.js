@@ -223,7 +223,7 @@ async function counter() {
             console.log(zahl)
             return true;
         }
-        await pause(10);
+        await pause(1000);
     }
 }
 

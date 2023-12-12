@@ -44,6 +44,13 @@ class StatusSeeder extends AbstractSeed
         ];
         $this->saving($benny);
 
+        $admin = [
+            'username' => 'Admin',
+            'password' => password_hash('admin', PASSWORD_BCRYPT),
+            'profileurl' => ''
+        ];
+        $this->saving($admin);
+
     }
 
     public function run() : void
