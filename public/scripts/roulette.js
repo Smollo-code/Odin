@@ -286,6 +286,8 @@ element.style.animationDuration = '5s';
 element.style.animationIterationCount = 'infinite';
 counter();
 
+
+
 function openCodePopup() {
     document.getElementById('codePopup').showModal();
 }
