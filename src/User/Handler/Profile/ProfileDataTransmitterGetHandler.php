@@ -61,12 +61,7 @@ class ProfileDataTransmitterGetHandler implements RequestHandlerInterface
             return false;
         }
 
-        $sql = 'SELECT 
-            `username`
-            FROM
-            `user`
-            WHERE 
-            `username` = :username';
+        $sql = $this->db->profileDataTransmitter();
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':username', $username);
         $stmt->execute();

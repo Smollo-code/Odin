@@ -6,6 +6,7 @@ namespace Monolog\User\Handler\Login;
 
 use GuzzleHttp\Psr7\Response;
 use Monolog\App\Session\SessionInterface;
+use Monolog\User\Model\User\UserRepository;
 use PDO;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -15,7 +16,7 @@ use Twig\Environment;
 class LoginGetHandler implements RequestHandlerInterface
 {
 
-    public function __construct(private PDO $pdo, private Environment $renderer, private SessionInterface $session)
+    public function __construct(private PDO $pdo, private Environment $renderer, private SessionInterface $session, private UserRepository $db)
     {
     }
 
@@ -31,12 +32,7 @@ class LoginGetHandler implements RequestHandlerInterface
 
         $this->pdo->setAttribute($this->pdo::ATTR_ERRMODE, $this->pdo::ERRMODE_EXCEPTION);
 
-        $sql = 'SELECT
-        username, password, id, profileurl
-        FROM
-        `user`
-        WHERE
-        username = :username';
+        $sql = $this->db->loginSqlStatement();
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':username', $username, $this->pdo::PARAM_STR);
 

@@ -62,7 +62,9 @@ class UserFactory implements UserFactoryInterface
         return new LoginGetHandler(
             $this->applicationFactory->createPdo(),
             $this->applicationFactory->createTwig(),
-            $this->applicationFactory->createSession()
+            $this->applicationFactory->createSession(),
+            $this->applicationFactory->createUserRepository()
+
         );
     }
 
@@ -103,8 +105,7 @@ class UserFactory implements UserFactoryInterface
     {
         return new CalculatorGetHandler(
             $this->applicationFactory->createCalculator(),
-            $this->applicationFactory->createTwig(),
-            $this->applicationFactory->createSession()
+            $this->applicationFactory->createTwig()
         );
     }
 

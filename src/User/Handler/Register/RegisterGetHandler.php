@@ -41,12 +41,6 @@ class RegisterGetHandler implements RequestHandlerInterface
             }
         }
 
-
-        $sql = '
-        INSERT INTO 
-            user (username, password) 
-        VALUES 
-            (:username, :password)';
         $this->db->insert('user', array('username' => $username, 'password' => $password));
 
 

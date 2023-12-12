@@ -108,4 +108,25 @@ class UserRepository implements UserRepositoryInterface
             return true;
         }
     }
+
+    public function loginSqlStatement(): string
+    {
+        return 'SELECT
+        username, password, id, profileurl
+        FROM
+        `user`
+        WHERE
+        username = :username';
+
+    }
+
+    public function profileDataTransmitter(): string
+    {
+        return 'SELECT 
+            `username`
+            FROM
+            `user`
+            WHERE 
+            `username` = :username';
+    }
 }
