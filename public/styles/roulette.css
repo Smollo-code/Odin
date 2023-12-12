@@ -106,25 +106,34 @@ body {
 .zero {
     background-color: forestgreen;
     border: 1px solid #fff !important;
+    cursor: pointer;
+    user-select: none;
 }
 
 .red {
     background-color: red;
     border: 1px solid #fff;
+    cursor: pointer;
+    user-select: none;
 }
 
 .black {
     background-color: black;
     border: 1px solid #fff;
+    cursor: pointer;
+    user-select: none;
 }
 
 .range {
     background-color: lightslategrey;
     border: 1px solid #fff !important;
+    cursor: pointer;
+    user-select: none;
 }
 
 .null {
     border: 1px solid darkgreen;
+
 }
 
 .result {

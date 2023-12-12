@@ -82,11 +82,14 @@
 
 
     <dialog id="codePopup" class="popup">
-        <label for="codeInput">Code eingeben:</label>
-        <input type="text" id="codeInput" name="codeInput" required>
-        <button onclick="redeemCode()">Einlösen</button>
-        <button onclick="closeCodePopup()">Abbrechen</button>
+        <form id="codeForm" action="/roulette" method="post">
+            <label for="codeInput">Code eingeben:</label>
+            <input type="text" id="codeInput" name="codeInput" value="{{ code }}">
+            <button type="submit">Einlösen</button>
+            <button type="button" onclick="closeCodePopup()">Abbrechen</button>
+        </form>
     </dialog>
+
 
 </div>
 

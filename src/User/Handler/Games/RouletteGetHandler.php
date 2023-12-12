@@ -31,4 +31,16 @@ class RouletteGetHandler implements RequestHandlerInterface
 
         return new Response(200, [], $this->renderer->render('roulette.twig', ['money' => $money]));
     }
+    public function redeemCode(ServerRequestInterface $request): ResponseInterface
+    {
+        $money = $this->db->select('roulette', ['geld'], ['id' => $_SESSION['userId']]);
+        $code = $request->getParsedBody()['codeInput'];
+
+        if ($code === 'Benny') {
+            $this->db->insert('roulette', ['id' => $_SESSION['userId'], 'geld' => '1000']);
+            $money = $this->db->select('roulette', ['geld'], ['id' => $_SESSION['userId']]);
+        }
+
+        return new Response(200, [], $this->renderer->render('roulette.twig', ['money' => $money, 'code' => $code]));
+    }
 }
