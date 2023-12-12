@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Monolog\User\Handler\Profile;
 
 use GuzzleHttp\Psr7\Response;
+use Monolog\App\Session\SessionInterface;
 use Monolog\User\Model\User\UserRepository;
 use PDO;
 use Psr\Http\Message\ResponseInterface;
@@ -14,12 +15,16 @@ use Twig\Environment;
 
 class ProfileDataTransmitterGetHandler implements RequestHandlerInterface
 {
-    public function __construct(private UserRepository $db, private Environment $renderer, private PDO $pdo)
+    public function __construct(private UserRepository $db, private Environment $renderer, private PDO $pdo, private SessionInterface $session)
     {
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
+        if (!$this->session->isLoggedIn()) {
+            return new Response(status: 302, headers: ['Location' => '/']);
+        }
+
         $parseBody = $request->getParsedBody();
         $changed_username = $parseBody['changed_Username'];
         $email = $parseBody['email'] ?? '';

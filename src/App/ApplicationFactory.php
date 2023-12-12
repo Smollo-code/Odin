@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace Monolog\App;
 
 use Monolog\App\Emitter\Emitter;
+use Monolog\App\Session\Session;
+use Monolog\App\Session\SessionInterface;
 use Monolog\Calculator;
 use Monolog\User\Model\User\UserRepository;
 use Monolog\User\UserFactory;
@@ -45,4 +47,10 @@ class ApplicationFactory
     {
         return new Emitter();
     }
+
+    public function createSession(): SessionInterface
+    {
+        return new Session($_SESSION);
+    }
+
 }

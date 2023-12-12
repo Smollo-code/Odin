@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Monolog\User\Handler\Login;
 
 use GuzzleHttp\Psr7\Response;
+use Monolog\App\Session\SessionInterface;
 use PDO;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -14,12 +15,16 @@ use Twig\Environment;
 class LoginGetHandler implements RequestHandlerInterface
 {
 
-    public function __construct(private PDO $pdo, private Environment $renderer)
+    public function __construct(private PDO $pdo, private Environment $renderer, private SessionInterface $session)
     {
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
+        if ($this->session->isLoggedIn()) {
+            return new Response(status: 302, headers: ['Location' => '/']);
+        }
+
         $parseBody = $request->getParsedBody();
         $username = $parseBody['username'];
         $password = $parseBody['password'];

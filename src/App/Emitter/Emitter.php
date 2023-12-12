@@ -24,7 +24,6 @@ class Emitter implements EmitterInterface
         foreach ($response->getHeaders() as $header => $values) {
             foreach ($values as $value) {
                 header(sprintf('%s: %s', $header, $value));
-                header('Location: /dashboard');
             }
         }
 

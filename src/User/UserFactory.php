@@ -33,7 +33,8 @@ class UserFactory implements UserFactoryInterface
     {
         return new RegisterGetHandler(
             $this->applicationFactory->createUserRepository(),
-            $this->applicationFactory->createTwig()
+            $this->applicationFactory->createTwig(),
+            $this->applicationFactory->createSession()
         );
     }
 
@@ -41,7 +42,8 @@ class UserFactory implements UserFactoryInterface
     {
         return new ProfileGetHandler(
             $this->applicationFactory->createUserRepository(),
-            $this->applicationFactory->createTwig()
+            $this->applicationFactory->createTwig(),
+            $this->applicationFactory->createSession()
         );
     }
 
@@ -50,7 +52,8 @@ class UserFactory implements UserFactoryInterface
         return new ProfileDataTransmitterGetHandler(
             $this->applicationFactory->createUserRepository(),
             $this->applicationFactory->createTwig(),
-            $this->applicationFactory->createPdo()
+            $this->applicationFactory->createPdo(),
+            $this->applicationFactory->createSession()
         );
     }
 
@@ -58,28 +61,32 @@ class UserFactory implements UserFactoryInterface
     {
         return new LoginGetHandler(
             $this->applicationFactory->createPdo(),
-            $this->applicationFactory->createTwig()
+            $this->applicationFactory->createTwig(),
+            $this->applicationFactory->createSession()
         );
     }
 
     public function createIndexGetHandler(): RequestHandlerInterface
     {
         return new IndexGetHandler(
-            $this->applicationFactory->createTwig()
+            $this->applicationFactory->createTwig(),
+            $this->applicationFactory->createSession()
         );
     }
 
     public function createTicTacToeGetHandler(): RequestHandlerInterface
     {
         return new TicTacToeGetHandler(
-            $this->applicationFactory->createTwig()
+            $this->applicationFactory->createTwig(),
+            $this->applicationFactory->createSession()
         );
     }
 
     public function createEmailerGetHandler(): RequestHandlerInterface
     {
         return new EmailerGetHandler(
-            $this->applicationFactory->createTwig()
+            $this->applicationFactory->createTwig(),
+            $this->applicationFactory->createSession()
         );
     }
 
@@ -87,7 +94,8 @@ class UserFactory implements UserFactoryInterface
     {
         return new DashboardGetHandler(
             $this->applicationFactory->createPdo(),
-            $this->applicationFactory->createTwig()
+            $this->applicationFactory->createTwig(),
+            $this->applicationFactory->createSession()
         );
     }
 
@@ -95,7 +103,8 @@ class UserFactory implements UserFactoryInterface
     {
         return new CalculatorGetHandler(
             $this->applicationFactory->createCalculator(),
-            $this->applicationFactory->createTwig()
+            $this->applicationFactory->createTwig(),
+            $this->applicationFactory->createSession()
         );
     }
 
@@ -103,7 +112,8 @@ class UserFactory implements UserFactoryInterface
     {
         return new ProfileDeleteGetHandler(
             $this->applicationFactory->createUserRepository(),
-            $this->applicationFactory->createTwig()
+            $this->applicationFactory->createTwig(),
+            $this->applicationFactory->createSession()
         );
     }
 
@@ -112,6 +122,7 @@ class UserFactory implements UserFactoryInterface
         return new EmailSenderGetHandler(
             $this->applicationFactory->createUserRepository(),
             $this->applicationFactory->createTwig(),
+            $this->applicationFactory->createSession()
         );
     }
 
@@ -119,6 +130,7 @@ class UserFactory implements UserFactoryInterface
     {
         return new LogoutGetHandler(
             $this->applicationFactory->createTwig(),
+            $this->applicationFactory->createSession()
         );
     }
 
@@ -126,6 +138,7 @@ class UserFactory implements UserFactoryInterface
     {
         return new GewinntGetHandler(
             $this->applicationFactory->createTwig(),
+            $this->applicationFactory->createSession()
         );
     }
 
@@ -133,6 +146,7 @@ class UserFactory implements UserFactoryInterface
     {
         return new ErrorGetHandler(
             $this->applicationFactory->createTwig(),
+            $this->applicationFactory->createSession()
         );
     }
 
@@ -140,7 +154,8 @@ class UserFactory implements UserFactoryInterface
     {
         return new RouletteGetHandler(
             $this->applicationFactory->createTwig(),
-            $this->applicationFactory->createUserRepository()
+            $this->applicationFactory->createUserRepository(),
+            $this->applicationFactory->createSession()
         );
     }
 

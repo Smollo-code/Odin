@@ -51,10 +51,25 @@ let bets = {
 };
 let setbets = true;
 
+function getNumbersFromString(string) {
+    let numbers = [];
+    for (let char of string) {
+        if (char >= '0' && char <= '9') {
+            numbers.push(char);
+        }
+    }
+    return parseInt(numbers.join(''));
+}
+
 function addMoney(bet) {
     if (setbets) {
         let value = parseInt(bets[bet]);
-        bets[bet] = value + 10;
+        let currentMoney = getNumbersFromString(document.getElementById('money').textContent);
+        if (currentMoney === 0) {
+        } else {
+            document.getElementById('money').textContent = 'Geld: ' + (currentMoney - 10);
+            bets[bet] = value + 10;
+        }
     }
 }
 
@@ -64,6 +79,20 @@ function decreaseMoney(bet) {
         if (value === 0) {
         } else {
             bets[bet] = value - 10;
+            let currentMoney = getNumbersFromString(document.getElementById('money').textContent);
+            document.getElementById('money').textContent = 'Geld: ' + (currentMoney + 10);
+        }
+    }
+}
+
+function prize(winningNumber) {
+    let prizeList = {
+
+    }
+    for (let number in bets) {
+        if (number === winningNumber) {
+            let winningamout = bets[number] * 36
+            break;
         }
     }
 }
@@ -182,7 +211,7 @@ function goBack() {
 }
 
 function lastRotatetime() {
-    return Math.random() * (15000 - 5000) + 5000;
+    return Math.random() * (7000 - 5000) + 5000;
 }
 
 function pause(ms) {
@@ -221,9 +250,10 @@ async function counter() {
             document.querySelector('.roulette-wheel2').classList.toggle('pausedanimation');
             let zahl =getNumberFromAngle(getRotationAngle(element));
             console.log(zahl)
+            prize(zahl);
             return true;
         }
-        await pause(1000);
+        await pause(100);
     }
 }
 
@@ -266,7 +296,7 @@ function getNumberFromAngle(angle) {
         '25': '331.45',
         '10': '340.92',
         '27': '350.39',
-        '00': '360'
+        '00': '360, 0'
 
     }
     if (angle < 0) {

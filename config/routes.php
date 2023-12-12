@@ -13,15 +13,9 @@ $routes = new RouteCollection();
 
 
 
-$route = new Route('/', ['handler' => function (ApplicationFactory $factory): requestHandlerInterface{
-    if (isset($_SESSION['userId']) && is_numeric($_SESSION['userId']) > 0) {
-        return $factory->createUserFactory()
-            ->createDashboardGetHandler();
-    } else {
-        return $factory->createUserFactory()
-            ->createIndexGetHandler();
-    }
-
+$route = new Route('/', ['handler' => function (ApplicationFactory $factory): RequestHandlerInterface {
+    return $factory->createUserFactory()
+        ->createIndexGetHandler();
 }]);
 $routes->add('index', $route);
 
@@ -46,131 +40,71 @@ $route = new Route('/logout', ['handler' => function (ApplicationFactory $factor
 $routes->add('logout', $route);
 
 $route = new Route('/calc', ['handler' => function (ApplicationFactory $factory): RequestHandlerInterface {
-    $userId = $_SESSION['userId'] ?? 0;
-
-    if ($userId != 0) {
-        return $factory->createUserFactory()
-            ->createCalculatorGetHandler();
-    } else {
-        header('Location: /');
-    }
+    return $factory->createUserFactory()
+        ->createCalculatorGetHandler();
 }]);
 
 $routes->add('calc', $route);
 
 $route = new Route('/emailer', ['handler' => function (ApplicationFactory $factory): RequestHandlerInterface {
-    $userId = $_SESSION['userId'] ?? 0;
-
-    if ($userId != 0) {
-        return $factory->createUserFactory()
-            ->createEmailerGetHandler();
-    } else {
-        header('Location: /');
-    }
+    return $factory->createUserFactory()
+        ->createEmailerGetHandler();
 }]);
 
 $routes->add('emailer', $route);
 
 $route = new Route('/tictactoe', ['handler' => function (ApplicationFactory $factory): RequestHandlerInterface {
-    $userId = $_SESSION['userId'] ?? 0;
-
-    if ($userId != 0) {
-        return $factory->createUserFactory()
-            ->createTicTacToeGetHandler();
-    } else {
-        header('Location: /');
-    }
+    return $factory->createUserFactory()
+        ->createTicTacToeGetHandler();
 }]);
 
 $routes->add('tictactoe', $route);
 
 $route = new Route('/profile', ['handler' => function (ApplicationFactory $factory): RequestHandlerInterface {
-    $userId = $_SESSION['userId'] ?? 0;
-
-    if ($userId != 0) {
-        return $factory->createUserFactory()
-            ->createProfileHandler();
-    } else {
-        header('Location: /');
-    }
+    return $factory->createUserFactory()
+        ->createProfileHandler();
 }]);
 
 $routes->add('profile', $route);
 
 $route = new Route('/updatedb', ['handler' => function (ApplicationFactory $factory): RequestHandlerInterface {
-    $userId = $_SESSION['userId'] ?? 0;
-
-    if ($userId != 0) {
-        return $factory->createUserFactory()
-            ->createProfileDataTransmitterGetHandler();
-    } else {
-        header('Location: /');
-    }
+    return $factory->createUserFactory()
+        ->createProfileDataTransmitterGetHandler();
 }]);
 
 $routes->add('updatedb', $route);
 
 $route = new Route('/register', ['handler' => function (ApplicationFactory $factory): RequestHandlerInterface {
-    $userId = $_SESSION['userId'] ?? 0;
-
-    if ($userId != 0) {
-        return $factory->createUserFactory()
-            ->createRegisterGetHandler();
-    } else {
-        header('Location: /');
-    }
+    return $factory->createUserFactory()
+        ->createRegisterGetHandler();
 }]);
 
 $routes->add('register', $route);
 
 $route = new Route('/delete', ['handler' => function (ApplicationFactory $factory): RequestHandlerInterface {
-    $userId = $_SESSION['userId'] ?? 0;
-
-    if ($userId != 0) {
-        return $factory->createUserFactory()
-            ->createDeleteHandler();
-    } else {
-        header('Location: /');
-    }
+    return $factory->createUserFactory()
+        ->createDeleteHandler();
 }]);
 
 $routes->add('delete', $route);
 
 $route = new Route('/emailsender', ['handler' => function (ApplicationFactory $factory): RequestHandlerInterface {
-    $userId = $_SESSION['userId'] ?? 0;
-
-    if ($userId != 0) {
-        return $factory->createUserFactory()
-            ->createEmailSenderGetHandler();
-    } else {
-        header('Location: /');
-    }
+    return $factory->createUserFactory()
+        ->createEmailSenderGetHandler();
 }]);
 
 $routes->add('emailsender', $route);
 
 $route = new Route('/gewinnt', ['handler' => function (ApplicationFactory $factory): RequestHandlerInterface {
-    $userId = $_SESSION['userId'] ?? 0;
-
-    if ($userId != 0) {
-        return $factory->createUserFactory()
-            ->createGewinntHandler();
-    } else {
-        header('Location: /');
-    }
+    return $factory->createUserFactory()
+        ->createGewinntHandler();
 }]);
 
 $routes->add('gewinnt', $route);
 
 $route = new Route('/roulette', ['handler' => function (ApplicationFactory $factory): RequestHandlerInterface {
-    $userId = $_SESSION['userId'] ?? 0;
-
-    if ($userId != 0) {
-        return $factory->createUserFactory()
-            ->createRouletteHandler();
-    } else {
-        header('Location: /');
-    }
+    return $factory->createUserFactory()
+        ->createRouletteHandler();
 }]);
 
 $routes->add('roulette', $route);
