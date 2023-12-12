@@ -182,7 +182,7 @@ function goBack() {
 }
 
 function lastRotatetime() {
-    return Math.random() * (1500 - 5000) + 5000;
+    return Math.random() * (15000 - 5000) + 5000;
 }
 
 function pause(ms) {
@@ -285,8 +285,6 @@ let element = document.querySelector('.roulette-wheel2');
 element.style.animationDuration = '5s';
 element.style.animationIterationCount = 'infinite';
 counter();
-
-
 
 function openCodePopup() {
     document.getElementById('codePopup').showModal();
