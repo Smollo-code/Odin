@@ -182,7 +182,7 @@ function goBack() {
 }
 
 function lastRotatetime() {
-    return Math.random() * (1500 - 5000) + 5000;
+    return Math.random() * (2000 - 5000) + 5000;
 }
 
 function pause(ms) {
@@ -223,7 +223,7 @@ async function counter() {
             console.log(zahl)
             return true;
         }
-        await pause(1000);
+        await pause(10);
     }
 }
 
@@ -266,7 +266,7 @@ function getNumberFromAngle(angle) {
         '25': '331.45',
         '10': '340.92',
         '27': '350.39',
-        '00': '360'
+        '00': '0'
 
     }
     if (angle < 0) {
