@@ -105,7 +105,8 @@ class UserFactory implements UserFactoryInterface
     {
         return new CalculatorGetHandler(
             $this->applicationFactory->createCalculator(),
-            $this->applicationFactory->createTwig()
+            $this->applicationFactory->createTwig(),
+            $this->applicationFactory->createSession()
         );
     }
 
