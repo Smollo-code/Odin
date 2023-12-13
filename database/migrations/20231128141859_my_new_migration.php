@@ -36,6 +36,28 @@ final class MyNewMigration extends AbstractMigration
                             ['id'],
                             ['delete' => 'CASCADE', 'update' => 'CASCADE'])
             ->save();
+
+        $user = $this->table('userinfo', array('id' => false));
+        $user->addColumn('id', 'integer', array('null' => false, 'signed' => false))
+            ->addColumn('username', 'string', array('limit' => 50, 'null' => false))
+            ->addColumn('name', 'string', array('limit' => 50, 'null' => false))
+            ->addColumn('surname', 'string', array('limit' => 50, 'null' => false))
+            ->addColumn('age', 'date', array('limit' => 10, 'null' =>false))
+            ->addColumn('job', 'string', array('limit' => 50, 'null' => true))
+            ->addColumn('profileurl', 'string', array('limit' => 2000))
+            ->addForeignKey(['id'],
+                            'user',
+                            ['id'],
+                            ['delete' => 'CASCADE', 'update' => 'CASCADE'])
+            ->addForeignKey(['username'],
+                            'user',
+                            ['username'],
+                            ['delete' => 'CASCADE', 'update' => 'CASCADE'])
+            ->addForeignKey(['profileurl'],
+                            'user',
+                            ['profileurl'],
+                            ['delete' => 'CASCADE', 'update' => 'CASCADE'])
+            ->save();
     }
 
     public function down()
