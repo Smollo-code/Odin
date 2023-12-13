@@ -338,7 +338,7 @@ async function counter() {
             prize();
             return true;
         }
-        await pause(1000);
+        await pause(100);
     }
 }
 

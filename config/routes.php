@@ -7,12 +7,6 @@ use Symfony\Component\Routing\RouteCollection;
 
 $routes = new RouteCollection();
 
-
-
-
-
-
-
 $route = new Route('/', ['handler' => function (ApplicationFactory $factory): RequestHandlerInterface {
     return $factory->createUserFactory()
         ->createIndexGetHandler();
@@ -108,6 +102,13 @@ $route = new Route('/roulette', ['handler' => function (ApplicationFactory $fact
 }]);
 
 $routes->add('roulette', $route);
+
+$route = new Route('/user', ['handler' => function (ApplicationFactory $factory): RequestHandlerInterface {
+    return $factory->createUserFactory()
+        ->createUserHandler();
+}]);
+
+$routes->add('user', $route);
 
 
 return $routes;

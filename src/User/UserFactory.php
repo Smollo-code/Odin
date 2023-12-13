@@ -18,6 +18,7 @@ use Monolog\User\Handler\Login\LoginGetHandler;
 use Monolog\User\Handler\Logout\LogoutGetHandler;
 use Monolog\User\Handler\Profile\ProfileDeleteGetHandler;
 use Monolog\User\Handler\Profile\ProfileGetHandler;
+use Monolog\User\Handler\Profile\UserGetHandler;
 use Monolog\User\Handler\Register\RegisterGetHandler;
 use Monolog\User\Handler\Profile\ProfileDataTransmitterGetHandler;
 use PDO;
@@ -157,6 +158,14 @@ class UserFactory implements UserFactoryInterface
         return new RouletteGetHandler(
             $this->applicationFactory->createTwig(),
             $this->applicationFactory->createUserRepository(),
+            $this->applicationFactory->createSession()
+        );
+    }
+
+    public function createUserHandler(): RequestHandlerInterface
+    {
+        return new UserGetHandler(
+            $this->applicationFactory->createTwig(),
             $this->applicationFactory->createSession()
         );
     }
