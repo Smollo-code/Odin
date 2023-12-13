@@ -322,6 +322,78 @@ element.style.animationDuration = '5s';
 element.style.animationIterationCount = 'infinite';
 counter();
 
+function prize(winningNumber) {
+    let winningAmount = 0;
+
+    // Spezifische Zahl: Straight Up
+    for (let number in bets) {
+        if (parseInt(number) === winningNumber) {
+            winningAmount += bets[number] * 35; // 35:1 payout
+            break;
+        }
+    }
+
+    // Rot oder Schwarz: Rot or Schwarz
+    if (winningNumber === 0) {
+        // Grüne 0 hat keine Farbe
+    } else if (winningNumber % 2 === 1) {
+        winningAmount += calculateEvenMoneyWin('RED');
+    } else {
+        winningAmount += calculateEvenMoneyWin('BLACK');
+    }
+
+    // Pair oder Impair: 1:1 Even or Odd
+    if (winningNumber % 2 === 0) {
+        winningAmount += calculateEvenMoneyWin('PAIR');
+    } else {
+        winningAmount += calculateEvenMoneyWin('IMPAIR');
+    }
+
+    // 1-18 oder 19-36: 1:1 Auszahlung
+    if (winningNumber >= 1 && winningNumber <= 18) {
+        winningAmount += calculateEvenMoneyWin('1-18');
+    } else {
+        winningAmount += calculateEvenMoneyWin('19-36');
+    }
+
+    // 1-12, 13-24 oder 25-36: 2:1 Auszahlung
+    if (winningNumber >= 1 && winningNumber <= 12) {
+        winningAmount += calculateTwoToOneWin('1-12');
+    } else if (winningNumber >= 13 && winningNumber <= 24) {
+        winningAmount += calculateTwoToOneWin('13-24');
+    } else if (winningNumber >= 25 && winningNumber <= 36) {
+        winningAmount += calculateTwoToOneWin('25-36');
+    }
+
+    // Row1, Row2 oder Row3: 2:1 Auszahlung
+    if (winningNumber % 3 === 1) {
+        winningAmount += calculateTwoToOneWin('row1');
+    } else if (winningNumber % 3 === 2) {
+        winningAmount += calculateTwoToOneWin('row2');
+    } else {
+        winningAmount += calculateTwoToOneWin('row3');
+    }
+
+    console.log(winningAmount);
+}
+
+function calculateTwoToOneWin(betType) {
+    let value = parseInt(bets[betType]);
+
+    if (value > 0) {
+        return value * 3; // 2:1 Auszahlung
+    }
+    return 0;
+}
+
+function calculateEvenMoneyWin(betType) {
+    let value = parseInt(bets[betType]);
+
+    if (value > 0) {
+        return value * 2; // 1:1 Auszahlung
+    }
+    return 0;
+}
 
 
 function openCodePopup() {
