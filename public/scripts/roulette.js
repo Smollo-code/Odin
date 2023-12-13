@@ -322,13 +322,14 @@ element.style.animationDuration = '5s';
 element.style.animationIterationCount = 'infinite';
 counter();
 
+                                            //Gewinn Funktion
 function prize(winningNumber) {
     let winningAmount = 0;
 
     // Spezifische Zahl: Straight Up
     for (let number in bets) {
         if (parseInt(number) === winningNumber) {
-            winningAmount += bets[number] * 35; // 35:1 payout
+            winningAmount += bets[number] * 35; // 35:1 Auszahlung
             break;
         }
     }
