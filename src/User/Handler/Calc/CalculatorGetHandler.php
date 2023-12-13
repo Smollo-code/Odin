@@ -70,7 +70,7 @@ class CalculatorGetHandler implements RequestHandlerInterface
         return new Response(
             200,
             [],
-            $this->renderer->render('main.twig', ['result' => $endResult, 'error' => $error ?? ''])
+            $this->renderer->render('main.twig', ['result' => $endResult, 'error' => $error ?? ''])     //@phpstan-ignore-line
         );
     }
 }

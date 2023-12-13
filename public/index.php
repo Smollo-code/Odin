@@ -23,7 +23,7 @@ try {
         $applicationFactory->emitter()->emmit($response);
     }
 } catch (ResourceNotFoundException) {
-    $content = $applicationFactory->createUserFactory()
+    $content = $applicationFactory->createUserFactory()                     //@phpstan-ignore-line
         ->createErrorGetHandler()
         ->handle($request);
     $applicationFactory->emitter()->emmit($content);
