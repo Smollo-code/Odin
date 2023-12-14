@@ -13,7 +13,8 @@ use Twig\Environment;
 
 class UserGetHandler implements RequestHandlerInterface
 {
-    public function __construct(private PDO $PDO, private Environment $renderer, private SessionInterface $session, private UserRepository $db)
+
+    public function __construct(private PDO $pdo, private Environment $renderer, private SessionInterface $session, private UserRepository $db)
     {
     }
 
@@ -29,38 +30,39 @@ class UserGetHandler implements RequestHandlerInterface
             if (!$existingUserData) {
             $this->db->insert('userinfo', [
                 'id' => $_SESSION['userId'],
-                'username' => 'Benny',
-                'name' => 'Testname',
-                'surname' => 'Testsurname',
-                'age' => '27.5.2000'
+                'username' => $_SESSION['userName'],
+                'name' => '',
+                'surname' => '',
+                'age' => ''
             ]);
             }
 
-            // Benutzerdaten aus der Datenbank abrufen
-            $userData = $this->db->select('userinfo', ['username', 'name', 'surname', 'age', 'job', 'profileurl'], ['id' => $_SESSION['userId']]);
+            $sql = $this->db->findUserById();
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindParam(':id', $_SESSION['userId']);
+            $stmt->execute();
+            $result = $stmt->fetch();
 
-            if (!$userData) {
-                throw new \RuntimeException('Fehler beim Abrufen der Benutzerdaten.');
-            }
 
             $username = $_SESSION['userName'];
-            $usernameusers = $userData['username'] ?? '';
-            $name = $userData['name'] ?? '';
-            $surname = $userData['surname'] ?? '';
-            $age = $userData['age'] ?? '';
-            $job = $userData['job'] ?? '';
-            $profilepictureusers = $userData['profileurl'] ?? '';
+            $name = $result['name'] ?? '';
+            $surname = $result['surname'] ?? '';
+            $age = $result['age'] ?? '';
+            $job = $result['job'] ?? '';
+            $usernameusers = '';
+            $profilepictureusers = '';
             $information = '';
+
 
             return new Response(
                 200,
                 [],
                 $this->renderer->render('user.twig', [
-                    'username' => $username,
-                    'name' => $name,
-                    'surname' => $surname,
-                    'age' => $age,
-                    'job' => $job,
+                    'selfusername' => $username,
+                    'selfname' => $name,
+                    'selfsurname' => $surname,
+                    'selfage' => $age,
+                    'selfjob' => $job,
                     'usernameusers' => $usernameusers,
                     'profilepictureusers' => $profilepictureusers,
                     'information' => $information

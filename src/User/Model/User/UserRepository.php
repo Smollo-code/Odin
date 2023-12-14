@@ -139,4 +139,15 @@ class UserRepository implements UserRepositoryInterface
         ';
     }
 
+    public function findUserById(): string
+    {
+        return 'SELECT
+            `id`, `name`, `surname`, `age`, `job`
+            FROM
+                `userinfo`
+            WHERE 
+                `id` = :id';
+    }
+
+
 }

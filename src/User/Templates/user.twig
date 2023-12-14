@@ -35,30 +35,30 @@
                         <div class="form-group">
                             <label for="recipient">Username</label>
                             <input type="text" class="form-control" id="recipient" name="recipient"
-                                   placeholder="Username hier eingeben" required value="{{ username }}">
+                                   placeholder="Username hier eingeben" required value="{{ selfusername }}">
                         </div>
                         <div class="form-group">
                             <label for="subject">Vorname</label>
                             <input type="text" class="form-control" id="subject" name="subject"
-                                   placeholder="Vorname hier eingeben" required value="{{ name }}">
+                                   placeholder="Vorname hier eingeben" required value="{{ selfname }}">
                         </div>
 
                         <div class="form-group">
                             <label for="subject">Nachname</label>
                             <input type="text" class="form-control" id="subject" name="subject"
-                                   placeholder="Nachname hier eingeben" required value="{{ surname }}">
+                                   placeholder="Nachname hier eingeben" required value="{{ selfsurname }}">
                         </div>
 
                         <div class="form-group">
                             <label for="subject">Alter</label>
                             <input type="text" class="form-control" id="subject" name="subject"
-                                   placeholder="Alter hier eingeben" required value="{{ age }}">
+                                   placeholder="Alter hier eingeben" required value="{{ selfage }}">
                         </div>
 
                         <div class="form-group">
                             <label for="subject">Beruf</label>
                             <input type="text" class="form-control" id="subject" name="subject"
-                                   placeholder="Beruf hier eingeben" required {{ job }}>
+                                   placeholder="Beruf hier eingeben" required {{ selfjob }}>
                         </div>
 
                         <button type="submit" class="btn btn-primary">Speichern</button>

@@ -71,26 +71,4 @@ class ProfileDataTransmitterGetHandler implements RequestHandlerInterface
             return false;
         }
     }
-
-    /*private function changeProfileData (string $changed_username, string $picture, int $id) : void
-    {
-        $this->pdo->setAttribute($this->pdo::ATTR_ERRMODE, $this->pdo::ERRMODE_EXCEPTION);
-
-        $sql = 'UPDATE 
-            `user` 
-            SET 
-                `username` = :changed_username, 
-                `profileurl` = :profileurl 
-            WHERE 
-                `id` = :id
-        ';
-
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':changed_username' ,$changed_username);
-        $stmt->bindParam(':profileurl', $picture);
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
-        $_SESSION['userName'] = $changed_username;
-        $_SESSION['profileUrl'] = $picture;
-    }*/
 }
