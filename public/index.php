@@ -1,5 +1,6 @@
 <?php
 
+use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\ServerRequest;
 use Monolog\App\ApplicationFactory;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -27,4 +28,9 @@ try {
         ->createErrorGetHandler()
         ->handle($request);
     $applicationFactory->emitter()->emmit($content);
+} catch (Exception $exception) {
+    error_log($exception->getMessage());
+    $applicationFactory->emitter()->emmit(
+        new Response(status: 302, headers: ['Location' => '/404'])
+    );
 }
