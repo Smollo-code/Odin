@@ -49,14 +49,6 @@ final class MyNewMigration extends AbstractMigration
                             'user',
                             ['id'],
                             ['delete' => 'CASCADE', 'update' => 'CASCADE'])
-            ->addForeignKey(['username'],
-                            'user',
-                            ['username'],
-                            ['delete' => 'CASCADE', 'update' => 'CASCADE'])
-            ->addForeignKey(['profileurl'],
-                            'user',
-                            ['profileurl'],
-                            ['delete' => 'CASCADE', 'update' => 'CASCADE'])
             ->save();
     }
 

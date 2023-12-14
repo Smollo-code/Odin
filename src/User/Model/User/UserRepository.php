@@ -129,4 +129,14 @@ class UserRepository implements UserRepositoryInterface
             WHERE 
             `username` = :username';
     }
+
+    public function userDataTransmitter(): string
+    {
+        return 'SELECT
+            `id`, `username`, `name`, `surname`, `age`, `job`, `profileurl`
+            FROM
+            `userinfo`
+        ';
+    }
+
 }

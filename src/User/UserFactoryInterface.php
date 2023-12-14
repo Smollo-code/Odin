@@ -30,4 +30,6 @@ interface UserFactoryInterface
 
     public function createEmailSenderGetHandler(): RequestHandlerInterface;
 
+    public function createUserHandler(): RequestHandlerInterface;
+
 }

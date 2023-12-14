@@ -165,8 +165,10 @@ class UserFactory implements UserFactoryInterface
     public function createUserHandler(): RequestHandlerInterface
     {
         return new UserGetHandler(
+            $this->applicationFactory->createPdo(),
             $this->applicationFactory->createTwig(),
-            $this->applicationFactory->createSession()
+            $this->applicationFactory->createSession(),
+            $this->applicationFactory->createUserRepository()
         );
     }
 

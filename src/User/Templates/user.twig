@@ -33,20 +33,34 @@
 
                     <form action="/user" method="post">
                         <div class="form-group">
-                            <label for="recipient">Vorname</label>
+                            <label for="recipient">Username</label>
                             <input type="text" class="form-control" id="recipient" name="recipient"
-                                   placeholder="Vorname hier eingeben" required>
+                                   placeholder="Username hier eingeben" required value="{{ username }}">
                         </div>
+                        <div class="form-group">
+                            <label for="subject">Vorname</label>
+                            <input type="text" class="form-control" id="subject" name="subject"
+                                   placeholder="Vorname hier eingeben" required value="{{ name }}">
+                        </div>
+
                         <div class="form-group">
                             <label for="subject">Nachname</label>
                             <input type="text" class="form-control" id="subject" name="subject"
-                                   placeholder="Nachname hier eingeben" required>
+                                   placeholder="Nachname hier eingeben" required value="{{ surname }}">
                         </div>
+
                         <div class="form-group">
-                            <label for="message">Sonstiges</label>
-                            <textarea class="form-control" id="message" name="message" rows="3"
-                                      placeholder="Sonstiges" required></textarea>
+                            <label for="subject">Alter</label>
+                            <input type="text" class="form-control" id="subject" name="subject"
+                                   placeholder="Alter hier eingeben" required value="{{ age }}">
                         </div>
+
+                        <div class="form-group">
+                            <label for="subject">Beruf</label>
+                            <input type="text" class="form-control" id="subject" name="subject"
+                                   placeholder="Beruf hier eingeben" required {{ job }}>
+                        </div>
+
                         <button type="submit" class="btn btn-primary">Speichern</button>
                     </form>
                 </div>
@@ -59,7 +73,7 @@
         <ul class="list-group">
             <li class="list-group-item" data-toggle="collapse" data-target="#userCollapse" aria-expanded="false"
                 aria-controls="userCollapse">
-                Von: {{ username }} | {{ profilepicture }}
+                Von: {{ usernameusers }} | {{ profilepictureusers }}
             </li>
             <div class="collapse" id="userCollapse">
                 <div class="card card-body">
