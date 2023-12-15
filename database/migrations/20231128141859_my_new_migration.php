@@ -42,7 +42,7 @@ final class MyNewMigration extends AbstractMigration
             ->addColumn('username', 'string', array('limit' => 50, 'null' => false))
             ->addColumn('name', 'string', array('limit' => 50, 'null' => true))
             ->addColumn('surname', 'string', array('limit' => 50, 'null' => true))
-            ->addColumn('age', 'date', array('limit' => 10, 'null' =>true))
+            ->addColumn('age', 'string', array('limit' => 100, 'null' =>true))
             ->addColumn('job', 'string', array('limit' => 50, 'null' => true))
             ->addColumn('profileurl', 'string', array('limit' => 2000))
             ->addForeignKey(['id'],

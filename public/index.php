@@ -29,7 +29,7 @@ try {
         ->handle($request);
     $applicationFactory->emitter()->emmit($content);
 } catch (Exception $exception) {
-    error_log($exception->getMessage());
+    var_dump(error_log($exception->getMessage()));
     $applicationFactory->emitter()->emmit(
         new Response(status: 302, headers: ['Location' => '/404'])
     );

@@ -33,7 +33,9 @@ class UserGetHandler implements RequestHandlerInterface
             'username' => $_SESSION['userName'],
             'name' => '',
             'surname' => '',
-            'age' => ''
+            'age' => '',
+            'job' => '',
+            'profileurl' => ''
         ]);
         }
 
