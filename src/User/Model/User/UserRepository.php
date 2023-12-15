@@ -133,9 +133,11 @@ class UserRepository implements UserRepositoryInterface
     public function userDataTransmitter(): string
     {
         return 'SELECT
-            `id`, `username`, `name`, `surname`, `age`, `job`, `profileurl`
-            FROM
-            `userinfo`
+                    `id`, `username`, `name`, `surname`, `age`, `job`, `profileurl`
+                FROM
+                    `userinfo`
+                WHERE
+                    `id` = `id`
         ';
     }
 

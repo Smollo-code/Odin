@@ -64,11 +64,19 @@ class UserGetHandler implements RequestHandlerInterface
         $surname = $result['surname'] ?? '';
         $age = $result['age'] ?? '';
         $job = $result['job'] ?? '';
-        $usernameUsers = '';
-        $profilepictureusers = '';
-        $information = '';
 
 
+        $sql = $this->db->userDataTransmitter();
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $userResult = $stmt->fetch();
+
+        $usernameUsers = $userResult['username'];
+        $nameUsers = $userResult['name'];
+        $surnameUsers = $userResult['surname'];
+        $ageUsers = $userResult['age'];
+        $jobUsers = $userResult['job'];
+        $profileUrlUsers = $userResult['profileurl'];
 
 
         return new Response(
@@ -80,9 +88,13 @@ class UserGetHandler implements RequestHandlerInterface
                 'selfSurname' => $surname,
                 'selfAge' => $age,
                 'job' => $job,
+
                 'usernameUsers' => $usernameUsers,
-                'profilePictureUsers' => $profilepictureusers,
-                'information' => $information
+                'nameUsers' => $nameUsers,
+                'surnameUsers' => $surnameUsers,
+                'ageUsers' => $ageUsers,
+                'jobUsers' => $jobUsers,
+                'profileUrlUsers' => $profileUrlUsers
             ])
         );
     }

@@ -73,11 +73,19 @@
         <ul class="list-group">
             <li class="list-group-item" data-toggle="collapse" data-target="#userCollapse" aria-expanded="false"
                 aria-controls="userCollapse">
-                Von: {{ usernameUsers }} | {{ profilePictureUsers }}
+                Von: {{ usernameUsers }} | {{ profileUrlUsers }}
             </li>
             <div class="collapse" id="userCollapse">
                 <div class="card card-body">
-                    Test {{ information }}
+                    Username: {{ nameUsers }}
+                    <br>
+                    Nachname: {{ surnameUsers }}
+                    <br>
+                    Geburtsdatum: {{ ageUsers }}
+                    <br>
+                    Beruf: {{ jobUsers }}
+                    <br>
+                    {{ profileUrlUsers }}
                 </div>
             </div>
         </ul>
