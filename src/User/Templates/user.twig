@@ -35,30 +35,30 @@
                         <div class="form-group">
                             <label for="recipient">Username</label>
                             <input type="text" class="form-control" id="recipient" name="recipient"
-                                   placeholder="Username hier eingeben" required value="{{ selfusername }}">
+                                   placeholder="Username hier eingeben" required value="{{ selfUsername }}">
                         </div>
                         <div class="form-group">
-                            <label for="subject">Vorname</label>
-                            <input type="text" class="form-control" id="subject" name="subject"
-                                   placeholder="Vorname hier eingeben" required value="{{ selfname }}">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="subject">Nachname</label>
-                            <input type="text" class="form-control" id="subject" name="subject"
-                                   placeholder="Nachname hier eingeben" required value="{{ selfsurname }}">
+                            <label for="name">Vorname</label>
+                            <input type="text" class="form-control" id="name" name="name"
+                                   placeholder="Vorname hier eingeben" required value="{{ selfName }}">
                         </div>
 
                         <div class="form-group">
-                            <label for="subject">Alter</label>
-                            <input type="text" class="form-control" id="subject" name="subject"
-                                   placeholder="Alter hier eingeben" required value="{{ selfage }}">
+                            <label for="surname">Nachname</label>
+                            <input type="text" class="form-control" id="surname" name="surname"
+                                   placeholder="Nachname hier eingeben" required value="{{ selfSurname }}">
                         </div>
 
                         <div class="form-group">
-                            <label for="subject">Beruf</label>
-                            <input type="text" class="form-control" id="subject" name="subject"
-                                   placeholder="Beruf hier eingeben" required {{ selfjob }}>
+                            <label for="age">Geburtsdatum</label>
+                            <input type="text" class="form-control" id="age" name="age"
+                                   placeholder="Geburtsdatum hier eingeben" required value="{{ selfAge }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="job">Beruf</label>
+                            <input type="text" class="form-control" id="job" name="job"
+                                   placeholder="Beruf hier eingeben" required value="{{ job }}">
                         </div>
 
                         <button type="submit" class="btn btn-primary">Speichern</button>
@@ -73,7 +73,7 @@
         <ul class="list-group">
             <li class="list-group-item" data-toggle="collapse" data-target="#userCollapse" aria-expanded="false"
                 aria-controls="userCollapse">
-                Von: {{ usernameusers }} | {{ profilepictureusers }}
+                Von: {{ usernameUsers }} | {{ profilePictureUsers }}
             </li>
             <div class="collapse" id="userCollapse">
                 <div class="card card-body">

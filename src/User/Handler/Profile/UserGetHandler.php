@@ -37,12 +37,27 @@ class UserGetHandler implements RequestHandlerInterface
         ]);
         }
 
+        $id = $_SESSION['userId'];
+
+        if (!empty($_POST)) {
+            $this->db->update(
+                'user',
+                array('username' => $_POST['recipient']),
+                array('id' => $id)
+            );
+
+            $this->db->update(
+                'userinfo',
+                array('username' => $_POST['recipient'], 'name' => $_POST['name'], 'surname' => $_POST['surname'], 'age' => $_POST['age'], 'job' => $_POST['job']),
+                array('id' => $id)
+            );
+        }
+
         $sql = $this->db->findUserById();
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':id', $_SESSION['userId']);
         $stmt->execute();
         $result = $stmt->fetch();
-
 
         $username = $_SESSION['userName'];
         $name = $result['name'] ?? '';
@@ -53,6 +68,9 @@ class UserGetHandler implements RequestHandlerInterface
         $profilepictureusers = '';
         $information = '';
 
+
+
+
         return new Response(
             200,
             [],
@@ -61,7 +79,7 @@ class UserGetHandler implements RequestHandlerInterface
                 'selfName' => $name,
                 'selfSurname' => $surname,
                 'selfAge' => $age,
-                'selfJob' => $job,
+                'job' => $job,
                 'usernameUsers' => $usernameUsers,
                 'profilePictureUsers' => $profilepictureusers,
                 'information' => $information
