@@ -4,6 +4,9 @@ body {
     font-family: 'Arial', sans-serif;
     background-color: #f8f9fa;
     color: #495057;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .container {
@@ -31,8 +34,7 @@ textarea {
 }
 
 .goBack {
-    position: absolute;
-    margin-bottom: 270px;
+    margin-top: 10px;
     background: #007BFF;
     width: 150px;
     height: 50px;
