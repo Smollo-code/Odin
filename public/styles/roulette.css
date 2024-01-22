@@ -178,3 +178,13 @@ body {
      margin-left: -670px;
      margin-bottom: 900px;
  }
+
+.coin-image {
+    width: 50px;  /* Passen Sie die Breite des Bildes an */
+    height: 50px; /* Passen Sie die Höhe des Bildes an */
+    background: url('../images/Coin.png') center center no-repeat;
+    background-size: contain;
+    position: absolute;
+    pointer-events: none;
+    z-index: 2;  /* Stellen Sie sicher, dass das Bild über dem Roulette-Rad liegt */
+}
