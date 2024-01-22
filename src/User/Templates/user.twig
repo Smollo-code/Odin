@@ -35,7 +35,7 @@
                         <div class="form-group">
                             <label for="recipient">Username</label>
                             <input type="text" class="form-control" id="recipient" name="recipient"
-                                   placeholder="Username hier eingeben" required value="{{ selfUsername }}">
+                                   placeholder="Username hier eingeben" required value="{{ username.username }}">
                         </div>
                         <div class="form-group">
                             <label for="name">Vorname</label>
@@ -68,26 +68,31 @@
         </div>
     </div>
 
+
     <div class="mt-4">
         <h2 class="text-center">Alle Nutzer</h2>
         <ul class="list-group">
+            {% for user in username %}
             <li class="list-group-item" data-toggle="collapse" data-target="#userCollapse" aria-expanded="false"
                 aria-controls="userCollapse">
-                Von: {{ usernameUsers }} | {{ profileUrlUsers }}
+                Von: {{ user.username }} | {{ user.profileurl }}
             </li>
+            {% endfor %}
+            {% for user in username %}
             <div class="collapse" id="userCollapse">
                 <div class="card card-body">
-                    Username: {{ nameUsers }}
+                    Username: {{ user.username }}
                     <br>
-                    Nachname: {{ surnameUsers }}
+                    Nachname: {{ user.surname }}
                     <br>
-                    Geburtsdatum: {{ ageUsers }}
+                    Geburtsdatum: {{ user.age }}
                     <br>
-                    Beruf: {{ jobUsers }}
+                    Beruf: {{ user.job }}
                     <br>
-                    {{ profileUrlUsers }}
+                    {{ user.profileurl }}
                 </div>
             </div>
+            {% endfor %}
         </ul>
     </div>
 </div>

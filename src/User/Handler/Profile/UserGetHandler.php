@@ -55,48 +55,17 @@ class UserGetHandler implements RequestHandlerInterface
             );
         }
 
-        $sql = $this->db->findUserById();
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':id', $_SESSION['userId']);
-        $stmt->execute();
-        $result = $stmt->fetch();
-
-        $username = $_SESSION['userName'];
-        $name = $result['name'] ?? '';
-        $surname = $result['surname'] ?? '';
-        $age = $result['age'] ?? '';
-        $job = $result['job'] ?? '';
-
-
         $sql = $this->db->userDataTransmitter();
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
-        $userResult = $stmt->fetch();
-
-        $usernameUsers = $userResult['username'];
-        $nameUsers = $userResult['name'];
-        $surnameUsers = $userResult['surname'];
-        $ageUsers = $userResult['age'];
-        $jobUsers = $userResult['job'];
-        $profileUrlUsers = $userResult['profileurl'];
+        $userResult = $stmt->fetchAll();
 
 
         return new Response(
             200,
             [],
             $this->renderer->render('user.twig', [
-                'selfUsername' => $username,
-                'selfName' => $name,
-                'selfSurname' => $surname,
-                'selfAge' => $age,
-                'job' => $job,
-
-                'usernameUsers' => $usernameUsers,
-                'nameUsers' => $nameUsers,
-                'surnameUsers' => $surnameUsers,
-                'ageUsers' => $ageUsers,
-                'jobUsers' => $jobUsers,
-                'profileUrlUsers' => $profileUrlUsers
+                'username' => $userResult
             ])
         );
     }

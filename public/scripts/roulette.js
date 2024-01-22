@@ -138,13 +138,13 @@ function prize(winningNumber) {
     }
 
     console.log(winningAmount);
+    document.getElementById('money').textContent = 'Geld: ' + winningAmount;
 }
 
 function isRed(number) {
     const redNumbers = ['1', '3', '5', '7', '9', '12', '14', '16', '18', '19', '21', '23', '25', '27', '30', '32', '34', '36'];
     return redNumbers.includes(number.toString());
 }
-
 
 function calculateTwoToOneWin(betType) {
     let value = parseInt(bets[betType]);
@@ -187,7 +187,6 @@ document.getElementById('roulette-table').addEventListener('contextmenu', functi
     event.preventDefault();
 
 });
-
 
 document.addEventListener('DOMContentLoaded', function () {
     var table = document.getElementById('roulette-table');
@@ -319,10 +318,12 @@ function findeNaechstenSchluessel(ziel, objekt) {
             naechsterSchluessel = schluessel;
         }
     }
-
     return naechsterSchluessel;
 }
 
+function reset() {
+    location.reload();
+}
 
 async function counter() {
     let element = document.getElementById('roulette-wheel2');
@@ -333,15 +334,14 @@ async function counter() {
             document.getElementById('counter').textContent = '';
             await pause(lastRotatetime());
             document.querySelector('.roulette-wheel2').classList.toggle('pausedanimation');
-            let zahl = getNumberFromAngle(getRotationAngle(element));
-            console.log(zahl)
-            prize();
+            let winningnumber = getNumberFromAngle(getRotationAngle(element));
+            console.log(winningnumber)
+            prize(winningnumber);
             return true;
         }
         await pause(100);
     }
 }
-
 
 function getNumberFromAngle(angle) {
     let angleNumbers = {
@@ -397,11 +397,6 @@ function getRotationAngle(element) {
     return Math.atan2(matrix.m21, matrix.m11) * (180 / Math.PI);
 }
 
-let element = document.querySelector('.roulette-wheel2');
-element.style.animationDuration = '5s';
-element.style.animationIterationCount = 'infinite';
-counter();
-
 function openCodePopup() {
     document.getElementById('codePopup').showModal();
 }
@@ -418,3 +413,8 @@ function redeemCode() {
 function goBack() {
     window.location.replace("http://odin.scam/dashboard");
 }
+
+let element = document.querySelector('.roulette-wheel2');
+element.style.animationDuration = '5s';
+element.style.animationIterationCount = 'infinite';
+counter();

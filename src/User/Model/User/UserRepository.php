@@ -136,8 +136,6 @@ class UserRepository implements UserRepositoryInterface
                     `id`, `username`, `name`, `surname`, `age`, `job`, `profileurl`
                 FROM
                     `userinfo`
-                WHERE
-                    `id` = `id`
         ';
     }
 
