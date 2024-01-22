@@ -86,6 +86,9 @@ function decreaseMoney(bet) {
 }
 
 //Gewinn Funktion
+
+
+//Gewinn Funktion
 function prize(winningNumber) {
     let winningAmount = 0;
 
@@ -93,6 +96,9 @@ function prize(winningNumber) {
     for (let number in bets) {
         if (parseInt(number) === winningNumber) {
             winningAmount += bets[number] * 35; // 35:1 Auszahlung
+
+            document.getElementById('audiofile').play();
+
             break;
         }
     }
@@ -153,6 +159,7 @@ function calculateTwoToOneWin(betType) {
 
     if (value > 0) {
         return value * 3; // 2:1 Auszahlung
+        document.getElementById('audiofile').play();
     }
     return 0;
 }
@@ -162,28 +169,11 @@ function calculateEvenMoneyWin(betType) {
 
     if (value > 0) {
         return value * 2; // 1:1 Auszahlung
+        document.getElementById('audiofile').play();
+
     }
     return 0;
 }
-
-/*function prize(winningNumber) {
-    let winningamout = 0;
-    // spezifische zahl: straight up
-    for (let number in bets) {
-        if (parseInt(number) === winningNumber) {
-            let winningamout = bets[number] * 36
-            console.log(winningamout);
-            break;
-        }
-    }
-    // red black etc. check
-    if (parseInt(winningNumber / 2)) {
-        let winningamout = bets['PAIR'] * 2
-    } else {
-
-    }
-}*/
-
 
 document.getElementById('roulette-table').addEventListener('contextmenu', function (event) {
     event.preventDefault();
@@ -341,7 +331,7 @@ async function counter() {
             prize(winningnumber);
             return true;
         }
-        await pause(100);
+        await pause(1000);
     }
 }
 
@@ -410,10 +400,6 @@ function closeCodePopup() {
 function redeemCode() {
 
     closeCodePopup();
-}
-
-function goBack() {
-    window.location.replace("http://odin.scam/dashboard");
 }
 
 let element = document.querySelector('.roulette-wheel2');

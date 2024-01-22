@@ -29,7 +29,7 @@ class RouletteGetHandler implements RequestHandlerInterface
         $jsMoney = "<script>document.writeln(winningAmount);</script>" ?? '';
         $money = (int) $this->db->select('roulette', ['geld'], ['id' => $_SESSION['userId']]);
 
-        if ($money < 0) {
+        if ($money <= 0) {
             $this->db->insert('roulette', ['id' => $_SESSION['userId'], 'geld' => '100']);
             $money = $this->db->select('roulette', ['geld'], ['id' => $_SESSION['userId']]);
         }
