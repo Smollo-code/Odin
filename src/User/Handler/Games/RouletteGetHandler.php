@@ -26,16 +26,13 @@ class RouletteGetHandler implements RequestHandlerInterface
             return new Response(status: 302, headers: ['Location' => '/']);
         }
 
-        $jsMoney = $_GET['winningAmount'] ?? '';
+        $jsMoney = "<script>document.writeln(winningAmount);</script>" ?? '';
         $money = (int) $this->db->select('roulette', ['geld'], ['id' => $_SESSION['userId']]);
 
-        if ($money > 0) {
-            $this->db->update('roulette', array('geld' => $jsMoney), array('id' => $_SESSION['userId']));
-        } else {
+        if ($money < 0) {
             $this->db->insert('roulette', ['id' => $_SESSION['userId'], 'geld' => '100']);
             $money = $this->db->select('roulette', ['geld'], ['id' => $_SESSION['userId']]);
         }
-
         return new Response(200, [], $this->renderer->render('roulette.twig', ['money' => $money]));
     }
 }

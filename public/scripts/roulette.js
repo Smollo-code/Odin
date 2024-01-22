@@ -139,6 +139,8 @@ function prize(winningNumber) {
 
     console.log(winningAmount);
     document.getElementById('money').textContent = 'Geld: ' + winningAmount;
+    xhttp.open("GET", "src/User/Handler/Games/RouletteDatabaseHandler.php", true);
+    xhttp.send();
 }
 
 function isRed(number) {
