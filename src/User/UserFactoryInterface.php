@@ -32,4 +32,6 @@ interface UserFactoryInterface
 
     public function createUserHandler(): RequestHandlerInterface;
 
+    public function createRouletteDatabaseHandler(): RequestHandlerInterface;
+
 }

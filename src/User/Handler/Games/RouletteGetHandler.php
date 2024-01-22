@@ -7,6 +7,7 @@ namespace Monolog\User\Handler\Games;
 use GuzzleHttp\Psr7\Response;
 use Monolog\App\Session\SessionInterface;
 use Monolog\User\Model\User\UserRepository;
+use mysql_xdevapi\BaseResult;
 use mysql_xdevapi\RowResult;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -25,8 +26,6 @@ class RouletteGetHandler implements RequestHandlerInterface
         if (!$this->session->isLoggedIn()) {
             return new Response(status: 302, headers: ['Location' => '/']);
         }
-
-        $jsMoney = "<script>document.writeln(winningAmount);</script>" ?? '';
         $money = (int) $this->db->select('roulette', ['geld'], ['id' => $_SESSION['userId']]);
 
         if ($money <= 0) {

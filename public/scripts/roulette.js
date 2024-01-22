@@ -63,6 +63,7 @@ function getNumbersFromString(string) {
 
 function addMoney(bet) {
     if (setbets) {
+        displayCoinImageOnNumber(bet)
         let value = parseInt(bets[bet]);
         let currentMoney = getNumbersFromString(document.getElementById('money').textContent);
         if (currentMoney === 0) {
@@ -74,6 +75,7 @@ function addMoney(bet) {
 }
 
 function decreaseMoney(bet) {
+    removeCoinImageFromNumber(bet)
     let value = parseInt(bets[bet]);
     if (setbets) {
         if (value === 0) {
@@ -86,9 +88,6 @@ function decreaseMoney(bet) {
 }
 
 //Gewinn Funktion
-
-
-//Gewinn Funktion
 function prize(winningNumber) {
     let winningAmount = 0;
 
@@ -96,18 +95,16 @@ function prize(winningNumber) {
     for (let number in bets) {
         if (parseInt(number) === winningNumber) {
             winningAmount += bets[number] * 35; // 35:1 Auszahlung
-
             break;
         }
     }
-        //Rot und Schwarz: 1:1 Auszahlung
+    //Rot und Schwarz: 1:1 Auszahlung
     if (winningNumber === 0) {
     } else if (isRed(winningNumber)) {
         winningAmount += calculateEvenMoneyWin('RED');
     } else {
         winningAmount += calculateEvenMoneyWin('BLACK');
     }
-
 
     // Pair oder Impair
     if (winningNumber % 2 === 0) {
@@ -142,9 +139,9 @@ function prize(winningNumber) {
     }
 
     console.log(winningAmount);
-    document.getElementById('money').textContent = 'Geld: ' + winningAmount;
-    xhttp.open("GET", "src/User/Handler/Games/RouletteDatabaseHandler.php", true);
-    xhttp.send();
+    let total = winningAmount+getNumbersFromString(document.getElementById('money').textContent);
+    ajaxCall(total);
+    document.getElementById('money').textContent = 'Geld: ' + total;
 }
 
 function isRed(number) {
@@ -171,29 +168,19 @@ function calculateEvenMoneyWin(betType) {
 }
 
 function displayCoinImageOnNumber(number) {
-    // Erstellen Sie das Bild-Element mit einer Datenattribute für die Nummer
     var coinImage = document.createElement('div');
     coinImage.className = 'coin-image';
     coinImage.setAttribute('data-number', number);
 
-    // Bestimmen Sie die Position des Bildes basierend auf der Nummer
     var cell = document.getElementById(number.toString());
     var cellRect = cell.getBoundingClientRect();
     coinImage.style.left = cellRect.left + 'px';
     coinImage.style.top = cellRect.top + 'px';
 
-    // Fügen Sie das Bild zum Spielfeld hinzu
     document.body.appendChild(coinImage);
 }
 
 function removeCoinImageFromNumber(number) {
-    // Finden Sie das Bild-Element und entfernen Sie es
-    var coinImage = document.querySelector('.coin-image');
-    if (coinImage) {
-        coinImage.remove();
-    }
-
-    // Optional: Sie können hier weitere Logik hinzufügen, um das Bild basierend auf der Nummer zu finden und zu entfernen
     var specificCoinImage = document.querySelector('.coin-image[data-number="' + number + '"]');
     if (specificCoinImage) {
         specificCoinImage.remove();
@@ -217,55 +204,42 @@ document.addEventListener('DOMContentLoaded', function () {
         if (clickedCell.attributes.id.nodeValue === 'PAIR') {
             console.log('Value:', clickedCell.attributes.id.nodeValue);
             addMoney('PAIR');
-            displayCoinImageOnNumber(cellValue);
         } else if (clickedCell.attributes.id.nodeValue === 'IMPAIR') {
             console.log('Value:', clickedCell.attributes.id.nodeValue);
             addMoney('IMPAIR');
-            displayCoinImageOnNumber(cellValue);
         } else if (clickedCell.attributes.id.nodeValue === '1-12') {
             console.log('Value:', clickedCell.attributes.id.nodeValue);
             addMoney('1-12');
-            displayCoinImageOnNumber(cellValue);
         } else if (clickedCell.attributes.id.nodeValue === '1-18') {
             console.log('Value:', clickedCell.attributes.id.nodeValue);
             addMoney('1-18');
-            displayCoinImageOnNumber(cellValue);
         } else if (clickedCell.attributes.id.nodeValue === '13-24') {
             console.log('Value:', clickedCell.attributes.id.nodeValue);
             addMoney('13-24');
-            displayCoinImageOnNumber(cellValue);
         } else if (clickedCell.attributes.id.nodeValue === 'RED') {
             console.log('Value:', clickedCell.attributes.id.nodeValue);
             addMoney('RED');
-            displayCoinImageOnNumber(cellValue);
         } else if (clickedCell.attributes.id.nodeValue === 'BLACK') {
             console.log('Value:', clickedCell.attributes.id.nodeValue);
             addMoney('BLACK');
-            displayCoinImageOnNumber(cellValue);
         } else if (clickedCell.attributes.id.nodeValue === '25-36') {
             console.log('Value:', clickedCell.attributes.id.nodeValue);
             addMoney('25-36');
-            displayCoinImageOnNumber(cellValue);
         } else if (clickedCell.attributes.id.nodeValue === '19-36') {
             console.log('Value:', clickedCell.attributes.id.nodeValue);
             addMoney('19-36');
-            displayCoinImageOnNumber(cellValue);
         } else if (clickedCell.attributes.id.nodeValue === 'row1') {
             console.log('Value:', clickedCell.attributes.id.nodeValue);
             addMoney('row1');
-            displayCoinImageOnNumber(cellValue);
         } else if (clickedCell.attributes.id.nodeValue === 'row2') {
             console.log('Value:', clickedCell.attributes.id.nodeValue);
             addMoney('row2');
-            displayCoinImageOnNumber(cellValue);
         } else if (clickedCell.attributes.id.nodeValue === 'row3') {
             console.log('Value:', clickedCell.attributes.id.nodeValue);
             addMoney('row3');
-            displayCoinImageOnNumber(cellValue);
         } else if (!isNaN(cellValue)) {
             console.log('Number:', cellValue);
             addMoney(cellValue);
-            displayCoinImageOnNumber(cellValue);
         }
         console.log(bets);
     });
@@ -279,55 +253,42 @@ document.addEventListener('DOMContentLoaded', function () {
         if (clickedCell.attributes.id.nodeValue === 'PAIR') {
             console.log('Value:', clickedCell.attributes.id.nodeValue);
             decreaseMoney('PAIR');
-            removeCoinImageFromNumber(cellValue);
         } else if (clickedCell.attributes.id.nodeValue === 'IMPAIR') {
             console.log('Value:', clickedCell.attributes.id.nodeValue);
             decreaseMoney('IMPAIR');
-            removeCoinImageFromNumber(cellValue);
         } else if (clickedCell.attributes.id.nodeValue === '1-12') {
             console.log('Value:', clickedCell.attributes.id.nodeValue);
-            decreaseMoney('1-12');
-            removeCoinImageFromNumber(cellValue);
+            decreaseMoney('1-12');;
         } else if (clickedCell.attributes.id.nodeValue === '1-18') {
             console.log('Value:', clickedCell.attributes.id.nodeValue);
             decreaseMoney('1-18');
-            removeCoinImageFromNumber(cellValue);
         } else if (clickedCell.attributes.id.nodeValue === '13-24') {
             console.log('Value:', clickedCell.attributes.id.nodeValue);
             decreaseMoney('13-24');
-            removeCoinImageFromNumber(cellValue);
         } else if (clickedCell.attributes.id.nodeValue === 'RED') {
             console.log('Value:', clickedCell.attributes.id.nodeValue);
             decreaseMoney('RED');
-            removeCoinImageFromNumber(cellValue);
         } else if (clickedCell.attributes.id.nodeValue === 'BLACK') {
             console.log('Value:', clickedCell.attributes.id.nodeValue);
             decreaseMoney('BLACK');
-            removeCoinImageFromNumber(cellValue);
         } else if (clickedCell.attributes.id.nodeValue === '25-36') {
             console.log('Value:', clickedCell.attributes.id.nodeValue);
             decreaseMoney('25-36');
-            removeCoinImageFromNumber(cellValue);
         } else if (clickedCell.attributes.id.nodeValue === '19-36') {
             console.log('Value:', clickedCell.attributes.id.nodeValue);
             decreaseMoney('19-36');
-            removeCoinImageFromNumber(cellValue);
         } else if (clickedCell.attributes.id.nodeValue === 'row1') {
             console.log('Value:', clickedCell.attributes.id.nodeValue);
             decreaseMoney('row1');
-            removeCoinImageFromNumber(cellValue);
         } else if (clickedCell.attributes.id.nodeValue === 'row2') {
             console.log('Value:', clickedCell.attributes.id.nodeValue);
             decreaseMoney('row2');
-            removeCoinImageFromNumber(cellValue);
         } else if (clickedCell.attributes.id.nodeValue === 'row3') {
             console.log('Value:', clickedCell.attributes.id.nodeValue);
             decreaseMoney('row3');
-            removeCoinImageFromNumber(cellValue);
         } else if (!isNaN(cellValue)) {
             console.log('Number:', cellValue);
             decreaseMoney(cellValue);
-            removeCoinImageFromNumber(cellValue);
         }
         console.log(bets);
     });
@@ -364,8 +325,11 @@ function findeNaechstenSchluessel(ziel, objekt) {
     return naechsterSchluessel;
 }
 
-function reset() {
-    location.reload();
+async function reset() {
+    setbets = true;
+    await pause(2000);
+    document.querySelector('.roulette-wheel2').classList.toggle('pausedanimation');
+    counter();
 }
 
 async function counter() {
@@ -380,11 +344,21 @@ async function counter() {
             let winningnumber = getNumberFromAngle(getRotationAngle(element));
             console.log(winningnumber)
             prize(winningnumber);
-            return true;
         }
         await pause(100);
     }
+    reset()
 }
+
+function ajaxCall (data) {
+    $.ajax({
+        url: '/roulettedb',
+        type: 'POST',
+        data: {'data': data}
+    });
+
+}
+
 
 function getNumberFromAngle(angle) {
     let angleNumbers = {

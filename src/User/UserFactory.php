@@ -11,6 +11,7 @@ use Monolog\User\Handler\Emailer\EmailerGetHandler;
 use Monolog\User\Handler\Emailer\EmailSenderGetHandler;
 use Monolog\User\Handler\Error\ErrorGetHandler;
 use Monolog\User\Handler\Games\GewinntGetHandler;
+use Monolog\User\Handler\Games\RouletteDatabaseHandler;
 use Monolog\User\Handler\Games\RouletteGetHandler;
 use Monolog\User\Handler\Games\TicTacToeGetHandler;
 use Monolog\User\Handler\Index\IndexGetHandler;
@@ -169,6 +170,15 @@ class UserFactory implements UserFactoryInterface
             $this->applicationFactory->createTwig(),
             $this->applicationFactory->createSession(),
             $this->applicationFactory->createUserRepository()
+        );
+    }
+
+    public function createRouletteDatabaseHandler(): RequestHandlerInterface
+    {
+        return new RouletteDatabaseHandler(
+            $this->applicationFactory->createTwig(),
+            $this->applicationFactory->createUserRepository(),
+            $this->applicationFactory->createSession()
         );
     }
 

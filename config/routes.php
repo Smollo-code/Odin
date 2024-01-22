@@ -110,5 +110,12 @@ $route = new Route('/user', ['handler' => function (ApplicationFactory $factory)
 
 $routes->add('user', $route);
 
+$route = new Route('/roulettedb', ['handler' => function (ApplicationFactory $factory): RequestHandlerInterface {
+    return $factory->createUserFactory()
+        ->createRouletteDatabaseHandler();
+}]);
+
+$routes->add('user', $route);
+
 
 return $routes;

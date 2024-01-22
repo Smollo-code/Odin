@@ -186,5 +186,5 @@ body {
     background-size: contain;
     position: absolute;
     pointer-events: none;
-    z-index: 2;  /* Stellen Sie sicher, dass das Bild über dem Roulette-Rad liegt */
+    z-index: 2;
 }
