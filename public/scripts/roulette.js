@@ -144,6 +144,9 @@ function prize(winningNumber) {
         winningAmount += calculateTwoToOneWin('row3');
     }
 
+    if (winningAmount > 0 ) {
+        document.getElementById('audiofile').play();
+    }
     console.log(winningAmount);
     let total = winningAmount+getNumbersFromString(document.getElementById('money').textContent);
     ajaxCall(total);
