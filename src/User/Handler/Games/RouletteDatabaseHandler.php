@@ -17,19 +17,12 @@ class RouletteDatabaseHandler implements RequestHandlerInterface
     {
     }
 
-    private function updateMoney(int $money)
-    {
-        if ($money === 0) {
-
-        }
-    }
-
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         if (!$this->session->isLoggedIn()) {
             return new Response(status: 302, headers: ['Location' => '/']);
         }
-        $money = $_GET['data'];
+        $money = $_POST['data'];
 
         $this->db->update('roulette', ['geld' => $money], ['id' => $_SESSION['userId']]);
 
