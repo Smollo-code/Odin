@@ -36,6 +36,6 @@ class RouletteGetHandler implements RequestHandlerInterface
 
         $lastWin = $_POST['lastWin'] ?? '';
 
-        return new Response(200, [], $this->renderer->render('roulette.twig', ['money' => $money, 'lastWin' => $lastWin]));
+        return new Response(200, [], $this->renderer->render('roulette.twig', ['money' => $money]));
     }
 }
