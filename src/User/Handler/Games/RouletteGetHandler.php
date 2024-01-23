@@ -34,7 +34,7 @@ class RouletteGetHandler implements RequestHandlerInterface
             $money = $this->db->select('roulette', ['geld'], ['id' => $_SESSION['userId']]);
         }
 
-        $lastWin = 100;
+        $lastWin = $_POST['lastWin'] ?? '';
 
         return new Response(200, [], $this->renderer->render('roulette.twig', ['money' => $money, 'lastWin' => $lastWin]));
     }

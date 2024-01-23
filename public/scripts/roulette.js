@@ -363,7 +363,7 @@ async function counter() {
             console.log(winningnumber)
             prize(winningnumber);
         }
-        await pause(100);
+        await pause(1000);
     }
     reset()
 }

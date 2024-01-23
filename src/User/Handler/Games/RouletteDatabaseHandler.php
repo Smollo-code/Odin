@@ -30,6 +30,7 @@ class RouletteDatabaseHandler implements RequestHandlerInterface
             return new Response(status: 302, headers: ['Location' => '/']);
         }
         $money = $_GET['data'];
+        $_POST['lastWin'] = $money;
 
         $this->db->update('roulette', ['geld' => $money], ['id' => $_SESSION['userId']]);
 
