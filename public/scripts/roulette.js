@@ -87,6 +87,12 @@ function decreaseMoney(bet) {
     }
 }
 
+function getNumber(winningNumber) {
+    var min = 0;
+    var max = 38;
+    var x = Math.round(Math.random() * (max - min) + min);
+}
+
 //Gewinn Funktion
 function prize(winningNumber) {
     let winningAmount = 0;
