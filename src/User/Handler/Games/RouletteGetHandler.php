@@ -29,6 +29,7 @@ class RouletteGetHandler implements RequestHandlerInterface
         $money = (int) $this->db->select('roulette', ['geld'], ['id' => $_SESSION['userId']]);
 
         if ($money <= 0) {
+            $this->db->delete('roulette', ['id' => $_SESSION['userId']]);
             $this->db->insert('roulette', ['id' => $_SESSION['userId'], 'geld' => '100']);
             $money = $this->db->select('roulette', ['geld'], ['id' => $_SESSION['userId']]);
         }

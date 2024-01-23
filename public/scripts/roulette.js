@@ -334,7 +334,16 @@ function findeNaechstenSchluessel(ziel, objekt) {
     return naechsterSchluessel;
 }
 
+function resetBets() {
+    const keys = Object.keys(bets)
+    for (let i = 0; i < Object.keys(bets).length; i++) {
+        bets[keys[i]] = '0';
+    }
+}
+
+
 async function reset() {
+    resetBets();
     setbets = true;
     await pause(2000);
     document.querySelector('.roulette-wheel2').classList.toggle('pausedanimation');

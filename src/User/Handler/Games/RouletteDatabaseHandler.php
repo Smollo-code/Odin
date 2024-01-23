@@ -17,7 +17,12 @@ class RouletteDatabaseHandler implements RequestHandlerInterface
     {
     }
 
+    private function updateMoney(int $money)
+    {
+        if ($money === 0) {
 
+        }
+    }
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
