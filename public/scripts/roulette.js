@@ -49,7 +49,8 @@ let bets = {
     'row2': '0',
     'row3': '0',
 };
-let setbets = true;
+let setbets = true
+let coinsOnTable = 0
 
 function getNumbersFromString(string) {
     let numbers = [];
@@ -180,6 +181,7 @@ function displayCoinImageOnNumber(number) {
     var coinImage = document.createElement('div');
     coinImage.className = 'coin-image';
     coinImage.setAttribute('data-number', number);
+    coinsOnTable += 1;
 
     var cell = document.getElementById(number.toString());
     var cellRect = cell.getBoundingClientRect();
@@ -190,6 +192,7 @@ function displayCoinImageOnNumber(number) {
 }
 
 function removeCoinImageFromNumber(number) {
+    coinsOnTable -= 1;
     var specificCoinImage = document.querySelector('.coin-image[data-number="' + number + '"]');
     if (specificCoinImage) {
         specificCoinImage.remove();
@@ -267,7 +270,7 @@ document.addEventListener('DOMContentLoaded', function () {
             decreaseMoney('IMPAIR');
         } else if (clickedCell.attributes.id.nodeValue === '1-12') {
             console.log('Value:', clickedCell.attributes.id.nodeValue);
-            decreaseMoney('1-12');;
+            decreaseMoney('1-12');
         } else if (clickedCell.attributes.id.nodeValue === '1-18') {
             console.log('Value:', clickedCell.attributes.id.nodeValue);
             decreaseMoney('1-18');
@@ -341,9 +344,19 @@ function resetBets() {
     }
 }
 
+function removeAllCoins() {
+    const keys = Object.keys(bets)
+    for (let i = 0; i < coinsOnTable; i++) {
+        let coinImage = document.querySelector('.coin-image');
+        if (coinImage) {
+            coinImage.remove();
+        }
+    }
+}
 
 async function reset() {
     resetBets();
+    removeAllCoins();
     setbets = true;
     await pause(2000);
     document.querySelector('.roulette-wheel2').classList.toggle('pausedanimation');
