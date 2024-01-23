@@ -88,10 +88,53 @@ function decreaseMoney(bet) {
     }
 }
 
-function getNumber(winningNumber) {
-    var min = 0;
-    var max = 38;
-    var x = Math.round(Math.random() * (max - min) + min);
+function getNumber() {
+    return Math.round(Math.random() * (37 - 0) + 0);
+}
+
+function getAngle(number) {
+    let angleNumbers = {
+        '1': '9.47',
+        '13': '18.94',
+        '36': '28.41',
+        '24': '37.88',
+        '3': '47.35',
+        '15': '56.82',
+        '34': '66.29',
+        '22': '75.76',
+        '5': '85.23',
+        '17': '94.7',
+        '32': '104.17',
+        '20': '113.64',
+        '7': '123.11',
+        '11': '132.58',
+        '30': '142.05',
+        '26': '151.52',
+        '9': '160.99',
+        '28': '170.46',
+        '0': '180',
+        '2': '189.4',
+        '14': '198.87',
+        '35': '208.34',
+        '23': '217.81',
+        '4': '227.28',
+        '16': '236.75',
+        '33': '246.22',
+        '21': '255.69',
+        '6': '265.16',
+        '18': '274.63',
+        '31': '284.1',
+        '19': '293.57',
+        '8': '303.04',
+        '12': '312.51',
+        '29': '321.98',
+        '25': '331.45',
+        '10': '340.92',
+        '27': '350.39',
+        '37': '360.0'
+
+    }
+    return angleNumbers[number];
 }
 
 //Gewinn Funktion
@@ -148,7 +191,7 @@ function prize(winningNumber) {
     if (winningAmount > 0 ) {
         document.getElementById('audiofile').play();
     }
-    console.log(winningAmount);
+    //console.log(winningAmount);
     let total = winningAmount+getNumbersFromString(document.getElementById('money').textContent);
     ajaxCall(total);
     document.getElementById('money').textContent = 'Geld: ' + total;
@@ -178,13 +221,13 @@ function calculateEvenMoneyWin(betType) {
 }
 
 function displayCoinImageOnNumber(number) {
-    var coinImage = document.createElement('div');
+    let coinImage = document.createElement('div');
     coinImage.className = 'coin-image';
     coinImage.setAttribute('data-number', number);
     coinsOnTable += 1;
 
-    var cell = document.getElementById(number.toString());
-    var cellRect = cell.getBoundingClientRect();
+    let cell = document.getElementById(number.toString());
+    let cellRect = cell.getBoundingClientRect();
     coinImage.style.left = cellRect.left + 'px';
     coinImage.style.top = cellRect.top + 'px';
 
@@ -193,7 +236,7 @@ function displayCoinImageOnNumber(number) {
 
 function removeCoinImageFromNumber(number) {
     coinsOnTable -= 1;
-    var specificCoinImage = document.querySelector('.coin-image[data-number="' + number + '"]');
+    let specificCoinImage = document.querySelector('.coin-image[data-number="' + number + '"]');
     if (specificCoinImage) {
         specificCoinImage.remove();
     }
@@ -209,9 +252,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //linksclick
     table.addEventListener('click', function (event) {
-        var clickedCell = event.target;
+        let clickedCell = event.target;
 
-        var cellValue = parseInt(clickedCell.textContent);
+        let cellValue = parseInt(clickedCell.textContent);
 
         if (clickedCell.attributes.id.nodeValue === 'PAIR') {
             console.log('Value:', clickedCell.attributes.id.nodeValue);
@@ -371,10 +414,16 @@ async function counter() {
             setbets = false;
             document.getElementById('counter').textContent = '';
             await pause(lastRotatetime());
-            document.querySelector('.roulette-wheel2').classList.toggle('pausedanimation');
-            let winningnumber = getNumberFromAngle(getRotationAngle(element));
-            console.log(winningnumber)
-            prize(winningnumber);
+            const winningNumber = getNumber();
+            console.log(winningNumber);
+            console.log(getAngle(winningNumber));
+            console.log(getRotationAngle(element));
+            if (getAngle(winningNumber) === getRotationAngle(element)) {
+                document.querySelector('.roulette-wheel2').classList.toggle('pausedanimation');
+                prize(winningNumber);
+            }
+            //console.log(winningnumber)
+
         }
         await pause(100);
     }
@@ -442,7 +491,11 @@ function getNumberFromAngle(angle) {
 function getRotationAngle(element) {
     const style = window.getComputedStyle(element);
     const matrix = new WebKitCSSMatrix(style.transform);
-    return Math.atan2(matrix.m21, matrix.m11) * (180 / Math.PI);
+    let angle= Math.atan2(matrix.m21, matrix.m11) * (180 / Math.PI);
+    if (angle < 0) {
+        return angle+360.0;
+    }
+    return angle;
 }
 
 function openCodePopup() {
