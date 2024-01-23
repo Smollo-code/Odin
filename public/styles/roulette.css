@@ -188,3 +188,11 @@ body {
     pointer-events: none;
     z-index: 2;
 }
+
+.lastWin {
+    font-size: xx-large;
+    color: #fff;
+    position: absolute;
+    margin-left: 900px;
+    text-align: center;
+}
