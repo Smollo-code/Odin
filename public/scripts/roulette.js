@@ -62,32 +62,6 @@ function getNumbersFromString(string) {
     return parseInt(numbers.join(''));
 }
 
-function addMoney(bet) {
-    if (setbets) {
-        displayCoinImageOnNumber(bet)
-        let value = parseInt(bets[bet]);
-        let currentMoney = getNumbersFromString(document.getElementById('money').textContent);
-        if (currentMoney === 0) {
-        } else {
-            document.getElementById('money').textContent = 'Geld: ' + (currentMoney - 10);
-            bets[bet] = value + 10;
-        }
-    }
-}
-
-function decreaseMoney(bet) {
-    removeCoinImageFromNumber(bet)
-    let value = parseInt(bets[bet]);
-    if (setbets) {
-        if (value === 0) {
-        } else {
-            bets[bet] = value - 10;
-            let currentMoney = getNumbersFromString(document.getElementById('money').textContent);
-            document.getElementById('money').textContent = 'Geld: ' + (currentMoney + 10);
-        }
-    }
-}
-
 function getNumber() {
     return Math.round(Math.random() * (37 - 0) + 0);
 }
@@ -137,87 +111,59 @@ function getAngle(number) {
     return angleNumbers[number];
 }
 
-//Gewinn Funktion
-function prize(winningNumber) {
-    let winningAmount = 0;
+function lastRotatetime() {
+    return Math.random() * (7000 - 5000) + 5000;
+}
 
-    // Spezifische Zahl
-    for (let number in bets) {
-        if (parseInt(number) === winningNumber) {
-            winningAmount += bets[number] * 35; // 35:1 Auszahlung
-            break;
+function pause(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function berechneUnterschied(num1, num2) {
+    return Math.abs(num1 - num2);
+}
+
+
+
+//Counter
+
+async function counter() {
+    let element = document.getElementById('roulette-wheel2');
+    for (let i = 1; i <= 30; i++) {
+        document.getElementById('counter').textContent = 30 - i;
+        if (i === 30) {
+            setbets = false;
+            document.getElementById('counter').textContent = '';
+            await pause(lastRotatetime());
+            const winningNumber = getNumber();
+            console.log(winningNumber);
+            console.log(getAngle(winningNumber));
+            console.log(getRotationAngle(element));
+            if (getAngle(winningNumber) === getRotationAngle(element)) {
+                document.querySelector('.roulette-wheel2').classList.toggle('pausedanimation');
+                prize(winningNumber);
+            }
+            //console.log(winningnumber)
+
         }
+        await pause(100);
     }
-    //Rot und Schwarz: 1:1 Auszahlung
-    if (winningNumber === 0) {
-    } else if (isRed(winningNumber)) {
-        winningAmount += calculateEvenMoneyWin('RED');
-    } else {
-        winningAmount += calculateEvenMoneyWin('BLACK');
-    }
-
-    // Pair oder Impair
-    if (winningNumber % 2 === 0) {
-        winningAmount += calculateEvenMoneyWin('PAIR');
-    } else {
-        winningAmount += calculateEvenMoneyWin('IMPAIR');
-    }
-
-    // 1-18 oder 19-36: 1:1 Auszahlung
-    if (winningNumber >= 1 && winningNumber <= 18) {
-        winningAmount += calculateEvenMoneyWin('1-18');
-    } else {
-        winningAmount += calculateEvenMoneyWin('19-36');
-    }
-
-    // 1-12, 13-24 oder 25-36: 2:1 Auszahlung
-    if (winningNumber >= 1 && winningNumber <= 12) {
-        winningAmount += calculateTwoToOneWin('1-12');
-    } else if (winningNumber >= 13 && winningNumber <= 24) {
-        winningAmount += calculateTwoToOneWin('13-24');
-    } else if (winningNumber >= 25 && winningNumber <= 36) {
-        winningAmount += calculateTwoToOneWin('25-36');
-    }
-
-    // Row1, Row2 oder Row3: 2:1 Auszahlung
-    if (winningNumber % 3 === 1) {
-        winningAmount += calculateTwoToOneWin('row1');
-    } else if (winningNumber % 3 === 2) {
-        winningAmount += calculateTwoToOneWin('row2');
-    } else {
-        winningAmount += calculateTwoToOneWin('row3');
-    }
-
-    if (winningAmount > 0 ) {
-        document.getElementById('audiofile').play();
-    }
-    //console.log(winningAmount);
-    let total = winningAmount+getNumbersFromString(document.getElementById('money').textContent);
-    ajaxCall(total);
-    document.getElementById('money').textContent = 'Geld: ' + total;
+    reset()
 }
 
-function isRed(number) {
-    const redNumbers = ['1', '3', '5', '7', '9', '12', '14', '16', '18', '19', '21', '23', '25', '27', '30', '32', '34', '36'];
-    return redNumbers.includes(number.toString());
-}
+let element = document.querySelector('.roulette-wheel2');
+element.style.animationDuration = '5s';
+element.style.animationIterationCount = 'infinite';
+counter();
 
-function calculateTwoToOneWin(betType) {
-    let value = parseInt(bets[betType]);
-
-    if (value > 0) {
-        return value * 3; // 2:1 Auszahlung
+function getRotationAngle(element) {
+    const style = window.getComputedStyle(element);
+    const matrix = new WebKitCSSMatrix(style.transform);
+    let angle= Math.atan2(matrix.m21, matrix.m11) * (180 / Math.PI);
+    if (angle < 0) {
+        return angle+360.0;
     }
-    return 0;
-}
-
-function calculateEvenMoneyWin(betType) {
-    let value = parseInt(bets[betType]);
-
-    if (value > 0) {
-        return value * 2; // 1:1 Auszahlung
-    }
-    return 0;
+    return angle;
 }
 
 function displayCoinImageOnNumber(number) {
@@ -239,6 +185,32 @@ function removeCoinImageFromNumber(number) {
     let specificCoinImage = document.querySelector('.coin-image[data-number="' + number + '"]');
     if (specificCoinImage) {
         specificCoinImage.remove();
+    }
+}
+
+function addMoney(bet) {
+    if (setbets) {
+        displayCoinImageOnNumber(bet)
+        let value = parseInt(bets[bet]);
+        let currentMoney = getNumbersFromString(document.getElementById('money').textContent);
+        if (currentMoney === 0) {
+        } else {
+            document.getElementById('money').textContent = 'Geld: ' + (currentMoney - 10);
+            bets[bet] = value + 10;
+        }
+    }
+}
+
+function decreaseMoney(bet) {
+    removeCoinImageFromNumber(bet)
+    let value = parseInt(bets[bet]);
+    if (setbets) {
+        if (value === 0) {
+        } else {
+            bets[bet] = value - 10;
+            let currentMoney = getNumbersFromString(document.getElementById('money').textContent);
+            document.getElementById('money').textContent = 'Geld: ' + (currentMoney + 10);
+        }
     }
 }
 
@@ -349,20 +321,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-function goBack() {
-    window.location.replace("http://odin.scam/dashboard");
-}
+function ajaxCall (data) {
+    $.ajax({
+        url: '/roulettedb',
+        type: 'POST',
+        data: {'data': data}
+    });
 
-function lastRotatetime() {
-    return Math.random() * (7000 - 5000) + 5000;
-}
-
-function pause(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-function berechneUnterschied(num1, num2) {
-    return Math.abs(num1 - num2);
 }
 
 function findeNaechstenSchluessel(ziel, objekt) {
@@ -387,6 +352,15 @@ function resetBets() {
     }
 }
 
+async function reset() {
+    resetBets();
+    removeAllCoins();
+    setbets = true;
+    await pause(2000);
+    document.querySelector('.roulette-wheel2').classList.toggle('pausedanimation');
+    counter();
+}
+
 function removeAllCoins() {
     const keys = Object.keys(bets)
     for (let i = 0; i < coinsOnTable; i++) {
@@ -397,48 +371,104 @@ function removeAllCoins() {
     }
 }
 
-async function reset() {
-    resetBets();
-    removeAllCoins();
-    setbets = true;
-    await pause(2000);
-    document.querySelector('.roulette-wheel2').classList.toggle('pausedanimation');
-    counter();
-}
 
-async function counter() {
-    let element = document.getElementById('roulette-wheel2');
-    for (let i = 1; i <= 30; i++) {
-        document.getElementById('counter').textContent = 30 - i;
-        if (i === 30) {
-            setbets = false;
-            document.getElementById('counter').textContent = '';
-            await pause(lastRotatetime());
-            const winningNumber = getNumber();
-            console.log(winningNumber);
-            console.log(getAngle(winningNumber));
-            console.log(getRotationAngle(element));
-            if (getAngle(winningNumber) === getRotationAngle(element)) {
-                document.querySelector('.roulette-wheel2').classList.toggle('pausedanimation');
-                prize(winningNumber);
-            }
-            //console.log(winningnumber)
 
+//Gewinn Funktion
+
+function prize(winningNumber) {
+    let winningAmount = 0;
+
+    // Spezifische Zahl
+
+    for (let number in bets) {
+        if (parseInt(number) === winningNumber) {
+            winningAmount += bets[number] * 35; // 35:1 Auszahlung
+            break;
         }
-        await pause(100);
     }
-    reset()
+
+    //Rot und Schwarz: 1:1 Auszahlung
+
+    if (winningNumber === 0) {
+    } else if (isRed(winningNumber)) {
+        winningAmount += calculateEvenMoneyWin('RED');
+    } else {
+        winningAmount += calculateEvenMoneyWin('BLACK');
+    }
+
+    // Pair oder Impair
+
+    if (winningNumber % 2 === 0) {
+        winningAmount += calculateEvenMoneyWin('PAIR');
+    } else {
+        winningAmount += calculateEvenMoneyWin('IMPAIR');
+    }
+
+    // 1-18 oder 19-36: 1:1 Auszahlung
+
+    if (winningNumber >= 1 && winningNumber <= 18) {
+        winningAmount += calculateEvenMoneyWin('1-18');
+    } else {
+        winningAmount += calculateEvenMoneyWin('19-36');
+    }
+
+    // 1-12, 13-24 oder 25-36: 2:1 Auszahlung
+
+    if (winningNumber >= 1 && winningNumber <= 12) {
+        winningAmount += calculateTwoToOneWin('1-12');
+    } else if (winningNumber >= 13 && winningNumber <= 24) {
+        winningAmount += calculateTwoToOneWin('13-24');
+    } else if (winningNumber >= 25 && winningNumber <= 36) {
+        winningAmount += calculateTwoToOneWin('25-36');
+    }
+
+    // Row1, Row2 oder Row3: 2:1 Auszahlung
+
+    if (winningNumber % 3 === 1) {
+        winningAmount += calculateTwoToOneWin('row1');
+    } else if (winningNumber % 3 === 2) {
+        winningAmount += calculateTwoToOneWin('row2');
+    } else {
+        winningAmount += calculateTwoToOneWin('row3');
+    }
+
+    if (winningAmount > 0 ) {
+        document.getElementById('audiofile').play();
+    }
+    //console.log(winningAmount);
+    let total = winningAmount+getNumbersFromString(document.getElementById('money').textContent);
+    ajaxCall(total);
+    document.getElementById('money').textContent = 'Geld: ' + total;
 }
 
-function ajaxCall (data) {
-    $.ajax({
-        url: '/roulettedb',
-        type: 'POST',
-        data: {'data': data}
-    });
+//Ist Rot
 
+function isRed(number) {
+    const redNumbers = ['1', '3', '5', '7', '9', '12', '14', '16', '18', '19', '21', '23', '25', '27', '30', '32', '34', '36'];
+    return redNumbers.includes(number.toString());
 }
 
+//Auszahlung 2:1
+
+function calculateTwoToOneWin(betType) {
+    let value = parseInt(bets[betType]);
+
+    if (value > 0) {
+        return value * 3;
+    }
+    return 0;
+}
+
+//Auszahlung 1:1
+
+function calculateEvenMoneyWin(betType) {
+    let value = parseInt(bets[betType]);
+
+    if (value > 0) {
+        return value * 2; // 1:1 Auszahlung
+    }
+    return 0;
+}
 
 function getNumberFromAngle(angle) {
     let angleNumbers = {
@@ -488,14 +518,8 @@ function getNumberFromAngle(angle) {
     return findeNaechstenSchluessel(angle, angleNumbers);
 }
 
-function getRotationAngle(element) {
-    const style = window.getComputedStyle(element);
-    const matrix = new WebKitCSSMatrix(style.transform);
-    let angle= Math.atan2(matrix.m21, matrix.m11) * (180 / Math.PI);
-    if (angle < 0) {
-        return angle+360.0;
-    }
-    return angle;
+function goBack() {
+    window.location.replace("http://odin.scam/dashboard");
 }
 
 function openCodePopup() {
@@ -507,11 +531,5 @@ function closeCodePopup() {
 }
 
 function redeemCode() {
-
     closeCodePopup();
 }
-
-let element = document.querySelector('.roulette-wheel2');
-element.style.animationDuration = '5s';
-element.style.animationIterationCount = 'infinite';
-counter();
